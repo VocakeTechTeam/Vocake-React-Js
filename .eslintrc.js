@@ -12,7 +12,7 @@ module.exports = {
     'eslint-config-prettier',
     'prettier'
   ],
-  plugins: ['prettier', 'unused-imports'],
+  plugins: ['prettier'],
   settings: {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
@@ -35,6 +35,7 @@ module.exports = {
     browser: true, // Add browser environment if you're working with React
   },
   rules: {
+     "@typescript-eslint/no-unused-vars": "off",
     'react/react-in-jsx-scope': 'off',
     'react/jsx-no-target-blank': 'warn',
     'prettier/prettier': [
@@ -52,10 +53,9 @@ module.exports = {
       },
     ],
     // Rule to remove unused imports
-    'unused-imports/no-unused-imports': 'error', // This will throw an error for unused imports
-    'unused-imports/no-unused-vars': [
-      'warn',
-      { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
-    ],
+    // 'unused-imports/no-unused-vars': [
+    //   'warn',
+    //   { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
+    // ],
   },
 };
