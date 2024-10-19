@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react'
-import { Box, styled, Typography, useTheme } from '@mui/material'
+import { Box, Typography, useTheme } from '@mui/material'
 import image1 from '../../assets/image1.png'
 import { makeStyles, createStyles } from '@mui/styles'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
@@ -7,11 +7,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import GoogleIcon from '../../assets/icon/GoogleIcon'
 import { useNavigate } from 'react-router-dom'
 import { createClient } from '@supabase/supabase-js'
+import { Input } from '../../components/Input'
 
-const supabase =  createClient(
-    'https://ceynqxathrpofueuphir.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNleW5xeGF0aHJwb2Z1ZXVwaGlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkzMjIxMjQsImV4cCI6MjA0NDg5ODEyNH0.9E7Ar-jcf2CTLp-uNGlZ2hkILyjUqR4QfgICf4H8cDU'
-  )
+const supabase = createClient(
+  'https://ceynqxathrpofueuphir.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNleW5xeGF0aHJwb2Z1ZXVwaGlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkzMjIxMjQsImV4cCI6MjA0NDg5ODEyNH0.9E7Ar-jcf2CTLp-uNGlZ2hkILyjUqR4QfgICf4H8cDU'
+)
 
 const Login = () => {
   const theme = useTheme()
@@ -21,12 +22,11 @@ const Login = () => {
   useEffect(() => {
     const session = supabase.auth.getSession()
     console.log(session)
-  },[])
-  const handleLogin =async () => {
-  }
+  }, [])
+  const handleLogin = async () => {}
   const handleGoogleLogin = async () => {
-       await supabase.auth.signInWithOAuth({
-      provider:'google'
+    await supabase.auth.signInWithOAuth({
+      provider: 'google'
     })
     nav('/')
   }
@@ -43,13 +43,21 @@ const Login = () => {
           </Box>
           <Box className={styles.forgotContainer}>
             <Typography>Forgot password?</Typography>
-            <Typography sx={{ color: '#C2A226', fontWeight: 'bold' }}> Click here</Typography>
+            <Typography
+              sx={{ color: '#C2A226', fontWeight: 'bold', cursor: 'pointer' }}
+              onClick={() => {
+                nav('/register')
+              }}
+            >
+              {' '}
+              Click here
+            </Typography>
           </Box>
           <Box className={styles.btnContainer}>
             <Box className={styles.loginBtn} onClick={handleLogin}>
               Log in
             </Box>
-            <Box onClick={handleGoogleLogin}  className={styles.googleBtn}>
+            <Box onClick={handleGoogleLogin} className={styles.googleBtn}>
               <GoogleIcon />
               Sign in with google
             </Box>
@@ -71,7 +79,6 @@ const useStyles = makeStyles((theme: any) =>
     root: {
       width: '100%',
       height: '100%',
-      border: `1px solid ${theme.palette.primary.main}`,
       display: 'flex',
       flexDirection: 'row'
     },
@@ -140,51 +147,7 @@ const useStyles = makeStyles((theme: any) =>
       alignItems: 'flex-start',
       width: '100%',
       margin: '30px',
-      '& > *': { marginRight: '15px' }
+      '& > *': { margin: '15px' }
     }
   })
 )
-
-type InputProps = {
-  icon: ReactNode
-  placeholder: string
-}
-
-const Input = ({ icon, placeholder }: InputProps) => {
-  const [isFocus, setIsFocus] = useState(false)
-  return (
-    <Box
-      sx={{
-        background: '#F1F1F1',
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        border: '#8c8a8a solid 1px',
-        width: '100%',
-        borderRadius: '50px',
-        padding: '10px',
-        '& input': {
-          border: 'transparent',
-          flex: 1,
-          background: 'transparent'
-        },
-        '& input:focus': {
-          border: 'transparent',
-          outline: 'none',
-          flex: 1
-        },
-        '& svg': {
-          width: '12px',
-          height: '12px'
-        }
-      }}
-      onClick={() => {
-        setIsFocus(!isFocus)
-      }}
-    >
-      <input placeholder={placeholder} type='text' />
-      {icon}
-    </Box>
-  )
-}
