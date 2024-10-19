@@ -8,9 +8,7 @@ type Props = {
 
 const Header = ({ children }: Props) => {
   const classes = useStyles()
-  return <Box className={classes.root}>
-    {children}
-  </Box>
+  return <Box className={classes.root}>{children}</Box>
 }
 
 export default Header
@@ -18,12 +16,12 @@ export default Header
 const useStyles = makeStyles(() =>
   createStyles({
     root: {
-      flex: '1',
-      border: 'red solid 1px',
-      height: '30%',
+      height: '10%',
       position: 'relative',
       display: 'flex',
-      flexDirection: 'row'
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center'
     }
   })
 )

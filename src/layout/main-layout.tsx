@@ -14,7 +14,7 @@ const MainLayout = () => {
       </Box>
       <Box className={classes.main}>
         <Header>
-          <SearchBar/>
+          <SearchBar />
         </Header>
         <Outlet />
       </Box>
@@ -29,13 +29,19 @@ const useStyles = makeStyles(() =>
     root: {
       display: 'flex',
       flexDirection: 'row',
-      width: '100%'
+      width: '100%',
+      height: '100%'
     },
     sidebar: {
-      width: '20%'
+      width: '20%',
+      display: 'flex',
+      justifyContent: 'center',
+      boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px'
     },
     main: {
-      flex: 1
+      width: '80%',
+      display: 'flex',
+      flexDirection: 'column'
     }
   })
 )
