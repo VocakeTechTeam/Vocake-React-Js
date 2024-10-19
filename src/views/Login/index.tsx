@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import { Box, styled, Typography, useTheme } from '@mui/material'
 import image1 from '../../assets/image1.png'
 import { makeStyles, createStyles } from '@mui/styles'
@@ -6,19 +6,37 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import GoogleIcon from '../../assets/icon/GoogleIcon'
 import { useNavigate } from 'react-router-dom'
+import { createClient } from '@supabase/supabase-js'
+
+const supabase =  createClient(
+    'https://ceynqxathrpofueuphir.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNleW5xeGF0aHJwb2Z1ZXVwaGlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkzMjIxMjQsImV4cCI6MjA0NDg5ODEyNH0.9E7Ar-jcf2CTLp-uNGlZ2hkILyjUqR4QfgICf4H8cDU'
+  )
 
 const Login = () => {
   const theme = useTheme()
   const nav = useNavigate()
   const styles = useStyles(theme)
-  const handleLogin = () => {
+
+  useEffect(() => {
+    const session = supabase.auth.getSession()
+    console.log(session)
+  },[])
+  const handleLogin =async () => {
+  }
+  const handleGoogleLogin = async () => {
+       await supabase.auth.signInWithOAuth({
+      provider:'google'
+    })
     nav('/')
   }
   return (
     <Box className={styles.root}>
       <Box className={styles.container1}>
         <Box className={styles.container3}>
-          <Typography className={styles.header}>Welcome to Vocake!</Typography>
+          <Typography className={styles.header} style={{ fontSize: '32px', fontWeight: 'bold' }}>
+            Welcome to Vocake!
+          </Typography>
           <Box className={styles.iconContainer}>
             <Input icon={<EmailOutlinedIcon />} placeholder='Enter your email' />
             <Input icon={<LockOutlinedIcon />} placeholder='Enter your password' />
@@ -31,7 +49,7 @@ const Login = () => {
             <Box className={styles.loginBtn} onClick={handleLogin}>
               Log in
             </Box>
-            <Box className={styles.googleBtn}>
+            <Box onClick={handleGoogleLogin}  className={styles.googleBtn}>
               <GoogleIcon />
               Sign in with google
             </Box>
