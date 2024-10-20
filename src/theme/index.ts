@@ -12,7 +12,7 @@ export const theme = createTheme({
       main: PALLETE_COLORS.primary
     },
     secondary: {
-      main: PALLETE_COLORS.third
+      main: PALLETE_COLORS.secondary
     }
   }
 })

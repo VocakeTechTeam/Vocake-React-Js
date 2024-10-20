@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import { makeStyles, createStyles } from '@mui/styles'
-import { Box, Divider } from '@mui/material'
+import { Box } from '@mui/material'
 import { theme } from '../../../theme'
 
 interface SidebarItemProps {
