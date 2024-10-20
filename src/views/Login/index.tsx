@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ChangeEvent, ReactNode, useEffect, useState } from 'react'
 import { Box, Typography, useTheme } from '@mui/material'
 import image1 from '../../assets/image1.png'
 import { makeStyles, createStyles } from '@mui/styles'
@@ -9,26 +9,27 @@ import { useNavigate } from 'react-router-dom'
 import { createClient } from '@supabase/supabase-js'
 import { Input } from '../../components/Input'
 
-const supabase = createClient(
-  'https://ceynqxathrpofueuphir.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNleW5xeGF0aHJwb2Z1ZXVwaGlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjkzMjIxMjQsImV4cCI6MjA0NDg5ODEyNH0.9E7Ar-jcf2CTLp-uNGlZ2hkILyjUqR4QfgICf4H8cDU'
-)
+const supabase = createClient(process.env.REACT_APP_SUPABASE_URL || '', process.env.REACT_APP_SUPABASE_ANON_KEY || '')
 
 const Login = () => {
   const theme = useTheme()
   const nav = useNavigate()
+  const [user, setUser] = useState({
+    email: null,
+    passwrod: null
+  })
   const styles = useStyles(theme)
 
-  useEffect(() => {
-    const session = supabase.auth.getSession()
-    console.log(session)
-  }, [])
   const handleLogin = async () => {}
   const handleGoogleLogin = async () => {
     await supabase.auth.signInWithOAuth({
       provider: 'google'
     })
     nav('/')
+  }
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUser({ ...user, [e.target.name]: e.target.value })
   }
   return (
     <Box className={styles.root}>
@@ -38,8 +39,18 @@ const Login = () => {
             Welcome to Vocake!
           </Typography>
           <Box className={styles.iconContainer}>
-            <Input icon={<EmailOutlinedIcon />} placeholder='Enter your email' />
-            <Input icon={<LockOutlinedIcon />} placeholder='Enter your password' />
+            <Input
+              handleChange={handleChange}
+              icon={<EmailOutlinedIcon />}
+              type='text'
+              placeholder='Enter your email'
+            />
+            <Input
+              handleChange={handleChange}
+              icon={<LockOutlinedIcon />}
+              type='password'
+              placeholder='Enter your password'
+            />
           </Box>
           <Box className={styles.forgotContainer}>
             <Typography>Forgot password?</Typography>
@@ -131,7 +142,10 @@ const useStyles = makeStyles((theme: any) =>
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      '& > *': {
+        marginRight: '10px'
+      }
     },
     btnContainer: {
       display: 'flex',

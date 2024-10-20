@@ -1,12 +1,33 @@
-import React from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { Box, Typography } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
 import image1 from '../../assets/image1.png'
 import { Input } from '../../components/Input'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
+  const nav = useNavigate()
+  const [user, setUser] = useState({
+    email: null,
+    password: null,
+    password_retry: null
+  })
+  const [emailError, setEmailError] = useState<null | string>(null)
+  const [passwordError, setPasswordError] = useState<null | string>(null)
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPasswordError(null)
+    setEmailError(null)
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
+  const handleSignUp = () => {
+    if (!user.email) {
+      setEmailError('Please type your password')
+    } else if (user.password !== user.password_retry) {
+      setPasswordError('Password unmatched')
+    }
+  }
   const styles = useStyles()
   return (
     <Box className={styles.root}>
@@ -24,13 +45,43 @@ const Register = () => {
             Create account
           </Typography>
           <Box className={styles.inputContainer}>
-            <Input icon={<MailOutlineIcon />} placeholder={'Enter your email'} />
-            <Input icon={<LockOutlinedIcon />} placeholder={'Enter your password'} />
-            <Input icon={<LockOutlinedIcon />} placeholder={'Retry password'} />
+            <Input
+              errorMessage={emailError}
+              handleChange={handleChange}
+              name={'email'}
+              icon={<MailOutlineIcon />}
+              placeholder={'Enter your email'}
+            />
+            <Input
+              errorMessage={passwordError}
+              handleChange={handleChange}
+              name={'password'}
+              type={'password'}
+              icon={<LockOutlinedIcon />}
+              placeholder={'Enter your password'}
+            />
+            <Input
+              errorMessage={passwordError}
+              handleChange={handleChange}
+              name={'password_retry'}
+              type={'password'}
+              icon={<LockOutlinedIcon />}
+              placeholder={'Retry password'}
+            />
           </Box>
           <Box className={styles.btnContainer}>
-            <Box className={styles.singUpbtn}> Signup</Box>
-            <Box className={styles.haveAccountbtn}>Already have an account? Sign in!</Box>
+            <Box className={styles.singUpbtn} onClick={handleSignUp}>
+              {' '}
+              Signup
+            </Box>
+            <Box
+              className={styles.haveAccountbtn}
+              onClick={() => {
+                nav('/login')
+              }}
+            >
+              Already have an account? Sign in!
+            </Box>
           </Box>
         </Box>
       </Box>
