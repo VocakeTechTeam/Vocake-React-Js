@@ -12,7 +12,7 @@ jobs:
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
-        run: docker build -t henryhoangduong/vocake-reactjs .
+        run: docker build -t henryhoangduong/vocake .
       - name: Publish image to docker hub
         run: docker push  henryhoangduong/vocake:latest
 
@@ -21,8 +21,8 @@ jobs:
     runs-on: aws-ec2    
     steps:
       - name: Pull image from docker hub
-        run: docker pull henryhoangduong/vocake-reactjs:latest 
+        run: docker pull henryhoangduong/vocake:latest 
       - name: Delete Old Container
         run: docker rm -f reactContainer
       - name: Run docker container
-        run: docker run -d -p 3000:80 --name vocake-reactjs-container henryhoangduong/vocake-reactjs
+        run: docker run -d -p 3000:80 --name vocake-reactjs-container henryhoangduong/vocake
