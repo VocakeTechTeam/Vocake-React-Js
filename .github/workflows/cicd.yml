@@ -23,6 +23,6 @@ jobs:
       - name: Pull image from docker hub
         run: docker pull henryhoangduong/vocake:latest 
       - name: Delete Old Container
-        run: docker rm -f reactContainer
+        run: docker rm -f vocake-reactjs-container
       - name: Run docker container
         run: docker run -d -p 3000:80 --name vocake-reactjs-container henryhoangduong/vocake
