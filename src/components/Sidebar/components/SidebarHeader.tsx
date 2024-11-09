@@ -46,7 +46,6 @@ export const SidebarHeader = () => {
     }
   }
 
-  // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open)
   React.useEffect(() => {
     if (prevOpen.current === true && open === false) {
@@ -56,8 +55,8 @@ export const SidebarHeader = () => {
   }, [open])
 
   return (
-    <Stack direction='row' spacing={2}>
-      <div>
+    <Stack direction='row' spacing={2} style={{ width: '100%', position: 'relative' }}>
+      <div style={{ width: '100%', position: 'relative' }}>
         <Box
           ref={anchorRef}
           id='composition-button'
@@ -118,8 +117,9 @@ const sidebarStyles = makeStyles(() =>
       padding: '0px 10px 0px 10px',
       height: '70px',
       borderRadius: '10px',
+      width: '100%',
+      position: 'relative',
       '& .MuiAvatar-root': {
-        border: 'black solid 1px',
         marginRight: '10px',
         background: 'black'
       },
@@ -132,7 +132,10 @@ const sidebarStyles = makeStyles(() =>
       display: 'flex',
       alignItems: 'flex-start',
       justifyContent: 'center',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      width: '100%',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
     }
   })
 )

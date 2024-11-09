@@ -1,11 +1,11 @@
 import { Box, Typography } from '@mui/material'
 import { createStyles, makeStyles } from '@mui/styles'
-import { FlashcardArray } from 'react-quizlet-flashcard'
 import CrossIcon from '../../assets/icon/CrossIcon'
 import { SunIcon } from '../../assets/icon/SunIcon'
 import TickIcon from '../../assets/icon/TickIcon'
-import ProgressBar from '../../components/ProgressBar'
 import SpeakerIcon from '../../assets/icon/SpeakerIcon'
+import image from '../../assets/image.png'
+import { TextField } from '@mui/material'
 
 const cards = [
   {
@@ -57,9 +57,24 @@ const Home = () => {
   const classes = useStyles()
   return (
     <Box className={classes.root}>
-      <ProgressBar />
-      <Box className={classes.main}>
-        <FlashcardArray cards={cards} />
+      <Box>
+        <Typography>ironic (a.)</Typography>
+        <Typography>add to list</Typography>
+        <Typography>share</Typography>
+        <Typography>intermediate</Typography>
+        <Typography>unexpected this funny</Typography>
+        <Typography>It’s ironic that Sarah, the librarian, got fined for overdue books.</Typography>
+        <Typography>&quot;Thật trớ trêu khi Sarah, thủ thư, lại bị phạt vì mượn sách quá hạn.&quot;</Typography>
+        <Typography>words family</Typography>
+        <Typography>Advanced uses</Typography>
+        <Typography>synonyms</Typography>
+        <Typography>collcations</Typography>
+        <img src={image} alt='My Local ' />
+        <Box>
+          <Typography>Quick Practice</Typography>
+          <TextField />
+          <Typography>Check</Typography>
+        </Box>
       </Box>
     </Box>
   )

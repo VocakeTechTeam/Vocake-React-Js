@@ -12,7 +12,6 @@ const SearchBar = () => {
       <input placeholder='Search' className='input' type='text' />
       <Box
         sx={{
-          background: theme.palette.primary.main,
           paddingRight: '10px',
           paddingLeft: '10px',
           height: '30px',
@@ -34,7 +33,7 @@ const useStyles = makeStyles(() =>
     root: {
       borderRadius: '25px',
       display: 'flex',
-      width: '40%',
+      width: '100%',
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
@@ -47,7 +46,8 @@ const useStyles = makeStyles(() =>
         outline: 'none',
         border: 'none',
         width: '100%'
-      }
+      },
+      background: 'white'
     }
   })
 )

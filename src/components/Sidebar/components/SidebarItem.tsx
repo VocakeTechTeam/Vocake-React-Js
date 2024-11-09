@@ -12,13 +12,15 @@ interface SidebarItemProps {
   icon: React.ReactNode
   isactive: boolean
   path: string
+  style?: React.CSSProperties | object
 }
 
-const SidebarItem = ({ title, icon, isactive = false }: SidebarItemProps) => {
+const SidebarItem = ({ title, icon, isactive = false,style }: SidebarItemProps) => {
   const classes = useStyles({ isactive })
   return (
     <Box
       sx={{
+        ...style ,
         background: isactive ? theme.palette.primary.main : 'transparent',
         color: isactive ? 'white' : 'black',
         '& svg': {

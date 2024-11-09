@@ -9,22 +9,25 @@ import { useLocation } from 'react-router-dom'
 import CalendarIcon from '../../assets/icon/CalendarIcon'
 import MedalIcon from '../../assets/icon/MedalIcon'
 import MenuIcon from '../../assets/icon/MenuIcon'
-import { MenuListComposition } from '../Menu'
-import { SidebarHeader } from './components/SidebarHeader'
 
 const itemlsits = [
   {
-    title: 'Your words',
+    title: 'Search',
     path: '/',
     icon: <CalendarIcon />
   },
   {
-    title: 'Categories',
+    title: 'My list',
     path: '/categories',
     icon: <MedalIcon />
   },
   {
-    title: 'Statistic',
+    title: 'Explore',
+    path: '/Statistic',
+    icon: <MenuIcon />
+  },
+  {
+    title: 'Setting',
     path: '/Statistic',
     icon: <MenuIcon />
   }
@@ -35,11 +38,11 @@ const Sidebar = () => {
   const location = useLocation()
   return (
     <Box className={classes.root}>
-      <Box>
-        <SidebarHeader />
-        <List>
+      <Box style={{ width: '100%' }}>
+        <List >
           {itemlsits.map((item, index) => (
             <SidebarItem
+            style={{marginTop:"10px"}}
               key={index}
               title={item.title}
               icon={item.icon}
@@ -63,7 +66,10 @@ const sidebarStyles = makeStyles(() =>
   createStyles({
     root: {
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      width: '100%',
+      height: '100%',
+      padding: '10px'
     },
     sidebarHeader: {
       display: 'flex',
@@ -73,6 +79,7 @@ const sidebarStyles = makeStyles(() =>
       padding: '0px 10px 0px 10px',
       height: '70px',
       borderRadius: '10px',
+      width: '100%',
       '& .MuiAvatar-root': {
         border: 'black solid 1px',
         marginRight: '10px',
@@ -82,12 +89,6 @@ const sidebarStyles = makeStyles(() =>
         background: '#d6f4ef'
       },
       cursor: 'pointer'
-    },
-    sidebarHeaderText: {
-      display: 'flex',
-      alignItems: 'flex-start',
-      justifyContent: 'center',
-      flexDirection: 'column'
     },
     sidebarBottom: {
       marginTop: 'auto',
