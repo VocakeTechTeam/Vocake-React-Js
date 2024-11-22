@@ -21,8 +21,8 @@ jobs:
     runs-on: aws-ec2    
     steps:
       - name: Pull image from docker hub
-        run: docker pull henryhoangduong/vocake:latest 
+        run: sudo docker pull henryhoangduong/vocake:latest 
       - name: Delete Old Container
-        run: docker rm -f vocake-reactjs-container
+        run: sudo docker rm -f vocake-reactjs-container
       - name: Run docker container
-        run: docker run -d -p 3000:80 --name vocake-reactjs-container henryhoangduong/vocake
+        run: sudo docker run -d -p 3000:80 --name vocake-reactjs-container henryhoangduong/vocake
