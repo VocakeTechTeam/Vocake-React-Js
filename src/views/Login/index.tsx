@@ -12,8 +12,10 @@ import { useAuth } from '../../context/AuthContext';
 import SpinModal from '../../components/SpinModal';
 
 const supabase = createClient(
-    process.env.REACT_APP_SUPABASE_URL || '',
-    process.env.REACT_APP_SUPABASE_ANON_KEY || '',
+    // process.env.REACT_APP_SUPABASE_URL || '',
+    // process.env.REACT_APP_SUPABASE_ANON_KEY || '',
+    "https://ceynqxathrpofueuphir.supabase.co/auth/v1/callback",
+    "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"
 );
 
 const Login = () => {
