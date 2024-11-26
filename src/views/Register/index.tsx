@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import image1 from '../../assets/image1.png';
@@ -6,14 +6,52 @@ import { Input } from '../../components/Input';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from 'react-router-dom';
+import VerificationModal from './components/VerificationModal';
+import { UserReigster } from '../../types';
+import { signUpService, verifyOtpService } from '../../api';
+import SpinModal from '../../components/SpinModal';
+import { useAuth } from '../../context/AuthContext';
 
 const Register = () => {
+    const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const { isAuth } = useAuth();
+
+    useEffect(() => {
+        if (isAuth) {
+            nav('/');
+        }
+    }, []);
+
+    const handleClose = () => setOpen(false);
+    const [otp, setOtp] = useState<string>('');
     const nav = useNavigate();
-    const [user, setUser] = useState({
+    const [user, setUser] = useState<UserReigster>({
         email: null,
         password: null,
         password_retry: null,
+        fullName: null,
+        phonenumber: null,
+        locations: null,
+        role: 'CUSTOMER',
+        levelUser: 'BEGINNER',
+        keySecret: 'CUSTOMER_SECRET',
     });
+
+    useEffect(() => {
+        if (otp.length == 6) {
+            const verifyOtp = async () => {
+                setLoading(true);
+                const token = await verifyOtpService(user, otp);
+                if(token!==null)localStorage.setItem("vocake_access_token",token)
+                setLoading(false);
+                window.location.reload()
+            };
+            setOpen(false);
+            verifyOtp();
+        }
+    }, [otp]);
+
     const [emailError, setEmailError] = useState<null | string>(null);
     const [passwordError, setPasswordError] = useState<null | string>(null);
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -21,16 +59,32 @@ const Register = () => {
         setEmailError(null);
         setUser({ ...user, [e.target.name]: e.target.value });
     };
-    const handleSignUp = () => {
+    const handleOtp = (otp: string) => {
+        setOtp(otp);
+    };
+    const handleSignUp = async () => {
         if (!user.email) {
             setEmailError('Please type your password');
         } else if (user.password !== user.password_retry) {
             setPasswordError('Password unmatched');
+        } else {
+            setLoading(true);
+            const res = await signUpService(user);
+            setLoading(false);
+            if (res) {
+                setOpen(true);
+            }
         }
     };
     const styles = useStyles();
     return (
         <Box className={styles.root}>
+            <VerificationModal
+                hanldeClose={handleClose}
+                isOpen={open}
+                handleChange={handleOtp}
+            />
+            <SpinModal isOpen={loading} />
             <Box className={styles.container1}>
                 <Box className={styles.container3}>
                     <Typography

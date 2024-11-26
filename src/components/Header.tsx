@@ -44,6 +44,7 @@ const useStyles = makeStyles(() =>
             display: 'flex',
             flexDirection: 'row',
             padding: '10px',
+            paddingRight: '15px',
         },
         searchBarContainer: {
             width: '30%',
@@ -54,6 +55,7 @@ const useStyles = makeStyles(() =>
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
+            marginLeft: 5,
         },
         userHeaderContainer: {
             display: 'flex',

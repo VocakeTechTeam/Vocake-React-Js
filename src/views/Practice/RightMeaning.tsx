@@ -16,8 +16,8 @@ const Choice = ({ isClicked, word, handleClick }: ChoiceProps) => {
                 handleClick(word);
             }}
             sx={{
-                width: '100px',
-                height: '100px',
+                width: '130px',
+                height: '130px',
                 border: isClicked
                     ? `${activeColor} solid 1px`
                     : 'black solid 1px',
@@ -27,6 +27,7 @@ const Choice = ({ isClicked, word, handleClick }: ChoiceProps) => {
                 justifyContent: 'center',
                 cursor: 'pointer',
                 color: isClicked ? activeColor : 'black',
+                flexShrink: 0,
             }}
         >
             {word}
@@ -49,7 +50,7 @@ export const RightMeaning = () => {
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems:"center"
+                alignItems: 'center',
             }}
         >
             <Box
@@ -78,8 +79,8 @@ export const RightMeaning = () => {
                 <Box
                     sx={{
                         display: 'flex',
-                        justifyContent: 'space-between',
-                        width: '100%',
+                        gap: 5,
+                        justifyContent: 'center',
                     }}
                 >
                     {wordChoices.map((item, index) => {
@@ -96,6 +97,18 @@ export const RightMeaning = () => {
                             />
                         );
                     })}
+                </Box>
+                <Box
+                    sx={{
+                        backgroundColor: '#55AD9B',
+                        width: '200px',
+                        padding: '5px',
+                        color: 'white',
+                        borderRadius: '5px',
+                        cursor: 'pointer',
+                    }}
+                >
+                    Check
                 </Box>
             </Box>
             {isCorrect && (

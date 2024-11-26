@@ -5,8 +5,19 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import TranslateIcon from '@mui/icons-material/Translate';
-
+import { useEffect, useState } from 'react';
+import { enhanceServcie } from '../../api';
 const Home = () => {
+    const [sentence, setSentence] = useState<string>('');
+    const [promptEnhance, setPromptEnhance] = useState<string | null>(null);
+    const [textGrammar, setTextGrammer] = useState<string | null>(null);
+    const [textScore, setTextScore] = useState<any>();
+    const handlePractice = async () => {
+        const res = await enhanceServcie();
+        setPromptEnhance(res.promptEnhance);
+        setTextGrammer(res.textGrammar);
+        setTextScore(res.textScore);
+    };
     const classes = useStyles();
     return (
         <Box className={classes.root}>
@@ -45,6 +56,7 @@ const Home = () => {
                                     padding: '2px',
                                     color: '#FDB911',
                                     border: '#FDB911 solid 1px',
+                                    margin: 0,
                                 }}
                             >
                                 intermediate
@@ -58,11 +70,11 @@ const Home = () => {
                             </Box>
                         </Box>
 
-                        <Typography>
+                        <Typography textAlign="start">
                             It’s ironic that Sarah, the librarian, got fined for
                             overdue books.
                         </Typography>
-                        <Typography>
+                        <Typography textAlign="start">
                             &quot;Thật trớ trêu khi Sarah, thủ thư, lại bị phạt
                             vì mượn sách quá hạn.&quot;
                         </Typography>
@@ -122,11 +134,12 @@ const Home = () => {
                         </Typography>
                         <TextField
                             multiline
-                            rows={2}
+                            rows={4}
                             style={{ width: '100%' }}
                             placeholder="write/speak a sentence with ironic and earn some 🍰"
                         />
                         <Typography
+                            onClick={handlePractice}
                             style={{
                                 marginLeft: 'auto',
                                 padding: '5px 10px',
@@ -134,10 +147,12 @@ const Home = () => {
                                 background: '#55AD9B',
                                 fontWeight: 'bold',
                                 color: 'white',
+                                cursor: 'pointer',
                             }}
                         >
                             Check
                         </Typography>
+                        {promptEnhance && promptEnhance}
                     </Box>
                 </Box>
             </Box>
@@ -170,6 +185,7 @@ const useStyles = makeStyles(() =>
             flexDirection: 'row',
             gap: 10,
             alignItems: 'center',
+            marginTop: 10,
         },
         fourthContainer: {
             display: 'flex',
@@ -177,7 +193,6 @@ const useStyles = makeStyles(() =>
         },
         fifthCotainer: {
             width: '100%',
-            padding: '10px',
             height: '95%',
             display: 'flex',
             flexDirection: 'column',
@@ -201,9 +216,10 @@ const useStyles = makeStyles(() =>
         dropDownListContainer: {
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between',
+            justifyContent: 'center',
             flex: 1,
             marginBottom: '20px',
+            gap: 10,
         },
         imgae: {
             width: '50%',

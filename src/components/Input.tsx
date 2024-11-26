@@ -15,7 +15,7 @@ export const Input = ({
     icon,
     placeholder,
     handleChange,
-    name = 'name',
+    name,
     errorMessage = null,
 }: InputProps) => {
     const [isFocus, setIsFocus] = useState(false);

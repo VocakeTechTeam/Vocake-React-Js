@@ -8,6 +8,8 @@ import GoogleIcon from '../../assets/icon/GoogleIcon';
 import { useNavigate } from 'react-router-dom';
 import { createClient } from '@supabase/supabase-js';
 import { Input } from '../../components/Input';
+import { useAuth } from '../../context/AuthContext';
+import SpinModal from '../../components/SpinModal';
 
 const supabase = createClient(
     // process.env.REACT_APP_SUPABASE_URL || '',
@@ -19,13 +21,22 @@ const supabase = createClient(
 const Login = () => {
     const theme = useTheme();
     const nav = useNavigate();
+    const [loading, setLoading] = useState<boolean>(false);
+    const { login, isAuth } = useAuth();
+    useEffect(() => {
+        if (isAuth) nav('/');
+    }, [isAuth]);
     const [user, setUser] = useState({
-        email: null,
-        passwrod: null,
+        email: '',
+        password: '',
     });
     const styles = useStyles(theme);
 
-    const handleLogin = async () => {};
+    const handleLogin = async () => {
+        setLoading(true);
+        await login(user.email, user.password);
+        setLoading(false);
+    };
     const handleGoogleLogin = async () => {
         await supabase.auth.signInWithOAuth({
             provider: 'google',
@@ -34,10 +45,12 @@ const Login = () => {
     };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(user);
         setUser({ ...user, [e.target.name]: e.target.value });
     };
     return (
         <Box className={styles.root}>
+            <SpinModal isOpen={loading} />
             <Box className={styles.container1}>
                 <Box className={styles.container3}>
                     <Typography
@@ -52,12 +65,14 @@ const Login = () => {
                             icon={<EmailOutlinedIcon />}
                             type="text"
                             placeholder="Enter your email"
+                            name="email"
                         />
                         <Input
                             handleChange={handleChange}
                             icon={<LockOutlinedIcon />}
                             type="password"
                             placeholder="Enter your password"
+                            name="password"
                         />
                     </Box>
                     <Box className={styles.forgotContainer}>
