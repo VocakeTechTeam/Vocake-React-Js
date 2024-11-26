@@ -10,26 +10,27 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import { useAuth } from '../../context/AuthContext';
 const itemlsits = [
     {
         title: 'Search',
         path: '/',
-        icon: <SearchIcon style={{ fill: 'black' }} />,
+        icon: <SearchIcon />,
     },
     {
         title: 'My list',
         path: '/mylist',
-        icon: <ListAltIcon style={{ fill: 'black' }} />,
+        icon: <ListAltIcon />,
     },
     {
         title: 'Explore',
         path: '/explore',
-        icon: <ExploreIcon style={{ fill: 'black' }} />,
+        icon: <ExploreIcon />,
     },
     {
         title: 'Setting',
         path: '/setting',
-        icon: <SettingsOutlinedIcon style={{ fill: 'black' }} />,
+        icon: <SettingsOutlinedIcon />,
     },
     {
         title: 'Practice',
@@ -41,13 +42,14 @@ const itemlsits = [
 const Sidebar = () => {
     const classes = sidebarStyles();
     const location = useLocation();
+    const { logout } = useAuth();
     return (
         <Box className={classes.root}>
             <Box style={{ width: '100%' }}>
                 <List>
                     {itemlsits.map((item, index) => (
                         <SidebarItem
-                            style={{ marginTop: '10px' }}
+                            style={{ marginTop: '2px' }}
                             key={index}
                             title={item.title}
                             icon={item.icon}
@@ -58,6 +60,9 @@ const Sidebar = () => {
                         />
                     ))}
                 </List>
+            </Box>
+            <Box className={classes.logOut} onClick={logout}>
+                Log out
             </Box>
         </Box>
     );
@@ -73,6 +78,8 @@ const sidebarStyles = makeStyles(() =>
             width: '100%',
             height: '100%',
             padding: '10px',
+            justifyContent: 'center',
+            alignItems: 'center',
         },
         sidebarHeader: {
             display: 'flex',
@@ -96,6 +103,17 @@ const sidebarStyles = makeStyles(() =>
         sidebarBottom: {
             marginTop: 'auto',
             marginBottom: '30px',
+        },
+        logOut: {
+            background: '#12826B',
+            marginTop: 'auto',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            padding: 10,
+            width: '80%',
+            color: 'white',
+            borderRadius: 10,
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
         },
     }),
 );

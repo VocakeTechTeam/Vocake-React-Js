@@ -29,12 +29,12 @@ const SidebarItem = ({
         <Box
             sx={{
                 ...style,
-                background: isactive
-                    ? theme.palette.primary.main
-                    : 'transparent',
-                color: isactive ? 'white' : 'black',
+                color: isactive ? '#F0BF45' : 'black',
                 '& svg': {
-                    fill: isactive ? 'white' : '#757575',
+                    fill: isactive ? '#F0BF45' : 'black',
+                },
+                '& span': {
+                    fontWeight: isactive ? 'bold' : '',
                 },
             }}
             className={classes.root}
@@ -44,7 +44,15 @@ const SidebarItem = ({
         >
             <ListItem key={title} disablePadding>
                 <ListItemButton disableTouchRipple={true}>
-                    <ListItemIcon>{icon}</ListItemIcon>
+                    <ListItemIcon
+                        sx={{
+                            '& svg': {
+                                height: '18px',
+                            },
+                        }}
+                    >
+                        {icon}
+                    </ListItemIcon>
                     <ListItemText primary={title} />
                 </ListItemButton>
             </ListItem>
@@ -60,6 +68,11 @@ const useStyles = makeStyles<{ isactive: boolean }>((isactive) =>
             '& .MuiListItem-root:hover': {
                 background: theme.palette.primary.main,
                 borderRadius: '10px',
+            },
+            '& .MuiListItemIcon-root ': {
+                minWidth: 0,
+                width: 'max-content',
+                marginRight: 10,
             },
             borderRadius: '10px',
         },

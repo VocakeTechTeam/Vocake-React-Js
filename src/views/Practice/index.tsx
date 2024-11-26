@@ -34,6 +34,7 @@ const Practice = () => {
                         flexDirection: 'column',
                         alignItems: 'center',
                         height: '100%',
+                        paddingTop: '30px',
                     }}
                 >
                     <Box
@@ -68,7 +69,6 @@ export default Practice;
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
-            padding: '5px',
             width: '100%',
             flexDirection: 'column',
             display: 'flex',
