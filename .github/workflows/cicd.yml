@@ -32,8 +32,8 @@ jobs:
       - name: Run docker container
         run: |
           sudo docker run -d -p 3000:80 \
-            --name vocake-reactjs-container \
-            -e REACT_APP_SUPABASE_ANON_KEY=${{ secrets.REACT_APP_SUPABASE_ANON_KEY }} \
-            -e REACT_APP_SUPABASE_URL=${{ secrets.REACT_APP_SUPABASE_URL }} \
-            -e REACT_APP_VOCAKE_API=${{ secrets.REACT_APP_VOCAKE_API }} \
+            --name vocake-reactjs-container --build-arg\
+            REACT_APP_SUPABASE_ANON_KEY=${{ secrets.REACT_APP_SUPABASE_ANON_KEY }} \
+            REACT_APP_SUPABASE_URL=${{ secrets.REACT_APP_SUPABASE_URL }} \
+            REACT_APP_VOCAKE_API=${{ secrets.REACT_APP_VOCAKE_API }} \
             henryhoangduong/vocake
