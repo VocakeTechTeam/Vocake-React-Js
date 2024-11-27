@@ -8,6 +8,10 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
+ARG REACT_APP_VOCAKE_API
+ARG REACT_APP_SUPABASE_ANON_KEY
+ARG REACT_APP_SUPABASE_URL
+
 RUN npm run build
 
 FROM nginx:alpine
