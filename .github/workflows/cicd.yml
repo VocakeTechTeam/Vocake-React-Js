@@ -23,7 +23,7 @@ jobs:
         #       --build-arg REACT_APP_VOCAKE_API=${{ secrets.REACT_APP_VOCAKE_API }} \
         #       -t henryhoangduong/vocake .
         # run: docker build --build-arg REACT_APP_VOCAKE_API=${{ secrets.REACT_APP_VOCAKE_API }} -t henryhoangduong/vocake .
-        run: docker build --build-arg APP_API_URL=https://api.example.com --build-arg APP_ENV=production -t henryhoangduong/vocake .
+        run: docker build --build-arg REACT_APP_SUPABASE_ANON_KEY=https://api.example.com --build-arg REACT_APP_SUPABASE_URL=production -t henryhoangduong/vocake .
       - name: Publish image to docker hub
         run: docker push  henryhoangduong/vocake:latest
 
