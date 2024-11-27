@@ -17,10 +17,11 @@ jobs:
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build Docker Image
-        run: docker build -t henryhoangduong/vocake  --build-arg\
-            REACT_APP_SUPABASE_ANON_KEY=${{ secrets.REACT_APP_SUPABASE_ANON_KEY }} \
-            REACT_APP_SUPABASE_URL=${{ secrets.REACT_APP_SUPABASE_URL }} \
-            REACT_APP_VOCAKE_API=${{ secrets.REACT_APP_VOCAKE_API }} \ .
+        run: docker build -t henryhoangduong/vocake \
+              --build-arg REACT_APP_SUPABASE_ANON_KEY=${{ secrets.REACT_APP_SUPABASE_ANON_KEY }} \
+              --build-arg REACT_APP_SUPABASE_URL=${{ secrets.REACT_APP_SUPABASE_URL }} \
+              --build-arg REACT_APP_VOCAKE_API=${{ secrets.REACT_APP_VOCAKE_API }} \
+              .
       - name: Publish image to docker hub
         run: docker push  henryhoangduong/vocake:latest
 
