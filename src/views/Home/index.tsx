@@ -178,7 +178,7 @@ const useStyles = makeStyles(() =>
         secondContainer: {
             display: 'flex',
             flexDirection: 'column',
-            gap: 10,
+            width: '50%',
         },
         thirdContainer: {
             display: 'flex',

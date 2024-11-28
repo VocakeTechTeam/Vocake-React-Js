@@ -43,9 +43,10 @@ const Register = () => {
             const verifyOtp = async () => {
                 setLoading(true);
                 const token = await verifyOtpService(user, otp);
-                if(token!==null)localStorage.setItem("vocake_access_token",token)
+                if (token !== null)
+                    localStorage.setItem('vocake_access_token', token);
                 setLoading(false);
-                window.location.reload()
+                nav("/onboard")
             };
             setOpen(false);
             verifyOtp();

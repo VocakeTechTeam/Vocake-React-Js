@@ -1,43 +1,81 @@
-import React from 'react';
-import { Box, Typography } from '@mui/material';
-import CountryCard from './components/CountryCard';
+import React, { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles';
-import image1 from '../../assets/image1.png';
-
+import Age from './Age';
+import ChooseInterestedTopic from './ChooseInterestedTopic';
+import ChooseMainChallenge from './ChooseMainChallenge';
+import ChooseNativeLang from './ChooseNativeLang';
+import ChooseRegion from './ChooseRegion';
+import ChooseWhereToImp from './ChooseWhereToImp';
+import HowOften from './HowOften';
+import RateEnglish from './RateEnglish';
+import ProgressBar from '../../components/ProgressBar';
+import WhyBetterEnglish from './WhyBetterEnglish';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import image from '../../assets/IMG_1572 2.png';
+import { VoCakeTitleIcon } from '../../assets/icon/VoCake';
+import { useNavigate } from 'react-router-dom';
 const Onboard = () => {
     const classes = useStyles();
+    const [step, setStep] = useState<number>(1);
+    const nav = useNavigate()
+    useEffect(() => {
+        if (step == totalStep + 1) {
+            nav("/")
+        }
+    },[step])
+    const handleStep = () => {
+        if (step <=totalStep) {
+            setStep(step + 1);
+        }
+    };
+    const handleStepBack = () => {
+        if (step > 1) {
+            setStep(step - 1);
+        }
+    }
+    const arr = [ 
+        <WhyBetterEnglish handleStep={handleStep} />,
+        <ChooseInterestedTopic handleStep={handleStep} />,
+        <ChooseMainChallenge handleStep={handleStep} />,
+        <RateEnglish handleStep={handleStep} />,
+        <ChooseWhereToImp handleStep={handleStep} />,
+        <HowOften handleStep={handleStep} />,
+        <Age handleStep={handleStep} />,
+        // <ChooseNativeLang />,
+        // <ChooseRegion />,
+    ];
+    const totalStep = arr.length;
+
     return (
         <Box className={classes.root}>
-            <Box className={classes.firstContainer}>
-                <Box className={classes.thirdContainer}>
-                    <img style={{ width: '200px' }} src={image1} alt="Vocake" />
-                    <p style={{ fontSize: '20px', color: 'white' }}>
-                        👋 Hi there!
-                    </p>
-                    <p
-                        style={{
-                            fontSize: '26px',
-                            fontWeight: 'bold',
-                            color: 'white',
-                            textAlign: 'start',
-                            margin: 0,
-                        }}
-                    >
-                        Welcome to Vocake
-                    </p>
-                </Box>
+            <Box className={classes.headerContainer}>
+                <img
+                    style={{ width: '70px', height: '70px', cursor:"pointer" }}
+                    src={image}
+                    alt="logo"
+                    onClick={()=>{nav("/")}}
+                />
+                <VoCakeTitleIcon width="90px" height="60px" />
             </Box>
-            <Box className={classes.secondContainer}>
-                <Box className={classes.signInContainer}>
-                    <Typography fontWeight="bold">Have an account?</Typography>
-                    <Typography
-                        sx={{ fontWeight: 'bold' }}
-                        className={classes.sigInText}
-                    >
-                        Sign In
-                    </Typography>
+            <Box className={classes.main}>
+                <Box className={classes.secondContainer}>
+                    <Box className={classes.firstContainer}>
+                        <ChevronLeftIcon
+                            className={classes.icon}
+                            onClick={handleStepBack}
+                        />
+                        <ProgressBar
+                            backgroundColor="#55AD9B"
+                            totalStep={totalStep}
+                            currentStep={step}
+                        />
+                        <p>
+                            {step}/{totalStep}
+                        </p>
+                    </Box>
+                    {arr[step - 1]}
                 </Box>
-                <Box></Box>
             </Box>
         </Box>
     );
@@ -48,43 +86,44 @@ export default Onboard;
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
             width: '100%',
-            height: '100%',
-        },
-        firstContainer: {
-            width: '50%',
-            background: '#55AD9B',
             height: '100%',
             alignItems: 'center',
             justifyContent: 'center',
             display: 'flex',
             flexDirection: 'column',
+            padding: '10px 20px 0px 20px',
+            gap: 10,
+        },
+        main: {
+            width: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 30,
+            backgroundColor: '#f3f3f3',
+            alignItems: 'center',
+            borderRadius: 30,
+            paddingTop: '5%',
+            padding: 30,
+            height: '100%',
+        },
+        firstContainer: {
+            display: 'flex',
+            gap: 10,
+            alignItems: 'center',
+        },
+        icon: {
+            cursor: 'pointer',
+        },
+        headerContainer: {
+            width: '100%',
+            marginBottom: 'auto',
+            alignItems: 'center',
+            display: 'flex',
+            flexDirection: 'row',
         },
         secondContainer: {
             width: '50%',
-            height: '100%',
-            padding: '5px',
-        },
-        sigInText: {
-            background: '#55AD9B',
-            color: 'white',
-            padding: '5px 15px',
-            borderRadius: 20,
-            cursor: 'pointer',
-        },
-        signInContainer: {
-            display: 'flex',
-            justifyContent: 'end',
-            gap: '10px',
-            alignItems: 'center',
-        },
-        thirdContainer: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'start',
         },
     }),
 );
