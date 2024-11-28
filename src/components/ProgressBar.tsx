@@ -6,14 +6,22 @@ import { theme } from '../theme';
 type Props = {
     totalStep: number;
     currentStep: number;
+    backgroundColor?: string;
 };
 
-const ProgressBar = ({ totalStep, currentStep }: Props) => {
+const ProgressBar = ({
+    totalStep,
+    currentStep,
+    backgroundColor = '#EAB355',
+}: Props) => {
     const width = (100 / totalStep) * currentStep;
     const classes = useStyles();
     return (
         <Box className={classes.wrapper}>
-            <Box sx={{ width: `${width}%` }} className={classes.progress} />
+            <Box
+                sx={{ width: `${width}%`, background: backgroundColor }}
+                className={classes.progress}
+            />
         </Box>
     );
 };
@@ -32,7 +40,6 @@ const useStyles = makeStyles(({ width }: { width: number }) =>
         },
         progress: {
             height: '100%',
-            background: '#EAB355',
             borderRadius: '25px',
         },
     }),
