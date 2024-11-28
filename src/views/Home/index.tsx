@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import TranslateIcon from '@mui/icons-material/Translate';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { enhanceServcie } from '../../api';
 const Home = () => {
     const [sentence, setSentence] = useState<string>('');
@@ -25,11 +25,7 @@ const Home = () => {
                 <Box className={classes.firstContainer}>
                     <Box className={classes.secondContainer}>
                         <Box className={classes.thirdContainer}>
-                            <Typography
-                                style={{ fontWeight: 'bold', fontSize: '24px' }}
-                            >
-                                ironic (a.)
-                            </Typography>
+                            <p className={classes.word}>ironic (a.)</p>
                             <VolumeUpIcon sx={{ cursor: 'pointer' }} />
                             <Box
                                 sx={{
@@ -49,60 +45,152 @@ const Home = () => {
                                     add to list
                                 </Typography>
                             </Box>
-                            <Typography
-                                sx={{ cursor: 'pointer' }}
-                                style={{
-                                    borderRadius: '10px',
-                                    padding: '2px',
-                                    color: '#FDB911',
-                                    border: '#FDB911 solid 1px',
-                                    margin: 0,
+                            <p className={classes.levelTag}>intermediate</p>
+                        </Box>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: 2,
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'center',
+                                    gap: 2,
                                 }}
                             >
-                                intermediate
+                                <Typography
+                                    textAlign="start"
+                                    sx={{ fontSize: '22px' }}
+                                >
+                                    unexpected thus funny
+                                </Typography>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        background: '#F7DDAE',
+                                        padding: '3px',
+                                        borderRadius: '5px',
+                                        height: '20px',
+                                        width: '20px',
+                                        boxShadow:
+                                            'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+                                    }}
+                                >
+                                    <TranslateIcon
+                                        style={{ fontSize: '15px' }}
+                                    />
+                                </Box>
+                            </Box>
+
+                            <Typography textAlign="start">
+                                It’s ironic that Sarah, the librarian, got fined
+                                for overdue books.
+                            </Typography>
+                            <Typography textAlign="start">
+                                &quot;Thật trớ trêu khi Sarah, thủ thư, lại bị
+                                phạt vì mượn sách quá hạn.&quot;
                             </Typography>
                         </Box>
-                        <Box className={classes.fourthContainer}>
-                            <Box>
-                                <Typography sx={{ fontSize: '22px' }}>
-                                    unexpected thus funny <TranslateIcon />
-                                </Typography>
-                            </Box>
-                        </Box>
-
-                        <Typography textAlign="start">
-                            It’s ironic that Sarah, the librarian, got fined for
-                            overdue books.
-                        </Typography>
-                        <Typography textAlign="start">
-                            &quot;Thật trớ trêu khi Sarah, thủ thư, lại bị phạt
-                            vì mượn sách quá hạn.&quot;
-                        </Typography>
 
                         <Box className={classes.dropDownListContainer}>
                             <Box className={classes.dropdownContainer}>
                                 <Typography style={{ fontWeight: 'bold' }}>
                                     Word family
                                 </Typography>
-                                <KeyboardArrowDownIcon />
+                                <Box
+                                    sx={{
+                                        background: '#E5E5E5',
+                                        borderRadius: '15px',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        height: '23px',
+                                        width: '23px',
+                                        boxShadow:
+                                            'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+                                    }}
+                                >
+                                    <KeyboardArrowDownIcon
+                                        style={{ fontSize: '18px' }}
+                                    />
+                                </Box>
                             </Box>
                             <Box className={classes.dropdownContainer}>
                                 <Typography style={{ fontWeight: 'bold' }}>
                                     Advanced uses
                                 </Typography>
-                                <KeyboardArrowDownIcon />
+                                <Box
+                                    sx={{
+                                        background: '#E5E5E5',
+                                        borderRadius: '15px',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        height: '23px',
+                                        width: '23px',
+                                        boxShadow:
+                                            'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+                                    }}
+                                >
+                                    <KeyboardArrowDownIcon
+                                        style={{ fontSize: '18px' }}
+                                    />
+                                </Box>{' '}
                             </Box>
                             <Box className={classes.dropdownContainer}>
                                 <Typography style={{ fontWeight: 'bold' }}>
                                     Synonyms
                                 </Typography>
-                                <KeyboardArrowDownIcon />
+                                <Box
+                                    sx={{
+                                        background: '#E5E5E5',
+                                        borderRadius: '15px',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        height: '23px',
+                                        width: '23px',
+                                        boxShadow:
+                                            'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+                                    }}
+                                >
+                                    <KeyboardArrowDownIcon
+                                        style={{ fontSize: '18px' }}
+                                    />
+                                </Box>{' '}
                             </Box>
                             <Box className={classes.dropdownContainer}>
                                 <Typography style={{ fontWeight: 'bold' }}>
                                     Collcations
                                 </Typography>
-                                <KeyboardArrowDownIcon />
+                                <Box
+                                    sx={{
+                                        background: '#E5E5E5',
+                                        borderRadius: '15px',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        height: '23px',
+                                        width: '23px',
+                                        boxShadow:
+                                            'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+                                    }}
+                                >
+                                    <KeyboardArrowDownIcon
+                                        style={{ fontSize: '18px' }}
+                                    />
+                                </Box>{' '}
                             </Box>
                         </Box>
                     </Box>
@@ -123,35 +211,25 @@ const Home = () => {
                             gap: 10,
                         }}
                     >
-                        <Typography
-                            style={{
-                                color: '#55AD9B',
-                                fontWeight: 'bold',
-                                fontSize: '24px',
-                            }}
-                        >
+                        <p className={classes.quickPracticeTitle}>
                             Quick Practice
-                        </Typography>
+                        </p>
                         <TextField
                             multiline
                             rows={4}
                             style={{ width: '100%' }}
                             placeholder="write/speak a sentence with ironic and earn some 🍰"
-                        />
-                        <Typography
-                            onClick={handlePractice}
-                            style={{
-                                marginLeft: 'auto',
-                                padding: '5px 10px',
-                                borderRadius: '15px',
-                                background: '#55AD9B',
-                                fontWeight: 'bold',
-                                color: 'white',
-                                cursor: 'pointer',
+                            sx={{
+                                boxShadow:
+                                    'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
                             }}
+                        />
+                        <p
+                            onClick={handlePractice}
+                            className={classes.checkBtn}
                         >
                             Check
-                        </Typography>
+                        </p>
                         {promptEnhance && promptEnhance}
                     </Box>
                 </Box>
@@ -169,6 +247,7 @@ const useStyles = makeStyles(() =>
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            padding: '0px 10px',
         },
         firstContainer: {
             display: 'flex',
@@ -179,17 +258,14 @@ const useStyles = makeStyles(() =>
             display: 'flex',
             flexDirection: 'column',
             width: '50%',
+            gap: 10,
         },
         thirdContainer: {
             display: 'flex',
             flexDirection: 'row',
             gap: 10,
             alignItems: 'center',
-            marginTop: 10,
-        },
-        fourthContainer: {
-            display: 'flex',
-            flexDirection: 'row',
+            padding: 0,
         },
         fifthCotainer: {
             width: '100%',
@@ -222,7 +298,7 @@ const useStyles = makeStyles(() =>
             gap: 10,
         },
         imgae: {
-            width: '50%',
+            width: '30%',
         },
         dropDownTitle: {
             fontWeight: 'bold',
@@ -231,6 +307,36 @@ const useStyles = makeStyles(() =>
             display: 'flex',
             flexDirection: 'row',
             cursor: 'pointer',
+            gap: 10,
+        },
+        word: {
+            fontWeight: 'bold',
+            fontSize: '24px',
+            margin: 0,
+        },
+        checkBtn: {
+            marginLeft: 'auto',
+            padding: '5px 10px',
+            borderRadius: '15px',
+            background: '#55AD9B',
+            fontWeight: 'bold',
+            color: 'white',
+            cursor: 'pointer',
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+        },
+        levelTag: {
+            borderRadius: '10px',
+            padding: '5px',
+            color: '#FDB911',
+            border: '#FDB911 solid 1px',
+            margin: 0,
+            cursor: 'pointer',
+            fontWeight: '500',
+        },
+        quickPracticeTitle: {
+            color: '#55AD9B',
+            fontWeight: 'bold',
+            fontSize: '24px',
         },
     }),
 );

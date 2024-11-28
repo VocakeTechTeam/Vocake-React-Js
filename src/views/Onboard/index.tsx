@@ -106,7 +106,7 @@ const useStyles = makeStyles(() =>
             borderRadius: 30,
             paddingTop: '5%',
             padding: 30,
-            minHeight:"85vh"
+            minHeight: '85vh',
         },
         firstContainer: {
             display: 'flex',
