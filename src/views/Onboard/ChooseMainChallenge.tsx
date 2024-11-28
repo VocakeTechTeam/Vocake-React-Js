@@ -24,6 +24,7 @@ const ChooseMainChallenge = ({ handleStep }: Props) => {
     };
     return (
         <Box className={classes.root}>
+            <h2>What is the main challenge for you in learning English?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
                 if (item == selectedItem) {

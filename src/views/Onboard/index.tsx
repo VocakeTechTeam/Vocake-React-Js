@@ -18,14 +18,14 @@ import { useNavigate } from 'react-router-dom';
 const Onboard = () => {
     const classes = useStyles();
     const [step, setStep] = useState<number>(1);
-    const nav = useNavigate()
+    const nav = useNavigate();
     useEffect(() => {
         if (step == totalStep + 1) {
-            nav("/")
+            nav('/');
         }
-    },[step])
+    }, [step]);
     const handleStep = () => {
-        if (step <=totalStep) {
+        if (step <= totalStep) {
             setStep(step + 1);
         }
     };
@@ -33,8 +33,8 @@ const Onboard = () => {
         if (step > 1) {
             setStep(step - 1);
         }
-    }
-    const arr = [ 
+    };
+    const arr = [
         <WhyBetterEnglish handleStep={handleStep} />,
         <ChooseInterestedTopic handleStep={handleStep} />,
         <ChooseMainChallenge handleStep={handleStep} />,
@@ -51,10 +51,12 @@ const Onboard = () => {
         <Box className={classes.root}>
             <Box className={classes.headerContainer}>
                 <img
-                    style={{ width: '70px', height: '70px', cursor:"pointer" }}
+                    style={{ width: '70px', height: '70px', cursor: 'pointer' }}
                     src={image}
                     alt="logo"
-                    onClick={()=>{nav("/")}}
+                    onClick={() => {
+                        nav('/');
+                    }}
                 />
                 <VoCakeTitleIcon width="90px" height="60px" />
             </Box>
@@ -87,7 +89,6 @@ const useStyles = makeStyles(() =>
     createStyles({
         root: {
             width: '100%',
-            height: '100%',
             alignItems: 'center',
             justifyContent: 'center',
             display: 'flex',
@@ -105,7 +106,7 @@ const useStyles = makeStyles(() =>
             borderRadius: 30,
             paddingTop: '5%',
             padding: 30,
-            height: '100%',
+            minHeight:"85vh"
         },
         firstContainer: {
             display: 'flex',

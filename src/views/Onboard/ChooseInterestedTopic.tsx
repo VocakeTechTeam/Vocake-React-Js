@@ -11,15 +11,15 @@ const ChooseInterestedTopic = ({ handleStep }: Props) => {
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const classes = useStyles();
     const choies = [
-        'Business',
-        'Travel',
-        'Entertainment',
-        'Socializing',
-        'Culture',
-        'Dating',
-        'Shopping',
-        'Food',
-        'Family',
+        '📌 Business',
+        '🚖 Travel',
+        '🎱 Entertainment',
+        '👯‍♀️ Socializing',
+        '🧫 Culture',
+        '❤️ Dating',
+        '🛒 Shopping',
+        '🌭 Food',
+        '🏠 Family',
     ];
     const handleSelect = (item: string) => {
         setSelectedItem(item);
@@ -27,7 +27,7 @@ const ChooseInterestedTopic = ({ handleStep }: Props) => {
     };
     return (
         <Box className={classes.root}>
-            <Typography>What topics are you interested in?</Typography>
+            <h2>What topics are you interested in?</h2>
 
             {choies.map((item, index) => {
                 let isSelected = false;

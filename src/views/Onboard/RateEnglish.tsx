@@ -17,7 +17,7 @@ const RateEnglish = ({ handleStep }: Props) => {
     };
     return (
         <Box className={classes.root}>
-            {' '}
+            <h2>How would you rate your English?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
                 if (item == selectedItem) {

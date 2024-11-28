@@ -46,7 +46,7 @@ const Register = () => {
                 if (token !== null)
                     localStorage.setItem('vocake_access_token', token);
                 setLoading(false);
-                nav("/onboard")
+                nav('/onboard');
             };
             setOpen(false);
             verifyOtp();
