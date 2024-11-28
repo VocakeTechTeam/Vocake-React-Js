@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles, createStyles } from '@mui/styles';
 import { Box, Typography } from '@mui/material';
 import SearchBar from './SearchBar';
-import logo from '../assets/image1.png';
+import logo from '../assets/IMG_1572 2.png';
 import { Avatar } from '@mui/material';
 import { VoCakeTitleIcon } from '../assets/icon/VoCake';
 import { StarIcon } from '../assets/icon/StarIcon';
