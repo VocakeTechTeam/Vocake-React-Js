@@ -1,28 +1,35 @@
 name: CICD
 on:
-    push:
-        branches:
-            - dev
-jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout Source
-              uses: actions/checkout@v3
-            - name: Login to Docker Hub
-              run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-            - name: Build Docker Image
-              run: docker build -t henryhoangduong/vocake .
-            - name: Publish image to docker hub
-              run: docker push  henryhoangduong/vocake:latest
+  push:
+    branches:
+      - dev
+env:
+  REACT_APP_SUPABASE_ANON_KEY: '${{ secrets.REACT_APP_SUPABASE_ANON_KEY }}'
+  REACT_APP_SUPABASE_URL: '${{ secrets.REACT_APP_SUPABASE_URL }}'
+  REACT_APP_VOCAKE_API: '${{ secrets.REACT_APP_VOCAKE_API }}'
 
-    deploy:
-        needs: build
-        runs-on: aws-ec2
-        steps:
-            - name: Pull image from docker hub
-              run: sudo docker pull henryhoangduong/vocake:latest
-            - name: Delete Old Container
-              run: sudo docker rm -f vocake-reactjs-container
-            - name: Run docker container
-              run: sudo docker run -d -p 3000:80 --name vocake-reactjs-container henryhoangduong/vocake
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v3
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build Docker Image
+        run: docker build --build-arg REACT_APP_SUPABASE_ANON_KEY=${{ secrets.REACT_APP_SUPABASE_ANON_KEY }} --build-arg REACT_APP_SUPABASE_URL=${{ secrets.REACT_APP_SUPABASE_URL }} --build-arg REACT_APP_VOCAKE_API=${{ secrets.REACT_APP_VOCAKE_API }} -t henryhoangduong/vocake .
+      - name: Publish image to docker hub
+        run: docker push  henryhoangduong/vocake:latest
+
+  deploy: 
+    needs: build
+    runs-on: aws-ec2    
+    steps:
+      - name: Pull image from docker hub
+        run: sudo docker pull henryhoangduong/vocake:latest 
+      - name: Delete Old Container
+        run: sudo docker rm -f vocake-reactjs-container
+      - name: Run docker container
+        run: |
+          sudo docker run -d -p 3000:80 \
+            --name vocake-reactjs-container            henryhoangduong/vocake
