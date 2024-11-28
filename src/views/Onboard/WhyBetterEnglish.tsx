@@ -24,9 +24,7 @@ const WhyBetterEnglish = ({ handleStep }: Props) => {
     };
     return (
         <Box className={classes.root}>
-            <Typography>
-                Why do you want to get better at speaking English?
-            </Typography>
+            <h2>Why do you want to get better at speaking English?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
                 if (item == selectedItem) {

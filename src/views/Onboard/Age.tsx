@@ -24,8 +24,8 @@ const Age = ({ handleStep }: Props) => {
         handleStep();
     };
     return (
-        <Box className={classes.root} >
-            <Typography>How old are you</Typography>
+        <Box className={classes.root}>
+            <h2>How old are you</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
                 if (item == selectedItem) {

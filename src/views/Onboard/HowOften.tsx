@@ -22,7 +22,7 @@ const HowOften = ({ handleStep }: Props) => {
     };
     return (
         <Box className={classes.root}>
-            <Typography>How often do you want to practice English?</Typography>
+            <h2>How often do you want to practice English?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
                 if (item == selectedItem) {

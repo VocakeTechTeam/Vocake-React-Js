@@ -10,11 +10,11 @@ type Props = {
 const ChooseWhereToImp = ({ handleStep }: Props) => {
     const classes = useStyles();
     const choices = [
-        'Improve pronunciation',
-        'Gain confidence in speaking',
-        'Learn useful words and phrases',
-        'Improve my listening skills',
-        'Others',
+        '👄 Improve pronunciation',
+        '🗣️ Gain confidence in speaking',
+        '💪 Learn useful words and phrases',
+        '👂 Improve my listening skills',
+        '🎯 Others',
     ];
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const handleSelect = (item: string) => {
@@ -23,9 +23,7 @@ const ChooseWhereToImp = ({ handleStep }: Props) => {
     };
     return (
         <Box className={classes.root}>
-            <Typography>
-                Where would you like Speak to help you improve?
-            </Typography>
+            <h2>Where would you like Speak to help you improve?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
                 if (item == selectedItem) {
