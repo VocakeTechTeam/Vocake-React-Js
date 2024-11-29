@@ -9,7 +9,7 @@ export type UserReigster = {
     password: string | null;
     password_retry: string | null;
     fullName: string | null;
-    phonenumber: string | null;
+    phoneNumber: string | null;
     locations: string | null;
     role: string | null;
     levelUser: string | null;

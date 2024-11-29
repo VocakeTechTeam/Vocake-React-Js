@@ -31,7 +31,7 @@ const Register = () => {
         password: null,
         password_retry: null,
         fullName: null,
-        phonenumber: null,
+        phoneNumber: null,
         locations: null,
         role: 'CUSTOMER',
         levelUser: 'BEGINNER',
@@ -106,6 +106,13 @@ const Register = () => {
                             name={'email'}
                             icon={<MailOutlineIcon />}
                             placeholder={'Enter your email'}
+                        />
+                        <Input
+                            errorMessage={emailError}
+                            handleChange={handleChange}
+                            name={'phoneNumber'}
+                            icon={<MailOutlineIcon />}
+                            placeholder={'Enter your phone number'}
                         />
                         <Input
                             errorMessage={passwordError}

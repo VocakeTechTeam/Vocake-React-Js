@@ -45,7 +45,6 @@ const Login = () => {
     };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(user);
         setUser({ ...user, [e.target.name]: e.target.value });
     };
     return (

@@ -8,7 +8,6 @@ type Props = {
 };
 
 const SelectBox = ({ isSelected = false, name, handleClick }: Props) => {
-    console.log(isSelected);
     const activeColor = '#55AD9B';
     const classes = useStyles();
     return (
