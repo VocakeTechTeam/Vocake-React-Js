@@ -14,7 +14,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [loading, setLoading] = useState<boolean>(true);
     useEffect(() => {
         const token = localStorage.getItem('vocake_access_token');
-        console.log('token: ', token);
         if (token !== null) {
             setIsAuth(true);
         }
@@ -39,7 +38,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 setIsAuth(true);
             }
         } catch (error) {
-            console.log(error);
         }
     };
     const logout = async () => {
