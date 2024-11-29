@@ -5,6 +5,7 @@ import image1 from '../../assets/image1.png';
 import { Input } from '../../components/Input';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import { useNavigate } from 'react-router-dom';
 import VerificationModal from './components/VerificationModal';
 import { UserReigster } from '../../types';
@@ -55,9 +56,13 @@ const Register = () => {
 
     const [emailError, setEmailError] = useState<null | string>(null);
     const [passwordError, setPasswordError] = useState<null | string>(null);
+    const [phoneNumberError, setPhoneNumberError] = useState<null | string>(
+        null,
+    );
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setPasswordError(null);
         setEmailError(null);
+        setPhoneNumberError(null)
         setUser({ ...user, [e.target.name]: e.target.value });
     };
     const handleOtp = (otp: string) => {
@@ -66,6 +71,8 @@ const Register = () => {
     const handleSignUp = async () => {
         if (!user.email) {
             setEmailError('Please type your password');
+        } else if (!user.phoneNumber) {
+            setPhoneNumberError('Please type your phone number');
         } else if (user.password !== user.password_retry) {
             setPasswordError('Password unmatched');
         } else {
@@ -108,10 +115,10 @@ const Register = () => {
                             placeholder={'Enter your email'}
                         />
                         <Input
-                            errorMessage={emailError}
+                            errorMessage={phoneNumberError}
                             handleChange={handleChange}
                             name={'phoneNumber'}
-                            icon={<MailOutlineIcon />}
+                            icon={<LocalPhoneIcon />}
                             placeholder={'Enter your phone number'}
                         />
                         <Input

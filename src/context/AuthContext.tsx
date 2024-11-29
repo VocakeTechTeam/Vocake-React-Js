@@ -37,8 +37,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 );
                 setIsAuth(true);
             }
-        } catch (error) {
-        }
+        } catch (error) {}
     };
     const logout = async () => {
         localStorage.removeItem('vocake_access_token');
