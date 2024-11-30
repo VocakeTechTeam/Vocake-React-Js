@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles, createStyles } from '@mui/styles';
 import { Box } from '@mui/material';
 import SelectBox from './components/SelectBox';
+import { time } from 'console';
 
 type Props = {
     handleStep: () => void;
@@ -18,8 +19,15 @@ const WhyBetterEnglish = ({ handleStep }: Props) => {
         'Other',
     ];
     const [selectedItem, setSelectedItem] = useState<string[]>([]);
+
     const handleClickItem = (item: string) => {
-        setSelectedItem((prev) => [...prev, item]);
+        setSelectedItem((prev) => {
+            if (prev.includes(item)) {
+                return prev.filter((i) => i !== item);
+            } else {
+                return [...prev, item];
+            }
+        });
     };
     return (
         <Box className={classes.root}>
