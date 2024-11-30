@@ -22,7 +22,7 @@ const ChooseLangWantToLearn = ({ handleStep }: Props) => {
     };
     return (
         <Box className={classes.root}>
-            <h2>What language do you want to learn</h2>
+            <h2>What language do you want to learn?</h2>
             {choies.map((item, index) => {
                 let isSelected = false;
                 if (item.name == selectedItem) {

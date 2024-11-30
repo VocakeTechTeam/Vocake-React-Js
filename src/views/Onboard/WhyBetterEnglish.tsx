@@ -49,8 +49,11 @@ const WhyBetterEnglish = ({ handleStep }: Props) => {
             })}
             <Box
                 onClick={handleStep}
-                sx={{display:selectedItem.length>=1?"":"none"}}
-                className={classes.btn}>Continue</Box>
+                sx={{ display: selectedItem.length >= 1 ? '' : 'none' }}
+                className={classes.btn}
+            >
+                Continue
+            </Box>
         </Box>
     );
 };
@@ -79,7 +82,7 @@ const useStyles = makeStyles(() =>
             alignItems: 'center',
             justifyContent: 'center',
             boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-            cursor: "pointer",
+            cursor: 'pointer',
         },
     }),
 );
