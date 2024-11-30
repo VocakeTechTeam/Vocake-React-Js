@@ -2,21 +2,19 @@ import { Box, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import SelectBox from './components/SelectBox';
 import { makeStyles, createStyles } from '@mui/styles';
-
 type Props = {
     handleStep: () => void;
 };
-
-const ChooseMainChallenge = ({ handleStep }: Props) => {
+type ChoiceProps = {
+    name: string;
+    isActive: boolean;
+};
+const ChooseLangWantToLearn = ({ handleStep }: Props) => {
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const classes = useStyles();
-    const choices = [
-        "⏰ It's hard to find time",
-        "🚀 It's hard to stay motivated",
-        '📣 Lack of opportunities to speak',
-        '🧠 Remembering what I learned',
-        "😟 I'm too nervouse to speak",
-        '😔 English might be too hard',
+    const choies: ChoiceProps[] = [
+        { name: '🇺🇸 English', isActive: true },
+        { name: '🇫🇮 Finnish', isActive: false },
     ];
     const handleSelect = (item: string) => {
         setSelectedItem(item);
@@ -24,19 +22,19 @@ const ChooseMainChallenge = ({ handleStep }: Props) => {
     };
     return (
         <Box className={classes.root}>
-            <h2>What is the main challenge for you in learning English?</h2>
-            {choices.map((item, index) => {
+            <h2>What language do you want to learn?</h2>
+            {choies.map((item, index) => {
                 let isSelected = false;
-                if (item == selectedItem) {
+                if (item.name == selectedItem) {
                     isSelected = true;
                 }
                 return (
                     <SelectBox
                         key={index}
                         handleClick={handleSelect}
-                        name={item}
+                        name={item.name}
                         isSelected={isSelected}
-                        isActive={true}
+                        isActive={item.isActive}
                     />
                 );
             })}
@@ -44,7 +42,7 @@ const ChooseMainChallenge = ({ handleStep }: Props) => {
     );
 };
 
-export default ChooseMainChallenge;
+export default ChooseLangWantToLearn;
 
 const useStyles = makeStyles(() =>
     createStyles({

@@ -4,8 +4,6 @@ import { makeStyles, createStyles } from '@mui/styles';
 import Age from './Age';
 import ChooseInterestedTopic from './ChooseInterestedTopic';
 import ChooseMainChallenge from './ChooseMainChallenge';
-import ChooseNativeLang from './ChooseNativeLang';
-import ChooseRegion from './ChooseRegion';
 import ChooseWhereToImp from './ChooseWhereToImp';
 import HowOften from './HowOften';
 import RateEnglish from './RateEnglish';
@@ -15,6 +13,9 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import image from '../../assets/IMG_1572 2.png';
 import { VoCakeTitleIcon } from '../../assets/icon/VoCake';
 import { useNavigate } from 'react-router-dom';
+import ChooseLangWantToLearn from './ChooseLangWantToLearn';
+import ChallengeReassure from './ChallengeReassure';
+
 const Onboard = () => {
     const classes = useStyles();
     const [step, setStep] = useState<number>(1);
@@ -35,15 +36,15 @@ const Onboard = () => {
         }
     };
     const arr = [
+        <ChooseLangWantToLearn handleStep={handleStep} />,
         <WhyBetterEnglish handleStep={handleStep} />,
         <ChooseInterestedTopic handleStep={handleStep} />,
         <ChooseMainChallenge handleStep={handleStep} />,
+        // <ChallengeReassure handleStep={handleStep}/>,
         <RateEnglish handleStep={handleStep} />,
         <ChooseWhereToImp handleStep={handleStep} />,
         <HowOften handleStep={handleStep} />,
         <Age handleStep={handleStep} />,
-        // <ChooseNativeLang />,
-        // <ChooseRegion />,
     ];
     const totalStep = arr.length;
 

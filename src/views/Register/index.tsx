@@ -62,7 +62,7 @@ const Register = () => {
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setPasswordError(null);
         setEmailError(null);
-        setPhoneNumberError(null)
+        setPhoneNumberError(null);
         setUser({ ...user, [e.target.name]: e.target.value });
     };
     const handleOtp = (otp: string) => {
