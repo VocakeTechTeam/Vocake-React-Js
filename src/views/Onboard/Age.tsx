@@ -7,21 +7,16 @@ type Props = {
     handleStep: () => void;
 };
 
-type ChoiceProps = {
-    name: string;
-    isActive: boolean;
-};
-
 const Age = ({ handleStep }: Props) => {
     const classes = useStyles();
-    const choices: ChoiceProps[] = [
-        { name: 'Under 10 years old', isActive: true },
-        { name: 'Between 10 and 20 years old', isActive: true },
-        { name: 'Between 21 and 25 years old', isActive: true },
-        { name: 'Between 26 and 35 years old', isActive: true },
-        { name: 'Between 36 and 45 years old', isActive: true },
-        { name: 'Between 46 and 55 years old', isActive: true },
-        { name: '56 years old or older', isActive: true },
+    const choices = [
+        'Under 10 years old',
+        'Between 10 and 20 years old',
+        'Between 21 and 25 years old',
+        'Between 26 and 35 years old',
+        'Between 36 and 45 years old',
+        'Between 46 and 55 years old',
+        '56 years old or older',
     ];
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const handleSelect = (item: string) => {
@@ -33,16 +28,16 @@ const Age = ({ handleStep }: Props) => {
             <h2>How old are you</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
-                if (item.name == selectedItem) {
+                if (item == selectedItem) {
                     isSelected = true;
                 }
                 return (
                     <SelectBox
                         key={index}
                         handleClick={handleSelect}
-                        name={item.name}
+                        name={item}
                         isSelected={isSelected}
-                        isActive={item.isActive}
+                        isActive={true}
                     />
                 );
             })}

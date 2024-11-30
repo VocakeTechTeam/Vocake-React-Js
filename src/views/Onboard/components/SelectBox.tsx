@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@mui/styles';
 import { Box } from '@mui/material';
+import DoneIcon from '@mui/icons-material/Done';
+
 type Props = {
     name: string;
     isSelected: boolean;
@@ -22,11 +24,6 @@ const SelectBox = ({
                 handleClick(name);
             }}
             className={classes.root}
-            // sx={{
-            //     border: isSelected
-            //         ? `${selectedColor} solid 1px`
-            //         : 'gray solid 1px',
-            // }}
             sx={{
                 '&:hover': {
                     transform: isActive ? 'scale(1.05)' : 'none',
@@ -34,10 +31,15 @@ const SelectBox = ({
                 opacity: isActive ? 1 : 0.5,
                 pointerEvents: isActive ? 'auto' : 'none',
                 backgroundColor: isActive ? 'white' : '#F5F5F7',
+                border: isSelected ? `${selectedColor} solid 2px` : '',
+                color: isSelected ? selectedColor : 'black',
             }}
         >
             <p>{name}</p>
-            {!isActive&&<p>Coming soon</p>}
+            {!isActive && <p>Coming soon</p>}
+            {isSelected && (
+                <DoneIcon sx={{ fontSize: '24px', strokeWidth: '10' }} />
+            )}
         </Box>
     );
 };
@@ -48,7 +50,7 @@ const useStyles = makeStyles(() =>
     createStyles({
         root: {
             width: '100%',
-            padding: "5px 20px",
+            padding: '5px 20px',
             borderRadius: 10,
             cursor: 'pointer',
             transition: 'transform 0.1s ease',
@@ -58,8 +60,8 @@ const useStyles = makeStyles(() =>
             display: 'flex',
             alignItems: 'center',
             boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-            flexDirection: "row",
-            justifyContent:"space-between"
+            flexDirection: 'row',
+            justifyContent: 'space-between',
         },
     }),
 );
