@@ -36,6 +36,7 @@ const ChooseMainChallenge = ({ handleStep }: Props) => {
                         handleClick={handleSelect}
                         name={item}
                         isSelected={isSelected}
+                        isActive={true}
                     />
                 );
             })}

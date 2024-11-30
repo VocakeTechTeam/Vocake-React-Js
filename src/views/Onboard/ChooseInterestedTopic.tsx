@@ -40,6 +40,7 @@ const ChooseInterestedTopic = ({ handleStep }: Props) => {
                         handleClick={handleSelect}
                         name={item}
                         isSelected={isSelected}
+                        isActive={true}
                     />
                 );
             })}

@@ -35,6 +35,7 @@ const ChooseWhereToImp = ({ handleStep }: Props) => {
                         handleClick={handleSelect}
                         name={item}
                         isSelected={isSelected}
+                        isActive={true}
                     />
                 );
             })}

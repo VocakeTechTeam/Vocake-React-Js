@@ -36,6 +36,7 @@ const WhyBetterEnglish = ({ handleStep }: Props) => {
                         handleClick={handleClickItem}
                         name={item}
                         isSelected={isSelected}
+                        isActive={true}
                     />
                 );
             })}

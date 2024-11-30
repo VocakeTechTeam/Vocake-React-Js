@@ -1,37 +1,29 @@
-import React, { useState } from 'react';
-import { makeStyles, createStyles } from '@mui/styles';
 import { Box, Typography } from '@mui/material';
+import React, { useState } from 'react';
 import SelectBox from './components/SelectBox';
-
+import { makeStyles, createStyles } from '@mui/styles';
 type Props = {
     handleStep: () => void;
 };
-
 type ChoiceProps = {
     name: string;
     isActive: boolean;
 };
-
-const Age = ({ handleStep }: Props) => {
-    const classes = useStyles();
-    const choices: ChoiceProps[] = [
-        { name: 'Under 10 years old', isActive: true },
-        { name: 'Between 10 and 20 years old', isActive: true },
-        { name: 'Between 21 and 25 years old', isActive: true },
-        { name: 'Between 26 and 35 years old', isActive: true },
-        { name: 'Between 36 and 45 years old', isActive: true },
-        { name: 'Between 46 and 55 years old', isActive: true },
-        { name: '56 years old or older', isActive: true },
-    ];
+const ChooseLangWantToLearn = ({ handleStep }: Props) => {
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
+    const classes = useStyles();
+    const choies: ChoiceProps[] = [
+        { name: '🇺🇸 English', isActive: true },
+        { name: '🇫🇮 Finnish', isActive: false },
+    ];
     const handleSelect = (item: string) => {
         setSelectedItem(item);
         handleStep();
     };
     return (
         <Box className={classes.root}>
-            <h2>How old are you</h2>
-            {choices.map((item, index) => {
+            <h2>What language do you want to learn</h2>
+            {choies.map((item, index) => {
                 let isSelected = false;
                 if (item.name == selectedItem) {
                     isSelected = true;
@@ -50,7 +42,7 @@ const Age = ({ handleStep }: Props) => {
     );
 };
 
-export default Age;
+export default ChooseLangWantToLearn;
 
 const useStyles = makeStyles(() =>
     createStyles({
