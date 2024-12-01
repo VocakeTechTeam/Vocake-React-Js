@@ -12,10 +12,8 @@ import { useAuth } from '../../context/AuthContext';
 import SpinModal from '../../components/SpinModal';
 
 const supabase = createClient(
-    // process.env.REACT_APP_SUPABASE_URL || '',
-    // process.env.REACT_APP_SUPABASE_ANON_KEY || '',
-    'https://ceynqxathrpofueuphir.supabase.co/auth/v1/callback',
-    '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',
+    process.env.REACT_APP_SUPABASE_URL || '',
+    process.env.REACT_APP_SUPABASE_ANON_KEY || '',
 );
 
 const Login = () => {
@@ -95,11 +93,10 @@ const Login = () => {
                             Log in
                         </Box>
                         <Box
-                            onClick={handleGoogleLogin}
                             className={styles.googleBtn}
                         >
                             <GoogleIcon />
-                            Sign in with google
+                            Sign in with google (Coming soon)
                         </Box>
                     </Box>
                 </Box>
@@ -171,7 +168,7 @@ const useStyles = makeStyles((theme: any) =>
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            cursor: 'pointer',
+            // cursor: 'pointer',
             '& > *': {
                 marginRight: '10px',
             },
