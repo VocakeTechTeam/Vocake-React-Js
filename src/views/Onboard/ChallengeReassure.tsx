@@ -4,8 +4,9 @@ import { Box } from '@mui/material';
 
 type Props = {
     handleStep: () => void;
+    challenge: string;
 };
-const ChallengeReassure = ({ handleStep }: Props) => {
+const ChallengeReassure = ({ handleStep, challenge }: Props) => {
     const classes = useStyles();
     const reassure = {
         time: (
@@ -55,9 +56,15 @@ const ChallengeReassure = ({ handleStep }: Props) => {
             </div>
         ),
     };
+    const reassureChallengeMapping:Record<string, keyof typeof reassure> = {
+        "⏰ It's hard to find time": 'time',
+        "🚀 It's hard to stay motivated": 'motivation',
+        '🧠 Remembering what I learned': 'remember',
+        '😔 English might be too hard': 'difficult',
+    };
     return (
         <Box className={classes.root}>
-            <Box className={classes.reassure}>{reassure['difficult']}</Box>
+            <Box className={classes.reassure}>{reassure[reassureChallengeMapping[challenge]]}</Box>
             <Box onClick={handleStep} className={classes.btn}>
                 Continue
             </Box>
