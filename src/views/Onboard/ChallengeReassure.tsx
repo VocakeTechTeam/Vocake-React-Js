@@ -8,13 +8,64 @@ type Props = {
 };
 const ChallengeReassure = ({ handleStep }: Props) => {
     const classes = useStyles();
-
+    const reassure = {
+        time: (
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <h2>Why learn something if you can't remember it? 😬</h2>{' '}
+                <p>
+                    At Vocake, we've built a proven method that will not only
+                    help you to learn new words and concepts, but to also
+                    remember them down the road!
+                </p>
+            </div>
+        ),
+        motivation: (
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <h2>Why learn something if you can't remember it? 😬</h2>{' '}
+                <p>
+                    At Vocake, we've built a proven method that will not only
+                    help you to learn new words and concepts, but to also
+                    remember them down the road!
+                </p>
+            </div>
+        ),
+        opportunity: (
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <h2>Why learn something if you can't remember it? 😬</h2>{' '}
+                <p>
+                    At Vocake, we've built a proven method that will not only
+                    help you to learn new words and concepts, but to also
+                    remember them down the road!
+                </p>
+            </div>
+        ),
+        remember: (
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <h2>Why learn something if you can't remember it? 😬</h2>{' '}
+                <p>
+                    At Vocake, we've built a proven method that will not only
+                    help you to learn new words and concepts, but to also
+                    remember them down the road!
+                </p>
+            </div>
+        ),
+        nervous: (
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <h2>Why learn something if you can't remember it? 😬</h2>{' '}
+                <p>
+                    At Vocake, we've built a proven method that will not only
+                    help you to learn new words and concepts, but to also
+                    remember them down the road!
+                </p>
+            </div>
+        ),
+    };
     return (
-        <Box className={classes.root} >
-            <Box className={classes.reassure} >
-                Time is precious, and that's why Speak lessons average just 5 minutes long!
+        <Box className={classes.root}>
+            <Box className={classes.reassure}>{reassure['remember']}</Box>
+            <Box onClick={handleStep} className={classes.btn}>
+                Continue
             </Box>
-            <Box onClick={handleStep} className={classes.btn}>Continue</Box>
         </Box>
     );
 };
@@ -46,14 +97,15 @@ const useStyles = makeStyles(() =>
             cursor: 'pointer',
         },
         reassure: {
-            background: "white",
+            background: 'white',
             borderRadius: 50,
-            width: "100%",
-            height: "500px",
-            position: "relative",
-            display: "flex",
-            alignItems: "center",
-            justifyContent:"center"
-        }
+            width: '100%',
+            height: '500px',
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 20,
+        },
     }),
 );

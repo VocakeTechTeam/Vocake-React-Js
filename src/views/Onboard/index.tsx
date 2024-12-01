@@ -40,7 +40,7 @@ const Onboard = () => {
         <WhyBetterEnglish handleStep={handleStep} />,
         <ChooseInterestedTopic handleStep={handleStep} />,
         <ChooseMainChallenge handleStep={handleStep} />,
-        // <ChallengeReassure handleStep={handleStep}/>,
+        <ChallengeReassure handleStep={handleStep} />,
         <RateEnglish handleStep={handleStep} />,
         <ChooseWhereToImp handleStep={handleStep} />,
         <HowOften handleStep={handleStep} />,
