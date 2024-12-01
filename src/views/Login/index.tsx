@@ -92,9 +92,7 @@ const Login = () => {
                         <Box className={styles.loginBtn} onClick={handleLogin}>
                             Log in
                         </Box>
-                        <Box
-                            className={styles.googleBtn}
-                        >
+                        <Box className={styles.googleBtn}>
                             <GoogleIcon />
                             Sign in with google (Coming soon)
                         </Box>

@@ -19,12 +19,14 @@ import ChallengeReassure from './ChallengeReassure';
 const Onboard = () => {
     const classes = useStyles();
     const [step, setStep] = useState<number>(1);
+    const [challenge, setChallenge] = useState<string>('');
     const nav = useNavigate();
     useEffect(() => {
         if (step == totalStep + 1) {
             nav('/');
         }
     }, [step]);
+
     const handleStep = () => {
         if (step <= totalStep) {
             setStep(step + 1);
@@ -35,12 +37,18 @@ const Onboard = () => {
             setStep(step - 1);
         }
     };
+    const handleChallenge = (challenge: string) => {
+        setChallenge(challenge);
+    };
     const arr = [
         <ChooseLangWantToLearn handleStep={handleStep} />,
         <WhyBetterEnglish handleStep={handleStep} />,
         <ChooseInterestedTopic handleStep={handleStep} />,
-        <ChooseMainChallenge handleStep={handleStep} />,
-        <ChallengeReassure handleStep={handleStep} />,
+        <ChooseMainChallenge
+            handleStep={handleStep}
+            onSelect={handleChallenge}
+        />,
+        <ChallengeReassure handleStep={handleStep} challenge={challenge} />,
         <RateEnglish handleStep={handleStep} />,
         <ChooseWhereToImp handleStep={handleStep} />,
         <HowOften handleStep={handleStep} />,

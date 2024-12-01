@@ -5,21 +5,21 @@ import { makeStyles, createStyles } from '@mui/styles';
 
 type Props = {
     handleStep: () => void;
+    onSelect: (challenge: string) => void;
 };
 
-const ChooseMainChallenge = ({ handleStep }: Props) => {
+const ChooseMainChallenge = ({ handleStep, onSelect }: Props) => {
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const classes = useStyles();
     const choices = [
         "⏰ It's hard to find time",
         "🚀 It's hard to stay motivated",
-        '📣 Lack of opportunities to speak',
         '🧠 Remembering what I learned',
-        "😟 I'm too nervouse to speak",
         '😔 English might be too hard',
     ];
     const handleSelect = (item: string) => {
         setSelectedItem(item);
+        onSelect(item);
         handleStep();
     };
     return (
