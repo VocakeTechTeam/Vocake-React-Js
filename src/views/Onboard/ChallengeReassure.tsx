@@ -56,7 +56,7 @@ const ChallengeReassure = ({ handleStep, challenge }: Props) => {
             </div>
         ),
     };
-    const reassureChallengeMapping:Record<string, keyof typeof reassure> = {
+    const reassureChallengeMapping: Record<string, keyof typeof reassure> = {
         "⏰ It's hard to find time": 'time',
         "🚀 It's hard to stay motivated": 'motivation',
         '🧠 Remembering what I learned': 'remember',
@@ -64,7 +64,9 @@ const ChallengeReassure = ({ handleStep, challenge }: Props) => {
     };
     return (
         <Box className={classes.root}>
-            <Box className={classes.reassure}>{reassure[reassureChallengeMapping[challenge]]}</Box>
+            <Box className={classes.reassure}>
+                {reassure[reassureChallengeMapping[challenge]]}
+            </Box>
             <Box onClick={handleStep} className={classes.btn}>
                 Continue
             </Box>
@@ -108,6 +110,7 @@ const useStyles = makeStyles(() =>
             alignItems: 'center',
             justifyContent: 'center',
             padding: 20,
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
         },
     }),
 );

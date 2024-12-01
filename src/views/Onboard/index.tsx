@@ -15,6 +15,7 @@ import { VoCakeTitleIcon } from '../../assets/icon/VoCake';
 import { useNavigate } from 'react-router-dom';
 import ChooseLangWantToLearn from './ChooseLangWantToLearn';
 import ChallengeReassure from './ChallengeReassure';
+import ChooseNativeLang from './ChooseNativeLang';
 
 const Onboard = () => {
     const classes = useStyles();
@@ -41,6 +42,7 @@ const Onboard = () => {
         setChallenge(challenge);
     };
     const arr = [
+        <ChooseNativeLang handleStep={handleStep}/>,
         <ChooseLangWantToLearn handleStep={handleStep} />,
         <WhyBetterEnglish handleStep={handleStep} />,
         <ChooseInterestedTopic handleStep={handleStep} />,
