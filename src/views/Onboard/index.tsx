@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import ChooseLangWantToLearn from './ChooseLangWantToLearn';
 import ChallengeReassure from './ChallengeReassure';
 import ChooseNativeLang from './ChooseNativeLang';
+import TopicReassure from './TopicReassure';
 
 const Onboard = () => {
     const classes = useStyles();
@@ -46,6 +47,7 @@ const Onboard = () => {
         <ChooseLangWantToLearn handleStep={handleStep} />,
         <WhyBetterEnglish handleStep={handleStep} />,
         <ChooseInterestedTopic handleStep={handleStep} />,
+        <TopicReassure handleStep={handleStep} />,
         <ChooseMainChallenge
             handleStep={handleStep}
             onSelect={handleChallenge}

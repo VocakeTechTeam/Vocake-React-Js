@@ -93,8 +93,19 @@ const Login = () => {
                             <GoogleIcon />
                             Sign in with google (Coming soon)
                         </Box>
-                        <Typography fontSize={12} color='gray' fontWeight={"600"}>OR</Typography>
-                        <Box className={styles.signUpBtn} onClick={()=>{nav("/register")}}>
+                        <Typography
+                            fontSize={12}
+                            color="gray"
+                            fontWeight={'600'}
+                        >
+                            OR
+                        </Typography>
+                        <Box
+                            className={styles.signUpBtn}
+                            onClick={() => {
+                                nav('/register');
+                            }}
+                        >
                             Sign Up
                         </Box>
                     </Box>
@@ -174,7 +185,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         signUpBtn: {
             backgroundColor: theme.palette.primary.main,
-                        borderRadius: '20px',
+            borderRadius: '20px',
             height: '35px',
             display: 'flex',
             alignItems: 'center',
