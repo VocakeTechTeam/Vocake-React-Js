@@ -1,5 +1,6 @@
 import React, { ChangeEvent, ReactNode, useEffect, useState } from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { Theme, useTheme } from '@mui/material/styles';
 import image1 from '../../assets/image1.png';
 import { makeStyles, createStyles } from '@mui/styles';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
@@ -109,7 +110,7 @@ const Login = () => {
 export default Login;
 
 /* eslint-disable  @typescript-eslint/no-explicit-any */
-const useStyles = makeStyles((theme: any) =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             width: '100%',
@@ -124,6 +125,9 @@ const useStyles = makeStyles((theme: any) =>
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            [theme.breakpoints.down('md')]: {
+                width: '100%',
+            },
         },
         container2: {
             background: '#FEF3E2',
@@ -131,6 +135,9 @@ const useStyles = makeStyles((theme: any) =>
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            [theme.breakpoints.down('md')]: {
+                display: 'none',
+            },
         },
         container3: {
             display: 'flex',
