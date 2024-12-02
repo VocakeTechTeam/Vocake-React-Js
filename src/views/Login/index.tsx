@@ -81,11 +81,7 @@ const Login = () => {
                                 fontWeight: 'bold',
                                 cursor: 'pointer',
                             }}
-                            onClick={() => {
-                                nav('/register');
-                            }}
                         >
-                            {' '}
                             Click here
                         </Typography>
                     </Box>
@@ -97,11 +93,16 @@ const Login = () => {
                             <GoogleIcon />
                             Sign in with google (Coming soon)
                         </Box>
+                        <Typography fontSize={12} color='gray' fontWeight={"600"}>OR</Typography>
+                        <Box className={styles.signUpBtn} onClick={()=>{nav("/register")}}>
+                            Sign Up
+                        </Box>
                     </Box>
                 </Box>
             </Box>
             <Box className={styles.container2}>
                 <img src={image1} alt="Vocake" />
+                <p>Vocabulary is as easy as a piece of cake </p>
             </Box>
         </Box>
     );
@@ -138,6 +139,10 @@ const useStyles = makeStyles((theme: Theme) =>
             [theme.breakpoints.down('md')]: {
                 display: 'none',
             },
+            flexDirection: 'column',
+            '& p': {
+                fontWeight: 'bold',
+            },
         },
         container3: {
             display: 'flex',
@@ -158,13 +163,24 @@ const useStyles = makeStyles((theme: Theme) =>
             },
         },
         loginBtn: {
-            background: 'black',
-            color: 'white',
+            background: '#FCBC05',
             borderRadius: '20px',
             height: '35px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            color: 'black',
+            fontWeight: '600',
+        },
+        signUpBtn: {
+            backgroundColor: theme.palette.primary.main,
+                        borderRadius: '20px',
+            height: '35px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'black',
+            fontWeight: '600',
         },
         googleBtn: {
             border: '#8c8a8a solid 1px',
@@ -191,8 +207,8 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             alignItems: 'flex-start',
             width: '100%',
-            margin: '30px',
-            '& > *': { margin: '15px' },
+            margin: '20px',
+            gap: '10px',
         },
     }),
 );
