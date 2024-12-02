@@ -13,7 +13,7 @@ const Card = () => {
             }}
             className={classes.root}
         >
-            <Typography>Beginner Ielts</Typography>
+            <Typography className={classes.title}>Beginner Ielts</Typography>
             <Typography>Band 3.0</Typography>
             <Typography>
                 Over 1200 IELTS vocabularies and expressions
@@ -26,18 +26,23 @@ const useCardStyles = makeStyles(() =>
     createStyles({
         root: {
             border: 'black solid 1px',
-            padding: '5px',
+            padding: '20px',
             borderRadius: '10px',
-            width: '300px',
+            width: '350px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
             cursor: 'pointer',
             flexShrink: 0,
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+            gap: 20,
+        },
+        title: {
+            fontWeight: 'bold',
+            fontSize: 24,
         },
     }),
 );
-
 const Explore = () => {
     const classes = useStyles();
     return (

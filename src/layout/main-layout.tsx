@@ -3,9 +3,13 @@ import { createStyles, makeStyles } from '@mui/styles';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar/Sidebar';
 import { Header } from '../components/Header';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { Theme, useTheme } from '@mui/material/styles';
 
 const MainLayout = () => {
-    const classes = useStyles();
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up('sm'));
+    const classes = useStyles(theme);
     return (
         <Box className={classes.root}>
             <Box className={classes.firstContainer}>
@@ -25,7 +29,7 @@ const MainLayout = () => {
 
 export default MainLayout;
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
@@ -53,9 +57,11 @@ const useStyles = makeStyles(() =>
         },
         sidebar: {
             width: '20%',
-            display: 'flex',
             justifyContent: 'center',
             boxShadow: 'rgba(99, 99, 99, 0.2) 4px 0px 8px ',
+            [theme.breakpoints.down('md')]: {
+                display: 'none',
+            },
         },
         main: {
             width: '80%',
@@ -63,6 +69,9 @@ const useStyles = makeStyles(() =>
             flexDirection: 'column',
             overflowY: 'auto',
             padding: 10,
+            [theme.breakpoints.down('md')]: {
+                width: '100%',
+            },
         },
     }),
 );

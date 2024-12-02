@@ -6,7 +6,7 @@ type Props = {
     handleStep: () => void;
 };
 
-const ChooseNativeLang = ({handleStep}:Props) => {
+const ChooseNativeLang = ({ handleStep }: Props) => {
     const [selectedItem, setSelectedItem] = useState<string>();
     const classes = useStyles();
     const choies = [
@@ -25,7 +25,7 @@ const ChooseNativeLang = ({handleStep}:Props) => {
         handleStep();
     };
     return (
-        <Box className={classes.root} >
+        <Box className={classes.root}>
             <h2>What is your native language?</h2>
             {choies.map((item, index) => {
                 let isSelected = false;

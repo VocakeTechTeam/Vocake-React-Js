@@ -42,7 +42,7 @@ const Onboard = () => {
         setChallenge(challenge);
     };
     const arr = [
-        <ChooseNativeLang handleStep={handleStep}/>,
+        <ChooseNativeLang handleStep={handleStep} />,
         <ChooseLangWantToLearn handleStep={handleStep} />,
         <WhyBetterEnglish handleStep={handleStep} />,
         <ChooseInterestedTopic handleStep={handleStep} />,
