@@ -7,20 +7,24 @@ import { Avatar } from '@mui/material';
 import { VoCakeTitleIcon } from '../assets/icon/VoCake';
 import { StarIcon } from '../assets/icon/StarIcon';
 import { useNavigate } from 'react-router-dom';
+import { Theme, useTheme } from '@mui/material/styles';
+import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 
 export const Header = () => {
     const classes = useStyles();
     const nav = useNavigate();
     return (
         <Box className={classes.root}>
+            
             <Box
                 className={classes.logoTitleContainer}
                 onClick={() => {
                     nav('/');
                 }}
             >
+                <DensityMediumIcon sx={{color:"white"}} />
                 <img style={{ width: '50px' }} src={logo} alt="logo" />
-                <VoCakeTitleIcon width="90px" />
+                <VoCakeTitleIcon width="90px" height='100px' />
             </Box>
             <Box className={classes.searchBarContainer}>
                 <SearchBar />
@@ -41,7 +45,7 @@ export const Header = () => {
     );
 };
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             width: '100%',
@@ -64,6 +68,15 @@ const useStyles = makeStyles(() =>
             alignItems: 'center',
             marginLeft: 5,
             cursor: 'pointer',
+            [theme.breakpoints.down('md')]: {
+            '& svg:nth-of-type(2)': {
+                    display: 'none',
+                },
+                width: 'max-content',
+                '& svg:nth-of-type(1)': {
+                display:"block"
+                }
+            },
         },
         userHeaderContainer: {
             display: 'flex',
@@ -76,7 +89,7 @@ const useStyles = makeStyles(() =>
             background: '#FFFDE3',
             padding: '5px',
             borderRadius: '10px',
-            border: 'black solid 2px',
+            border: 'black solid 1px',
         },
         languageContainer: {
             backgroundColor: 'red',
@@ -84,7 +97,7 @@ const useStyles = makeStyles(() =>
             justifyContent: 'center',
             display: 'red',
             borderRadius: '8px',
-            border: 'black solid 2px',
+            border: 'black solid 1px',
         },
     }),
 );

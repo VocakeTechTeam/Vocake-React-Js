@@ -7,8 +7,9 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import TranslateIcon from '@mui/icons-material/Translate';
 import { useState } from 'react';
 import { enhanceServcie } from '../../api';
+import { Theme, useTheme } from '@mui/material/styles';
 const Home = () => {
-    const [sentence, setSentence] = useState<string>('');
+    const theme = useTheme();
     const [promptEnhance, setPromptEnhance] = useState<string | null>(null);
     const [textGrammar, setTextGrammer] = useState<string | null>(null);
     const [textScore, setTextScore] = useState<any>();
@@ -55,12 +56,16 @@ const Home = () => {
                             }}
                         >
                             <Box
-                                sx={{
+                                sx={(theme: Theme) => ({
                                     display: 'flex',
                                     flexDirection: 'row',
                                     alignItems: 'center',
                                     gap: 2,
-                                }}
+                                    [theme.breakpoints.down('md')]: {
+                                        flexDirection: 'column',
+                                        alignItems: 'flex-start',
+                                    },
+                                })}
                             >
                                 <Typography
                                     textAlign="start"
@@ -190,7 +195,7 @@ const Home = () => {
                                     <KeyboardArrowDownIcon
                                         style={{ fontSize: '18px' }}
                                     />
-                                </Box>{' '}
+                                </Box>
                             </Box>
                         </Box>
                     </Box>
@@ -203,13 +208,17 @@ const Home = () => {
                 </Box>
                 <Box className={classes.quickPracticeContainer}>
                     <Box
-                        style={{
+                        sx={(theme: Theme) => ({
                             width: '50%',
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'flex-start',
                             gap: 10,
-                        }}
+                            [theme.breakpoints.down('md')]: {
+                                width: '100%',
+                                gap: 0,
+                            },
+                        })}
                     >
                         <p className={classes.quickPracticeTitle}>
                             Quick Practice
@@ -239,7 +248,7 @@ const Home = () => {
 };
 
 export default Home;
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             width: '100%',
@@ -266,6 +275,10 @@ const useStyles = makeStyles(() =>
             gap: 10,
             alignItems: 'center',
             padding: 0,
+            [theme.breakpoints.down('md')]: {
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+            },
         },
         fifthCotainer: {
             width: '100%',
@@ -299,6 +312,10 @@ const useStyles = makeStyles(() =>
         },
         imgae: {
             width: '30%',
+            [theme.breakpoints.down('md')]: {
+                width: '200px',
+                height: '200px',
+            },
         },
         dropDownTitle: {
             fontWeight: 'bold',

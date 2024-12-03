@@ -17,6 +17,7 @@ import ChooseLangWantToLearn from './ChooseLangWantToLearn';
 import ChallengeReassure from './ChallengeReassure';
 import ChooseNativeLang from './ChooseNativeLang';
 import TopicReassure from './TopicReassure';
+import { Theme } from '@mui/material/styles';
 
 const Onboard = () => {
     const classes = useStyles();
@@ -98,7 +99,7 @@ const Onboard = () => {
 
 export default Onboard;
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme:Theme) =>
     createStyles({
         root: {
             width: '100%',
@@ -138,6 +139,9 @@ const useStyles = makeStyles(() =>
         },
         secondContainer: {
             width: '50%',
+            [theme.breakpoints.down("md")]: {
+                width:"80%"
+            }
         },
     }),
 );

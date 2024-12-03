@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import image1 from '../../assets/image1.png';
@@ -12,8 +12,10 @@ import { UserReigster } from '../../types';
 import { signUpService, verifyOtpService } from '../../api';
 import SpinModal from '../../components/SpinModal';
 import { useAuth } from '../../context/AuthContext';
+import { Theme, useTheme } from '@mui/material/styles';
 
 const Register = () => {
+    const theme = useTheme();
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
     const { isAuth } = useAuth();
@@ -84,7 +86,7 @@ const Register = () => {
             }
         }
     };
-    const styles = useStyles();
+    const styles = useStyles(theme);
     return (
         <Box className={styles.root}>
             <VerificationModal
@@ -166,8 +168,7 @@ const Register = () => {
 
 export default Register;
 
-/* eslint-disable  @typescript-eslint/no-explicit-any */
-const useStyles = makeStyles((theme: any) =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             width: '100%',
@@ -183,6 +184,9 @@ const useStyles = makeStyles((theme: any) =>
             alignItems: 'center',
             justifyContent: 'center',
             height: '100%',
+            [theme.breakpoints.down('md')]: {
+                width: '100%',
+            },
         },
         container2: {
             display: 'flex',
@@ -191,6 +195,9 @@ const useStyles = makeStyles((theme: any) =>
             height: '100%',
             background: '#55AD9B',
             borderRadius: ' 0 0 0 100px',
+            [theme.breakpoints.down('md')]: {
+                display: 'none',
+            },
         },
         container3: {
             display: 'flex',

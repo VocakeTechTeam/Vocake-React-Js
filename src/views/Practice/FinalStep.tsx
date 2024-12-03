@@ -40,7 +40,7 @@ export const FinalStep = () => {
                     </Typography>
                     <Typography fontWeight="bold" color="#FFC800">
                         +3 XP
-                    </Typography>{' '}
+                    </Typography>
                 </Box>
             </Box>
             <Box

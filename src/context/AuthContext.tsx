@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 setIsAuth(true);
                 toast.success('Successful login', {
                     progressStyle: {
-                    background:"#55AD9B"
+                        background: '#55AD9B',
                     },
                 });
             } else {

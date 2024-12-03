@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { Theme, useTheme } from '@mui/material/styles';
 import image1 from '../../assets/image1.png';
