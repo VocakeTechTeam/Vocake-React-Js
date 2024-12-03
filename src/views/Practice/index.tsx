@@ -11,7 +11,7 @@ import FlashCard from './FlashCard';
 const arr = [<FlashCard />, <WriteWhatYouHear />, <RightMeaning />];
 
 const Practice = () => {
-    const [step, setStep] = useState<number>(1);
+    const [step, setStep] = useState<number>(4);
     const totalStep = 3;
     const handleProgress = () => {
         if (step <= totalStep) {

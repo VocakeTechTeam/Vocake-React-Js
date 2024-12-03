@@ -6,7 +6,7 @@ import Onboard from './views/Onboard';
 import NotFound from './views/NotFound';
 import { Outlet, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
-import { useEffect } from 'react';
+import { MyList } from './views/MyList';
 
 const PrivateRoute = () => {
     const { isAuth } = useAuth();
@@ -23,6 +23,7 @@ const Routes_ = () => {
                     <Route path="/explore" element={<Explore />} />
                     <Route path="/practice" element={<FlashCard />} />
                     <Route path="/explore/co-ban" element={<CoBan />} />
+                    <Route path="/mylist" element={<MyList />} />
                 </Route>
             </Route>
             <Route path="/login" element={<Login />} />

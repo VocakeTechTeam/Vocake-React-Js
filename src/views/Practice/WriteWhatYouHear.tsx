@@ -1,11 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
-import { useEffect } from 'react';
 import { Box } from '@mui/material';
 import { Typography } from '@mui/material';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import { WordFill } from './WordFill';
 import Correct from '../../components/Noti/Correct';
+import { TurtleIcon } from '../../assets/icon/TurtleIcon';
 export const WriteWhatYouHear = () => {
     const word = 'ironic';
     const [typedKey, setTypedKey] = useState<string[]>([]);
@@ -58,28 +58,48 @@ export const WriteWhatYouHear = () => {
                         Write what you hear
                     </Typography>
                 </Box>
-
-                <Box
-                    sx={{
-                        background: '#EAB355',
-                        width: '80px',
-                        height: '80px',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        display: 'flex',
-                        borderRadius: '10px',
-                        boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-                        cursor: 'pointer',
-                    }}
-                >
-                    <VolumeUpIcon
+                <Box sx={{ display: 'flex', gap: 5, alignItems: 'flex-end' }}>
+                    <Box
                         sx={{
-                            color: 'white',
-                            height: '40px',
-                            width: '40px',
+                            background: '#EAB355',
+                            width: '80px',
+                            height: '80px',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            display: 'flex',
+                            borderRadius: '25px',
+                            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+                            cursor: 'pointer',
+                            borderBottom: '#1999d6 solid 3px',
                         }}
-                    />
+                    >
+                        <VolumeUpIcon
+                            sx={{
+                                color: 'white',
+                                height: '40px',
+                                width: '40px',
+                            }}
+                        />
+                    </Box>
+                    <Box
+                        sx={{
+                            background: '#EAB355',
+                            width: '50px',
+                            height: '50px',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            display: 'flex',
+                            borderRadius: '15px',
+                            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+                            cursor: 'pointer',
+                            borderBottom: '#1999d6 solid 3px',
+                            padding: '5px',
+                        }}
+                    >
+                        <TurtleIcon />
+                    </Box>
                 </Box>
+
                 <Box
                     sx={{
                         width: '100%',

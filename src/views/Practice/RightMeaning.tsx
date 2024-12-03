@@ -19,7 +19,7 @@ const Choice = ({ isClicked, word, handleClick }: ChoiceProps) => {
                 width: '130px',
                 height: '130px',
                 border: isClicked
-                    ? `${activeColor} solid 1px`
+                    ? `${activeColor} solid 2px`
                     : 'black solid 1px',
                 borderRadius: '10px',
                 display: 'flex',
@@ -104,8 +104,10 @@ export const RightMeaning = () => {
                         width: '200px',
                         padding: '5px',
                         color: 'white',
-                        borderRadius: '5px',
+                        borderRadius: '10px',
                         cursor: 'pointer',
+                        borderBottom: '#489D26 solid 3px',
+                        fontWeight: 'bold',
                     }}
                 >
                     Check
