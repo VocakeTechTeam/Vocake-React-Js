@@ -6,12 +6,19 @@ import logo from '../assets/IMG_1572 2.png';
 import { Avatar } from '@mui/material';
 import { VoCakeTitleIcon } from '../assets/icon/VoCake';
 import { StarIcon } from '../assets/icon/StarIcon';
+import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
     const classes = useStyles();
+    const nav = useNavigate();
     return (
         <Box className={classes.root}>
-            <Box className={classes.logoTitleContainer}>
+            <Box
+                className={classes.logoTitleContainer}
+                onClick={() => {
+                    nav('/');
+                }}
+            >
                 <img style={{ width: '50px' }} src={logo} alt="logo" />
                 <VoCakeTitleIcon width="90px" />
             </Box>
@@ -56,6 +63,7 @@ const useStyles = makeStyles(() =>
             flexDirection: 'row',
             alignItems: 'center',
             marginLeft: 5,
+            cursor: 'pointer',
         },
         userHeaderContainer: {
             display: 'flex',

@@ -22,14 +22,16 @@ const Login = () => {
     const nav = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
     const { login, isAuth } = useAuth();
+    const styles = useStyles(theme);
+
     useEffect(() => {
         if (isAuth) nav('/');
     }, [isAuth]);
+
     const [user, setUser] = useState({
         email: '',
         password: '',
     });
-    const styles = useStyles(theme);
 
     const handleLogin = async () => {
         setLoading(true);

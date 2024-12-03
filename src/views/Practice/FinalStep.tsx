@@ -27,7 +27,9 @@ export const FinalStep = () => {
                     Congratulations
                 </Typography>
                 <Box sx={{ display: 'flex', gap: 2 }}>
-                    <Typography color="#777777" fontWeight="500">Practice Complete! </Typography>
+                    <Typography color="#777777" fontWeight="500">
+                        Practice Complete!{' '}
+                    </Typography>
                     <Typography fontWeight="bold" color="#FFC800">
                         +10 XP
                     </Typography>

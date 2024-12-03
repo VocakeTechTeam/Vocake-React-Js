@@ -105,7 +105,7 @@ const sidebarStyles = makeStyles(() =>
             marginBottom: '30px',
         },
         logOut: {
-            background: '#12826B',
+            background: '#55AD9B',
             marginTop: 'auto',
             cursor: 'pointer',
             fontWeight: 'bold',
