@@ -46,7 +46,7 @@ export const Header = ({ toggleSideBar }: Props) => {
                     <StarIcon color={'yellow'} />
                 </Box>
                 <Box className={classes.premiumContainer}>
-                    <Typography>premium</Typography>
+                    <Typography color='#FE6876' fontWeight="bold" fontSize={"15px"}>premium</Typography>
                 </Box>
                 <Avatar
                     alt="Remy Sharp"
@@ -99,11 +99,11 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            minWidth: '170px',
+            minWidth: '190px',
         },
         premiumContainer: {
             background: '#FFFDE3',
-            padding: '5px',
+            padding: '5px 20px',
             borderRadius: '10px',
             border: 'black solid 1px',
         },

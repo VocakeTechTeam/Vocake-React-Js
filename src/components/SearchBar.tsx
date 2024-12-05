@@ -35,7 +35,7 @@ const SearchBar = () => {
                     }}
                     onClick={search}
                 >
-                    <SearchIcon width="20" height="20" />
+                    <SearchIcon width="24" height="24" color='#55AD9B'/>
                 </div>
             </Box>
         </Box>
@@ -47,13 +47,13 @@ export default SearchBar;
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
-            borderRadius: '25px',
+            borderRadius: '10px',
             display: 'flex',
             width: '100%',
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            height: '30px',
+            height: '48px',
             overflow: 'hidden',
             boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
             '& input': {

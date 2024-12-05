@@ -79,7 +79,7 @@ const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
         firstContainer: {
             background: '#55AD9B',
             width: '100%',
-            height: '8vh',
+            height: '10vh',
             position: 'sticky',
             top: 0,
             display: 'flex',
@@ -92,12 +92,11 @@ const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
             display: 'flex',
             flexDirection: 'row',
             width: '100%',
-            height: '92vh',
+            height: '90vh',
         },
         sidebar: {
-            width: '20%',
+            width: '150px',
             justifyContent: 'center',
-            boxShadow: 'rgba(99, 99, 99, 0.2) 4px 0px 8px ',
             [theme.breakpoints.down('md')]: {
                 position: 'absolute',
                 height: '92vh',
@@ -108,7 +107,7 @@ const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
             },
         },
         main: {
-            width: '80%',
+            flex:1,
             display: 'flex',
             flexDirection: 'column',
             overflowY: 'auto',
