@@ -32,11 +32,6 @@ const itemlsits = [
         path: '/setting',
         icon: <SettingsOutlinedIcon />,
     },
-    {
-        title: 'Practice',
-        path: '/practice',
-        icon: <EditNoteIcon />,
-    },
 ];
 
 const Sidebar = () => {

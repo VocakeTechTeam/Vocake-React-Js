@@ -119,6 +119,9 @@ const CoBan = () => {
                         </Box>
                     </Box>
                     <Box
+                        onClick={() => {
+                            nav('practice');
+                        }}
                         sx={{
                             borderRadius: 15,
                             background: '#55AD9B',
@@ -131,6 +134,7 @@ const CoBan = () => {
                                 fontSize: 10,
                                 fontWeight: 'bold',
                                 color: 'white',
+                                cursor: 'pointer',
                             }}
                         >
                             PRACTICE
@@ -142,6 +146,7 @@ const CoBan = () => {
                             background: '#FE6876',
                             padding: '0 5px',
                             boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+                            cursor: 'pointer',
                         }}
                     >
                         <p

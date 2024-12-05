@@ -9,22 +9,34 @@ import { StarIcon } from '../assets/icon/StarIcon';
 import { useNavigate } from 'react-router-dom';
 import { Theme, useTheme } from '@mui/material/styles';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-export const Header = () => {
+type Props = {
+    toggleSideBar?: () => void;
+};
+
+export const Header = ({ toggleSideBar }: Props) => {
     const classes = useStyles();
     const nav = useNavigate();
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('md'));
+
     return (
         <Box className={classes.root}>
-            
             <Box
                 className={classes.logoTitleContainer}
                 onClick={() => {
                     nav('/');
                 }}
             >
-                <DensityMediumIcon sx={{color:"white"}} />
+                {matches && (
+                    <DensityMediumIcon
+                        onClick={toggleSideBar}
+                        sx={{ color: 'white' }}
+                    />
+                )}
                 <img style={{ width: '50px' }} src={logo} alt="logo" />
-                <VoCakeTitleIcon width="90px" height='100px' />
+                <VoCakeTitleIcon width="100px" />
             </Box>
             <Box className={classes.searchBarContainer}>
                 <SearchBar />
@@ -65,17 +77,21 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '150px',
             display: 'flex',
             flexDirection: 'row',
-            alignItems: 'center',
+            alignItems: 'flex-end',
             marginLeft: 5,
             cursor: 'pointer',
             [theme.breakpoints.down('md')]: {
-            '& svg:nth-of-type(2)': {
+                '& svg:nth-of-type(2)': {
                     display: 'none',
                 },
                 width: 'max-content',
                 '& svg:nth-of-type(1)': {
-                display:"block"
-                }
+                    display: 'block',
+                },
+            },
+            '& svg': {
+                bottom: '10px',
+                position: 'relative',
             },
         },
         userHeaderContainer: {

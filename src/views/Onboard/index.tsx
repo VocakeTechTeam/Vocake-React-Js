@@ -99,7 +99,7 @@ const Onboard = () => {
 
 export default Onboard;
 
-const useStyles = makeStyles((theme:Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             width: '100%',
@@ -139,9 +139,9 @@ const useStyles = makeStyles((theme:Theme) =>
         },
         secondContainer: {
             width: '50%',
-            [theme.breakpoints.down("md")]: {
-                width:"80%"
-            }
+            [theme.breakpoints.down('md')]: {
+                width: '80%',
+            },
         },
     }),
 );

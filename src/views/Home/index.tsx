@@ -213,7 +213,7 @@ const Home = () => {
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'flex-start',
-                            gap: 10,
+                            gap: 3,
                             [theme.breakpoints.down('md')]: {
                                 width: '100%',
                                 gap: 0,
