@@ -66,7 +66,7 @@ export const SearchContextProvider: React.FC<{ children: ReactNode }> = ({
                 vocab: userSearch,
             });
             if (!res.data.payload.vocabulary) {
-                toast.error("Word not found")
+                toast.error('Word not found');
             }
             setUserSearch(null);
             for (

@@ -20,7 +20,7 @@ api_v1.interceptors.request.use(
     },
 );
 
-export const enhanceServcie = async (word:string, text:string) => {
+export const enhanceServcie = async (word: string, text: string) => {
     try {
         const response = await api_v1.post('customer/vocake/enhance-text', {
             text: 'The sun is getteing more sunshin',

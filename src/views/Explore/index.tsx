@@ -13,8 +13,14 @@ const Card = () => {
             }}
             className={classes.root}
         >
-            <Typography className={classes.title}>Beginner Ielts</Typography>
-            <Typography>Band 3.0</Typography>
+            <Typography
+                fontWeight="bold"
+                fontSize={'31px'}
+                className={classes.title}
+            >
+                Beginner Ielts
+            </Typography>
+            <Typography sx={{ marginLeft: '5px' }}>Band 3.0</Typography>
             <Typography>
                 Over 1200 IELTS vocabularies and expressions
             </Typography>

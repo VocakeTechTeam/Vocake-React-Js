@@ -17,7 +17,7 @@ const Home = () => {
     const [textScore, setTextScore] = useState<any>();
     const { search, wordSearch } = useSearch();
     const handlePractice = async () => {
-        const res = await enhanceServcie("","");
+        const res = await enhanceServcie('', '');
         setPromptEnhance(res.promptEnhance);
         setTextGrammer(res.textGrammar);
         setTextScore(res.textScore);
