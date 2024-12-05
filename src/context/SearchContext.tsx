@@ -63,7 +63,7 @@ export const SearchContextProvider: React.FC<{ children: ReactNode }> = ({
 
             setLoading(true);
             const res = await api_v1.post('customer/lib/searching', {
-                vocab: userSearch,
+                vocab: userSearch.toLowerCase(),
             });
             if (!res.data.payload.vocabulary) {
                 toast.error('Word not found');

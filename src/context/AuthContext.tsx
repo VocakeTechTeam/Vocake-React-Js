@@ -20,6 +20,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
         setLoading(false);
     }, []);
+    useEffect(() => {
+        if (!isAuth) toast.error('please login again');
+    }, [isAuth]);
 
     const login = async (email: string, password: string) => {
         try {

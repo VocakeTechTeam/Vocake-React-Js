@@ -15,4 +15,7 @@ export const theme = createTheme({
             main: PALLETE_COLORS.secondary,
         },
     },
+    typography: {
+        fontFamily: '"Montserrat", sans-serif',
+    },
 });

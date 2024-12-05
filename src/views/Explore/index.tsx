@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { createStyles, makeStyles } from '@mui/styles';
 import { useNavigate } from 'react-router-dom';
+import { Theme } from '@mui/material/styles';
 
 const Card = () => {
     const classes = useCardStyles();
@@ -20,8 +21,8 @@ const Card = () => {
             >
                 Beginner Ielts
             </Typography>
-            <Typography sx={{ marginLeft: '5px' }}>Band 3.0</Typography>
-            <Typography>
+            <Typography sx={{ marginLeft: '45px' }}>Band 3.0</Typography>
+            <Typography sx={{ marginLeft: '45px' }}>
                 Over 1200 IELTS vocabularies and expressions
             </Typography>
         </Box>
@@ -86,11 +87,18 @@ const Explore = () => {
                     By community
                 </Typography>
                 <Box
-                    sx={{
+                    sx={(theme: Theme) => (
+                    {
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: 5,
-                    }}
+                            gap: 5,
+                            [theme.breakpoints.down("sm")]: {
+                                width: "100%",
+                                alignItems:"center"
+                        }
+                    }
+                    ) }
+                    
                 >
                     <Card />
                     <Card />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,13 +12,13 @@ const Card = () => {
             <div
                 style={{
                     width: '100%',
-                    height: '100px',
+                    height: '145px',
                     background: '#D9D9D9',
                 }}
             />
             <div className={classes.textContainer}>
-                <Typography>Travel</Typography>
-                <Typography>Du lịch</Typography>
+                <Typography fontSize={"25px"} fontWeight={"bold"}>Travel</Typography>
+                <Typography fontSize={"20px"}>Du lịch</Typography>
             </div>
         </Box>
     );
@@ -27,15 +27,15 @@ const Card = () => {
 const useCardStyles = makeStyles(() =>
     createStyles({
         root: {
-            maxHeight: '200px',
-            width: '150px',
+            height: '285px',
+            width: '241px',
             border: 'black solid 1px',
-            borderRadius: '10px',
+            borderRadius: '13px',
             flexShrink: 0,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            padding: '10px 10px',
+            padding: '33px',
             boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
         },
         textContainer: {
@@ -62,7 +62,7 @@ const CoBan = () => {
                     }}
                     className={classes.titleArrowContainer}
                 >
-                    <ChevronLeftIcon />
+                    <KeyboardBackspaceIcon sx={{width:40, height:22}} />
                     <p className={classes.title}>IELTS cơ bản</p>
                 </Box>
                 <Box
@@ -182,6 +182,7 @@ const useStyles = makeStyles(() =>
         },
         title: {
             fontWeight: 'bold',
+            fontSize:"31px"
         },
         previewContainer: {
             display: 'flex',

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { UserReigster } from '../types';
+import { toast } from 'react-toastify';
 
 export const api_v1 = axios.create({
     baseURL: `${process.env.REACT_APP_VOCAKE_API}/api/v1/`,
@@ -16,6 +17,19 @@ api_v1.interceptors.request.use(
         return config;
     },
     (error) => {
+        return Promise.reject(error);
+    },
+);
+
+api_v1.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        if (error.response && error.response.status === 401) {
+            localStorage.removeItem('vocake_access_token');
+        }
+        window.location.reload();
         return Promise.reject(error);
     },
 );
