@@ -61,7 +61,7 @@ const Home = () => {
                                 <Typography
                                     sx={{ fontWeight: '600', fontSize: 22 }}
                                 >
-                                    unexpected thus funny
+                                    {wordSearch?.meaning?wordSearch.meaning: "unexpected thus funny"}
                                 </Typography>
                                 <Box
                                     className={classes.translationIconContainer}
