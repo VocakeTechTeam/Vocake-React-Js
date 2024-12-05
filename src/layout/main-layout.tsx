@@ -103,10 +103,8 @@ const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
                 height: '92vh',
                 background: 'white',
                 zIndex: 10,
-                width: '50%',
+                width: '200px',
                 transition: 'transform 0.5s ease',
-
-                // transform: (props) => (props.isSideBarOpen ? 'translateX(-100%)' : 'translateX(-100%)'),
             },
         },
         main: {

@@ -7,8 +7,10 @@ const Card = () => {
     const classes = useStyles();
     return (
         <Box className={classes.root}>
-            <Typography>IELTS BEGINNER</Typography>
+            <Typography fontWeight="bold">IELTS BEGINNER</Typography>
+            <Typography>15 term</Typography>
             <Avatar />
+            <Typography>Thương Bùi</Typography>
         </Box>
     );
 };
