@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { UserReigster } from '../types';
 
-const api_v1 = axios.create({
+export const api_v1 = axios.create({
     baseURL: `${process.env.REACT_APP_VOCAKE_API}/api/v1/`,
 });
 
@@ -20,7 +20,7 @@ api_v1.interceptors.request.use(
     },
 );
 
-export const enhanceServcie = async () => {
+export const enhanceServcie = async (word:string, text:string) => {
     try {
         const response = await api_v1.post('customer/vocake/enhance-text', {
             text: 'The sun is getteing more sunshin',

@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import { SearchIcon } from '../assets/icon/SearchIcon';
-import { useTheme } from '@mui/material';
+import { useSearch } from '../context/SearchContext';
 
 const SearchBar = () => {
     const classes = useStyles();
-    const theme = useTheme();
+    const { userSearch, handleChange, search } = useSearch();
     return (
         <Box className={classes.root}>
-            <input placeholder="Search" className="input" type="text" />
+            <input
+                placeholder="Search"
+                className="input"
+                type="text"
+                onChange={handleChange}
+                value={userSearch != null ? userSearch : ''}
+            />
             <Box
                 sx={{
                     paddingRight: '10px',
@@ -20,7 +26,17 @@ const SearchBar = () => {
                     justifyContent: 'center',
                 }}
             >
-                <SearchIcon width="20" height="20" />
+                <div
+                    style={{
+                        cursor: 'pointer',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                    }}
+                    onClick={search}
+                >
+                    <SearchIcon width="20" height="20" />
+                </div>
             </Box>
         </Box>
     );

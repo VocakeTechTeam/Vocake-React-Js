@@ -42,12 +42,17 @@ const MainLayout = () => {
                     />
                 )}
 
-                <Box sx={(theme: Theme) => ({
-                    [theme.breakpoints.down("md")]: {
-                                                                transform: (props) => (isSideBarOpen ? 'translateX(0%)' : 'translateX(-100%)'),
-
-                        }
-                })} className={classes.sidebar}>
+                <Box
+                    sx={(theme: Theme) => ({
+                        [theme.breakpoints.down('md')]: {
+                            transform: (props) =>
+                                isSideBarOpen
+                                    ? 'translateX(0%)'
+                                    : 'translateX(-100%)',
+                        },
+                    })}
+                    className={classes.sidebar}
+                >
                     <Sidebar />
                 </Box>
                 <Box className={classes.main}>
