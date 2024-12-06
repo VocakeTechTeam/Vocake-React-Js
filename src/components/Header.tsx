@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            minWidth: '190px',
+            gap:5
         },
         premiumContainer: {
             background: '#FFFDE3',
@@ -117,9 +117,10 @@ const useStyles = makeStyles((theme: Theme) =>
             backgroundColor: 'red',
             alignItems: 'center',
             justifyContent: 'center',
-            display: 'red',
+            display: 'flex',
             borderRadius: '8px',
             border: 'black solid 1px',
+            padding: '4px',
         },
     }),
 );
