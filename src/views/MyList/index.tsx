@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import Card from './components/Card';
-import { Theme } from "@mui/material/styles"
+import { Theme } from '@mui/material/styles';
 
 export const MyList = () => {
     const styles = useStyles();
@@ -18,11 +18,16 @@ export const MyList = () => {
             >
                 Recent
             </Typography>
-            <Box sx={(theme) => ({
-                [theme.breakpoints.down("sm")]: {
-                    flexDirection:"column"
-                }
-            })} className={styles.cardContainer}>{cards}</Box>
+            <Box
+                sx={(theme) => ({
+                    [theme.breakpoints.down('sm')]: {
+                        flexDirection: 'column',
+                    },
+                })}
+                className={styles.cardContainer}
+            >
+                {cards}
+            </Box>
         </Box>
     );
 };
@@ -39,9 +44,8 @@ const useStyles = makeStyles(() =>
             gap: 10,
             overflowX: 'auto',
             padding: 15,
-            wdith: "100%",
-            alignItems:"center"
-
+            wdith: '100%',
+            alignItems: 'center',
         },
     }),
 );

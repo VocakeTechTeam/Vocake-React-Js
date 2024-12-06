@@ -17,8 +17,10 @@ const Card = () => {
                 }}
             />
             <div className={classes.textContainer}>
-                <Typography fontSize={"25px"} fontWeight={"bold"}>Travel</Typography>
-                <Typography fontSize={"20px"}>Du lịch</Typography>
+                <Typography fontSize={'25px'} fontWeight={'bold'}>
+                    Travel
+                </Typography>
+                <Typography fontSize={'20px'}>Du lịch</Typography>
             </div>
         </Box>
     );
@@ -62,7 +64,7 @@ const CoBan = () => {
                     }}
                     className={classes.titleArrowContainer}
                 >
-                    <KeyboardBackspaceIcon sx={{width:40, height:22}} />
+                    <KeyboardBackspaceIcon sx={{ width: 40, height: 22 }} />
                     <p className={classes.title}>IELTS cơ bản</p>
                 </Box>
                 <Box
@@ -182,7 +184,7 @@ const useStyles = makeStyles(() =>
         },
         title: {
             fontWeight: 'bold',
-            fontSize:"31px"
+            fontSize: '31px',
         },
         previewContainer: {
             display: 'flex',

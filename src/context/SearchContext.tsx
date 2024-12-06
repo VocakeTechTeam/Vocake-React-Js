@@ -15,7 +15,7 @@ type WORD = {
     audio: string;
     example: string;
     ipa: string;
-    meaning: string
+    meaning: string;
 };
 
 type SEARCHWORDCONTEXTTYPE = {
@@ -47,7 +47,7 @@ export const SearchContextProvider: React.FC<{ children: ReactNode }> = ({
                 word: prev?.word || '',
                 example: prev?.example || '',
                 ipa: prev?.ipa || '',
-                meaning:prev?.meaning ||"",
+                meaning: prev?.meaning || '',
             }));
         }
     }, [audio]);
@@ -93,7 +93,7 @@ export const SearchContextProvider: React.FC<{ children: ReactNode }> = ({
                 word: res.data.payload.vocabulary,
                 example: res.data.payload.exampleUsing,
                 ipa: res.data.payload.ipa,
-                meaning: res.data.payload.meaning1
+                meaning: res.data.payload.meaning1,
             });
         } catch (error) {}
     };

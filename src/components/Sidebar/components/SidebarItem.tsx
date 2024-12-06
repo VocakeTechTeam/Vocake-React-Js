@@ -53,7 +53,7 @@ const SidebarItem = ({
                     >
                         {icon}
                     </ListItemIcon>
-                    <ListItemText  primary={title} />
+                    <ListItemText primary={title} />
                 </ListItemButton>
             </ListItem>
         </Box>

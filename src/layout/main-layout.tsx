@@ -107,14 +107,17 @@ const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
             },
         },
         main: {
-            flex:1,
+            flex: 1,
             display: 'flex',
             flexDirection: 'column',
             overflowY: 'auto',
             padding: 10,
+            marginLeft: '60px',
             [theme.breakpoints.down('md')]: {
                 width: '100%',
                 zIndex: 0,
+                            marginLeft: '0px',
+
             },
         },
         overlay: {

@@ -35,7 +35,7 @@ const SearchBar = () => {
                     }}
                     onClick={search}
                 >
-                    <SearchIcon width="24" height="24" color='#55AD9B'/>
+                    <SearchIcon width="24" height="24" color="#55AD9B" />
                 </div>
             </Box>
         </Box>

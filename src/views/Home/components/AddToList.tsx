@@ -18,13 +18,13 @@ const AddToList = () => {
             className={classes.addToListContainer}
         >
             <FormatListBulletedIcon
-                sx={{width:15}}
+                sx={{ width: 15 }}
                 style={{ color: isClicked ? 'white' : '#55AD9B' }}
             />
             <Typography
                 sx={{
                     color: isClicked ? 'white' : '#55AD9B',
-                    fontSize:10
+                    fontSize: 10,
                 }}
             >
                 {isClicked ? 'added' : 'add to list'}
@@ -42,9 +42,9 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             cursor: 'pointer',
             gap: '2px',
-            flexDirection: "row",
-            alignItems: "center",
-            padding:"2px 5px"
+            flexDirection: 'row',
+            alignItems: 'center',
+            padding: '2px 5px',
         },
     }),
 );

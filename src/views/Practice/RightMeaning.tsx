@@ -102,7 +102,6 @@ export const RightMeaning = () => {
                     sx={{
                         backgroundColor: '#55AD9B',
                         width: '200px',
-                        padding: '5px',
                         color: 'white',
                         borderRadius: '10px',
                         cursor: 'pointer',

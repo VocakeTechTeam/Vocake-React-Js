@@ -48,20 +48,26 @@ const Home = () => {
                                 sx={{ cursor: 'pointer' }}
                                 onClick={handlePlaySound}
                             />
+                            {wordSearch?.ipa && (
+                            <p className={classes.ipaText}>{wordSearch.ipa}</p>
+                        )}
                             <audio ref={audioRef} src={wordSearch?.audio} />
                             <AddToList />
                             <p className={classes.levelTag}>intermediate</p>
                         </Box>
-                        {wordSearch?.ipa && (
-                            <p className={classes.ipaText}>{wordSearch.ipa}</p>
-                        )}
 
                         <Box className={classes.exampleContainer}>
                             <Box className={classes.translationContainer}>
                                 <Typography
-                                    sx={{ fontWeight: '500', fontSize: 25,textAlign:"left" }}
+                                    sx={{
+                                        fontWeight: '500',
+                                        fontSize: 25,
+                                        textAlign: 'left',
+                                    }}
                                 >
-                                    {wordSearch?.meaning?wordSearch.meaning: "unexpected thus funny"}
+                                    {wordSearch?.meaning
+                                        ? wordSearch.meaning
+                                        : 'unexpected thus funny'}
                                 </Typography>
                                 <Box
                                     className={classes.translationIconContainer}
@@ -72,12 +78,18 @@ const Home = () => {
                                 </Box>
                             </Box>
 
-                            <Typography style={{fontSize:"16px"}} className={classes.exampleText}>
+                            <Typography
+                                style={{ fontSize: '16px' }}
+                                className={classes.exampleText}
+                            >
                                 {wordSearch?.example
                                     ? wordSearch.example
                                     : 'It’s ironic that Sarah, the librarian, got fined for overdue books.'}
                             </Typography>
-                            <Typography style={{fontSize:"16px"}} className={classes.exampleText}>
+                            <Typography
+                                style={{ fontSize: '16px' }}
+                                className={classes.exampleText}
+                            >
                                 &quot;Thật trớ trêu khi Sarah, thủ thư, lại bị
                                 phạt vì mượn sách quá hạn.&quot;
                             </Typography>
@@ -85,7 +97,10 @@ const Home = () => {
 
                         <Box className={classes.dropDownListContainer}>
                             <Box className={classes.dropdownItem}>
-                                <Typography style={{fontSize:"16px"}} sx={{ fontWeight: '600' }}>
+                                <Typography
+                                    style={{ fontSize: '16px' }}
+                                    sx={{ fontWeight: '600' }}
+                                >
                                     Word family
                                 </Typography>
                                 <Box className={classes.dropdownIconContainer}>
@@ -95,7 +110,10 @@ const Home = () => {
                                 </Box>
                             </Box>
                             <Box className={classes.dropdownItem}>
-                                <Typography style={{fontSize:"16px"}} sx={{ fontWeight: '600' }}>
+                                <Typography
+                                    style={{ fontSize: '16px' }}
+                                    sx={{ fontWeight: '600' }}
+                                >
                                     Advanced uses
                                 </Typography>
                                 <Box className={classes.dropdownIconContainer}>
@@ -105,7 +123,10 @@ const Home = () => {
                                 </Box>
                             </Box>
                             <Box className={classes.dropdownItem}>
-                                <Typography style={{fontSize:"16px"}} sx={{ fontWeight: '600' }}>
+                                <Typography
+                                    style={{ fontSize: '16px' }}
+                                    sx={{ fontWeight: '600' }}
+                                >
                                     Synonyms
                                 </Typography>
                                 <Box className={classes.dropdownIconContainer}>
@@ -115,7 +136,10 @@ const Home = () => {
                                 </Box>
                             </Box>
                             <Box className={classes.dropdownItem}>
-                                <Typography style={{fontSize:"16px"}}   sx={{ fontWeight: '600' }}>
+                                <Typography
+                                    style={{ fontSize: '16px' }}
+                                    sx={{ fontWeight: '600' }}
+                                >
                                     Collocations
                                 </Typography>
                                 <Box className={classes.dropdownIconContainer}>
@@ -147,7 +171,6 @@ const Home = () => {
                                 borderRadius: 1,
                                 boxShadow:
                                     'rgba(99, 99, 99, 0.5) 0px 4px 5px 0px',
-
                             }}
                         />
                         <p
@@ -192,7 +215,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'column',
             width: '50%',
-            gap: 10,
+            gap: 25,
         },
         wordSection: {
             display: 'flex',
@@ -228,7 +251,7 @@ const useStyles = makeStyles((theme: Theme) =>
             border: '#FDB911 solid 1px',
             margin: 0,
             fontWeight: '500',
-            fontSize:10
+            fontSize: 10,
         },
         ipaText: {
             textAlign: 'left',
@@ -238,7 +261,7 @@ const useStyles = makeStyles((theme: Theme) =>
         exampleContainer: {
             display: 'flex',
             flexDirection: 'column',
-            gap: 10,
+            gap: 30,
         },
         translationContainer: {
             display: 'flex',
@@ -277,7 +300,7 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'row',
             cursor: 'pointer',
-            gap:10
+            gap: 10,
         },
         dropDownTitle: {
             fontWeight: 'bold',
@@ -304,7 +327,7 @@ const useStyles = makeStyles((theme: Theme) =>
             alignItems: 'flex-start',
             display: 'flex',
             flexDirection: 'column',
-            height: "300px",
+            height: '300px',
         },
         quickPracticeBox: {
             width: '50%',
@@ -324,13 +347,14 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         checkBtn: {
             marginLeft: 'auto',
-            padding: '5px 10px',
-            borderRadius: '15px',
+            padding: '2px 21px',
+            borderRadius: '30px',
             background: '#55AD9B',
             fontWeight: 'bold',
             color: 'white',
             cursor: 'pointer',
-            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+            fontSize: "18px",
+            boxShadow: 'rgba(99, 99, 99, 0.5) 0px 4px 5px 0px',
         },
     }),
 );

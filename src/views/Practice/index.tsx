@@ -50,7 +50,11 @@ const Practice = () => {
                             gap: 2,
                         }}
                     >
-                        <div onClick={()=>{nav("/")}}>
+                        <div
+                            onClick={() => {
+                                nav('/');
+                            }}
+                        >
                             <CloseIcon sx={{ cursor: 'pointer' }} />
                         </div>
                         <Box sx={{ width: '70%' }}>

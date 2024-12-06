@@ -21,8 +21,10 @@ const Card = () => {
             >
                 Beginner Ielts
             </Typography>
-            <Typography sx={{ marginLeft: '45px' }}>Band 3.0</Typography>
-            <Typography sx={{ marginLeft: '45px' }}>
+            <Typography sx={{ marginLeft: '45px', fontSize: '20px' }}>
+                Band 3.0
+            </Typography>
+            <Typography sx={{ marginLeft: '45px', fontSize: '20px' }}>
                 Over 1200 IELTS vocabularies and expressions
             </Typography>
         </Box>
@@ -35,14 +37,15 @@ const useCardStyles = makeStyles(() =>
             border: 'black solid 1px',
             padding: '20px',
             borderRadius: '10px',
-            width: '350px',
+            width: '400px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
             cursor: 'pointer',
             flexShrink: 0,
             boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-            gap: 20,
+            height: '258px',
+            justifyContent: 'space-between',
         },
         title: {
             fontWeight: 'bold',
@@ -87,18 +90,15 @@ const Explore = () => {
                     By community
                 </Typography>
                 <Box
-                    sx={(theme: Theme) => (
-                    {
+                    sx={(theme: Theme) => ({
                         display: 'flex',
                         flexDirection: 'column',
-                            gap: 5,
-                            [theme.breakpoints.down("sm")]: {
-                                width: "100%",
-                                alignItems:"center"
-                        }
-                    }
-                    ) }
-                    
+                        gap: 5,
+                        [theme.breakpoints.down('sm')]: {
+                            width: '100%',
+                            alignItems: 'center',
+                        },
+                    })}
                 >
                     <Card />
                     <Card />
