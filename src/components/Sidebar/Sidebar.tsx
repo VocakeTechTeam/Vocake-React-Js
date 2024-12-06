@@ -32,11 +32,6 @@ const itemlsits = [
         path: '/setting',
         icon: <SettingsOutlinedIcon />,
     },
-    {
-        title: 'Practice',
-        path: '/practice',
-        icon: <EditNoteIcon />,
-    },
 ];
 
 const Sidebar = () => {
@@ -105,7 +100,7 @@ const sidebarStyles = makeStyles(() =>
             marginBottom: '30px',
         },
         logOut: {
-            background: '#12826B',
+            background: '#55AD9B',
             marginTop: 'auto',
             cursor: 'pointer',
             fontWeight: 'bold',

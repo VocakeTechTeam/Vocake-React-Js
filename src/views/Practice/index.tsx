@@ -7,12 +7,15 @@ import { RightMeaning } from './RightMeaning';
 import { WriteWhatYouHear } from './WriteWhatYouHear';
 import { FinalStep } from './FinalStep';
 import FlashCard from './FlashCard';
+import { useNavigate } from 'react-router-dom';
 
 const arr = [<FlashCard />, <WriteWhatYouHear />, <RightMeaning />];
 
 const Practice = () => {
     const [step, setStep] = useState<number>(1);
     const totalStep = 3;
+    const nav = useNavigate();
+
     const handleProgress = () => {
         if (step <= totalStep) {
             setStep(step + 1);
@@ -47,7 +50,13 @@ const Practice = () => {
                             gap: 2,
                         }}
                     >
-                        <CloseIcon sx={{ cursor: 'pointer' }} />
+                        <div
+                            onClick={() => {
+                                nav('/');
+                            }}
+                        >
+                            <CloseIcon sx={{ cursor: 'pointer' }} />
+                        </div>
                         <Box sx={{ width: '70%' }}>
                             <ProgressBar
                                 totalStep={totalStep}

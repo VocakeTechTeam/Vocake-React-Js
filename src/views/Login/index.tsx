@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { Theme, useTheme } from '@mui/material/styles';
 import image1 from '../../assets/image1.png';
@@ -22,14 +22,16 @@ const Login = () => {
     const nav = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
     const { login, isAuth } = useAuth();
+    const styles = useStyles(theme);
+
     useEffect(() => {
         if (isAuth) nav('/');
     }, [isAuth]);
+
     const [user, setUser] = useState({
         email: '',
         password: '',
     });
-    const styles = useStyles(theme);
 
     const handleLogin = async () => {
         setLoading(true);
@@ -93,8 +95,19 @@ const Login = () => {
                             <GoogleIcon />
                             Sign in with google (Coming soon)
                         </Box>
-                        <Typography fontSize={12} color='gray' fontWeight={"600"}>OR</Typography>
-                        <Box className={styles.signUpBtn} onClick={()=>{nav("/register")}}>
+                        <Typography
+                            fontSize={12}
+                            color="gray"
+                            fontWeight={'600'}
+                        >
+                            OR
+                        </Typography>
+                        <Box
+                            className={styles.signUpBtn}
+                            onClick={() => {
+                                nav('/register');
+                            }}
+                        >
                             Sign Up
                         </Box>
                     </Box>
@@ -174,7 +187,7 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         signUpBtn: {
             backgroundColor: theme.palette.primary.main,
-                        borderRadius: '20px',
+            borderRadius: '20px',
             height: '35px',
             display: 'flex',
             alignItems: 'center',

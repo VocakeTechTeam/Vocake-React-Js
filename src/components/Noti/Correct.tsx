@@ -3,6 +3,10 @@ import { Box, Typography } from '@mui/material';
 import { CorrectIcon } from '../../assets/icon/CorrectIcon';
 import FlagIcon from '../../assets/icon/FlagIcon';
 
+type CorrectProps = () => {
+    handleClick: () => void;
+};
+
 const Correct = () => {
     return (
         <Box
@@ -35,7 +39,7 @@ const Correct = () => {
                     >
                         Excellent!
                     </Typography>
-                    <Box sx={{ display: 'flex', gap: 3 }}>
+                    <Box sx={{ display: 'flex', gap: 1 }}>
                         <FlagIcon color="#12826B" />
                         <Typography color="#12826B">Report</Typography>
                     </Box>
@@ -49,6 +53,7 @@ const Correct = () => {
                     borderRadius: 5,
                     fontWeight: 'bold',
                     cursor: 'pointer',
+                    borderBottom: '#489D26 solid 2px',
                 }}
             >
                 Continue

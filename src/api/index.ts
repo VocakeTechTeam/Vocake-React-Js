@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { UserReigster } from '../types';
+import { toast } from 'react-toastify';
 
-const api_v1 = axios.create({
+export const api_v1 = axios.create({
     baseURL: `${process.env.REACT_APP_VOCAKE_API}/api/v1/`,
 });
 
@@ -20,7 +21,20 @@ api_v1.interceptors.request.use(
     },
 );
 
-export const enhanceServcie = async () => {
+api_v1.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        if (error.response && error.response.status === 401) {
+            localStorage.removeItem('vocake_access_token');
+        }
+        window.location.reload();
+        return Promise.reject(error);
+    },
+);
+
+export const enhanceServcie = async (word: string, text: string) => {
     try {
         const response = await api_v1.post('customer/vocake/enhance-text', {
             text: 'The sun is getteing more sunshin',

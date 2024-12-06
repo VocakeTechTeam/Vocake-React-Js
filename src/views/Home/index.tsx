@@ -3,85 +3,74 @@ import { createStyles, makeStyles } from '@mui/styles';
 import image from '../../assets/image.png';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import TranslateIcon from '@mui/icons-material/Translate';
 import { useState } from 'react';
 import { enhanceServcie } from '../../api';
+import { Theme } from '@mui/material/styles';
+import { useSearch } from '../../context/SearchContext';
+import { useRef } from 'react';
+import AddToList from './components/AddToList';
+
 const Home = () => {
-    const [sentence, setSentence] = useState<string>('');
     const [promptEnhance, setPromptEnhance] = useState<string | null>(null);
     const [textGrammar, setTextGrammer] = useState<string | null>(null);
     const [textScore, setTextScore] = useState<any>();
+    const { search, wordSearch } = useSearch();
     const handlePractice = async () => {
-        const res = await enhanceServcie();
+        const res = await enhanceServcie('', '');
         setPromptEnhance(res.promptEnhance);
         setTextGrammer(res.textGrammar);
         setTextScore(res.textScore);
     };
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const handleKeyDown = async () => {
+        await search();
+    };
+    const handlePlaySound = () => {
+        if (audioRef.current) {
+            audioRef.current.play();
+        }
+    };
+
     const classes = useStyles();
     return (
-        <Box className={classes.root}>
-            <Box className={classes.fifthCotainer}>
-                <Box className={classes.firstContainer}>
-                    <Box className={classes.secondContainer}>
-                        <Box className={classes.thirdContainer}>
-                            <p className={classes.word}>ironic (a.)</p>
-                            <VolumeUpIcon sx={{ cursor: 'pointer' }} />
-                            <Box
-                                sx={{
-                                    border: '#55AD9B solid 2px',
-                                    borderRadius: '5px',
-                                    display: 'flex',
-                                    padding: '4px',
-                                }}
-                            >
-                                <FormatListBulletedIcon
-                                    style={{ color: '#55AD9B' }}
-                                />
-                                <Typography
-                                    sx={{ cursor: 'pointer' }}
-                                    style={{ color: '#55AD9B' }}
-                                >
-                                    add to list
-                                </Typography>
-                            </Box>
+        <Box className={classes.root} onKeyDown={handleKeyDown} tabIndex={0}>
+            <Box className={classes.mainContainer}>
+                <Box className={classes.wordInfoContainer}>
+                    <Box className={classes.wordDetailsContainer}>
+                        <Box className={classes.wordSection}>
+                            <p className={classes.wordText}>
+                                {wordSearch?.word
+                                    ? wordSearch.word
+                                    : 'ironic (a.)'}
+                            </p>
+                            <VolumeUpIcon
+                                sx={{ cursor: 'pointer' }}
+                                onClick={handlePlaySound}
+                            />
+                            {wordSearch?.ipa && (
+                            <p className={classes.ipaText}>{wordSearch.ipa}</p>
+                        )}
+                            <audio ref={audioRef} src={wordSearch?.audio} />
+                            <AddToList />
                             <p className={classes.levelTag}>intermediate</p>
                         </Box>
-                        <Box
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                gap: 2,
-                            }}
-                        >
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                    gap: 2,
-                                }}
-                            >
+
+                        <Box className={classes.exampleContainer}>
+                            <Box className={classes.translationContainer}>
                                 <Typography
-                                    textAlign="start"
-                                    sx={{ fontSize: '22px' }}
+                                    sx={{
+                                        fontWeight: '500',
+                                        fontSize: 25,
+                                        textAlign: 'left',
+                                    }}
                                 >
-                                    unexpected thus funny
+                                    {wordSearch?.meaning
+                                        ? wordSearch.meaning
+                                        : 'unexpected thus funny'}
                                 </Typography>
                                 <Box
-                                    sx={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        background: '#F7DDAE',
-                                        padding: '3px',
-                                        borderRadius: '5px',
-                                        height: '20px',
-                                        width: '20px',
-                                        boxShadow:
-                                            'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-                                    }}
+                                    className={classes.translationIconContainer}
                                 >
                                     <TranslateIcon
                                         style={{ fontSize: '15px' }}
@@ -89,128 +78,87 @@ const Home = () => {
                                 </Box>
                             </Box>
 
-                            <Typography textAlign="start">
-                                It’s ironic that Sarah, the librarian, got fined
-                                for overdue books.
+                            <Typography
+                                style={{ fontSize: '16px' }}
+                                className={classes.exampleText}
+                            >
+                                {wordSearch?.example
+                                    ? wordSearch.example
+                                    : 'It’s ironic that Sarah, the librarian, got fined for overdue books.'}
                             </Typography>
-                            <Typography textAlign="start">
+                            <Typography
+                                style={{ fontSize: '16px' }}
+                                className={classes.exampleText}
+                            >
                                 &quot;Thật trớ trêu khi Sarah, thủ thư, lại bị
                                 phạt vì mượn sách quá hạn.&quot;
                             </Typography>
                         </Box>
 
                         <Box className={classes.dropDownListContainer}>
-                            <Box className={classes.dropdownContainer}>
-                                <Typography style={{ fontWeight: 'bold' }}>
+                            <Box className={classes.dropdownItem}>
+                                <Typography
+                                    style={{ fontSize: '16px' }}
+                                    sx={{ fontWeight: '600' }}
+                                >
                                     Word family
                                 </Typography>
-                                <Box
-                                    sx={{
-                                        background: '#E5E5E5',
-                                        borderRadius: '15px',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        height: '23px',
-                                        width: '23px',
-                                        boxShadow:
-                                            'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-                                    }}
-                                >
+                                <Box className={classes.dropdownIconContainer}>
                                     <KeyboardArrowDownIcon
                                         style={{ fontSize: '18px' }}
                                     />
                                 </Box>
                             </Box>
-                            <Box className={classes.dropdownContainer}>
-                                <Typography style={{ fontWeight: 'bold' }}>
+                            <Box className={classes.dropdownItem}>
+                                <Typography
+                                    style={{ fontSize: '16px' }}
+                                    sx={{ fontWeight: '600' }}
+                                >
                                     Advanced uses
                                 </Typography>
-                                <Box
-                                    sx={{
-                                        background: '#E5E5E5',
-                                        borderRadius: '15px',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        height: '23px',
-                                        width: '23px',
-                                        boxShadow:
-                                            'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-                                    }}
-                                >
+                                <Box className={classes.dropdownIconContainer}>
                                     <KeyboardArrowDownIcon
                                         style={{ fontSize: '18px' }}
                                     />
-                                </Box>{' '}
+                                </Box>
                             </Box>
-                            <Box className={classes.dropdownContainer}>
-                                <Typography style={{ fontWeight: 'bold' }}>
+                            <Box className={classes.dropdownItem}>
+                                <Typography
+                                    style={{ fontSize: '16px' }}
+                                    sx={{ fontWeight: '600' }}
+                                >
                                     Synonyms
                                 </Typography>
-                                <Box
-                                    sx={{
-                                        background: '#E5E5E5',
-                                        borderRadius: '15px',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        height: '23px',
-                                        width: '23px',
-                                        boxShadow:
-                                            'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-                                    }}
-                                >
+                                <Box className={classes.dropdownIconContainer}>
                                     <KeyboardArrowDownIcon
                                         style={{ fontSize: '18px' }}
                                     />
-                                </Box>{' '}
+                                </Box>
                             </Box>
-                            <Box className={classes.dropdownContainer}>
-                                <Typography style={{ fontWeight: 'bold' }}>
-                                    Collcations
-                                </Typography>
-                                <Box
-                                    sx={{
-                                        background: '#E5E5E5',
-                                        borderRadius: '15px',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        height: '23px',
-                                        width: '23px',
-                                        boxShadow:
-                                            'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-                                    }}
+                            <Box className={classes.dropdownItem}>
+                                <Typography
+                                    style={{ fontSize: '16px' }}
+                                    sx={{ fontWeight: '600' }}
                                 >
+                                    Collocations
+                                </Typography>
+                                <Box className={classes.dropdownIconContainer}>
                                     <KeyboardArrowDownIcon
                                         style={{ fontSize: '18px' }}
                                     />
-                                </Box>{' '}
+                                </Box>
                             </Box>
                         </Box>
                     </Box>
 
                     <img
-                        className={classes.imgae}
+                        className={classes.image}
                         src={image}
                         alt="My Local "
                     />
                 </Box>
                 <Box className={classes.quickPracticeContainer}>
-                    <Box
-                        style={{
-                            width: '50%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'flex-start',
-                            gap: 10,
-                        }}
-                    >
+                    <Box className={classes.quickPracticeBox}>
                         <p className={classes.quickPracticeTitle}>
                             Quick Practice
                         </p>
@@ -220,8 +168,9 @@ const Home = () => {
                             style={{ width: '100%' }}
                             placeholder="write/speak a sentence with ironic and earn some 🍰"
                             sx={{
+                                borderRadius: 1,
                                 boxShadow:
-                                    'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+                                    'rgba(99, 99, 99, 0.5) 0px 4px 5px 0px',
                             }}
                         />
                         <p
@@ -239,7 +188,8 @@ const Home = () => {
 };
 
 export default Home;
-const useStyles = makeStyles(() =>
+
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             width: '100%',
@@ -249,80 +199,50 @@ const useStyles = makeStyles(() =>
             justifyContent: 'center',
             padding: '0px 10px',
         },
-        firstContainer: {
-            display: 'flex',
-            flexDirection: 'row',
-            gap: '10px',
-        },
-        secondContainer: {
-            display: 'flex',
-            flexDirection: 'column',
-            width: '50%',
-            gap: 10,
-        },
-        thirdContainer: {
-            display: 'flex',
-            flexDirection: 'row',
-            gap: 10,
-            alignItems: 'center',
-            padding: 0,
-        },
-        fifthCotainer: {
+        mainContainer: {
             width: '100%',
             height: '95%',
             display: 'flex',
             flexDirection: 'column',
             position: 'relative',
         },
-        main: {
-            width: '90%',
-            display: 'flex',
-            justifyContent: 'center',
-            overflow: 'auto',
-            padding: '40px',
-            '& >*': {
-                marginRight: '25px',
-            },
-        },
-        quickPracticeContainer: {
-            alignItems: 'flex-start',
-            display: 'flex',
-            flexDirection: 'column',
-        },
-        dropDownListContainer: {
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            flex: 1,
-            marginBottom: '20px',
-            gap: 10,
-        },
-        imgae: {
-            width: '30%',
-        },
-        dropDownTitle: {
-            fontWeight: 'bold',
-        },
-        dropdownContainer: {
+        wordInfoContainer: {
             display: 'flex',
             flexDirection: 'row',
-            cursor: 'pointer',
-            gap: 10,
+            gap: '10px',
         },
-        word: {
+        wordDetailsContainer: {
+            display: 'flex',
+            flexDirection: 'column',
+            width: '50%',
+            gap: 25,
+        },
+        wordSection: {
+            display: 'flex',
+            flexDirection: 'row',
+            gap: 10,
+            alignItems: 'center',
+            padding: 0,
+            [theme.breakpoints.down('md')]: {
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+            },
+        },
+        wordText: {
             fontWeight: 'bold',
             fontSize: '24px',
             margin: 0,
         },
-        checkBtn: {
-            marginLeft: 'auto',
-            padding: '5px 10px',
-            borderRadius: '15px',
-            background: '#55AD9B',
-            fontWeight: 'bold',
-            color: 'white',
+        addToListContainer: {
+            border: '#55AD9B solid 2px',
+            borderRadius: '5px',
+            display: 'flex',
+            padding: '4px',
             cursor: 'pointer',
-            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+            gap: '5px',
+        },
+        addToListText: {
+            color: '#55AD9B',
         },
         levelTag: {
             borderRadius: '10px',
@@ -330,13 +250,111 @@ const useStyles = makeStyles(() =>
             color: '#FDB911',
             border: '#FDB911 solid 1px',
             margin: 0,
-            cursor: 'pointer',
             fontWeight: '500',
+            fontSize: 10,
+        },
+        ipaText: {
+            textAlign: 'left',
+            fontWeight: 'bold',
+            fontSize: '12px',
+        },
+        exampleContainer: {
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 30,
+        },
+        translationContainer: {
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 30,
+        },
+        translationText: {
+            fontSize: '22px',
+            fontWeight: '600',
+        },
+        translationIconContainer: {
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            background: '#F7DDAE',
+            padding: '3px',
+            borderRadius: '5px',
+            height: '20px',
+            width: '20px',
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+        },
+        exampleText: {
+            textAlign: 'start',
+        },
+        dropDownListContainer: {
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            flex: 1,
+            marginBottom: '20px',
+            gap: 35,
+        },
+        dropdownItem: {
+            display: 'flex',
+            flexDirection: 'row',
+            cursor: 'pointer',
+            gap: 10,
+        },
+        dropDownTitle: {
+            fontWeight: 'bold',
+        },
+        dropdownIconContainer: {
+            background: '#E5E5E5',
+            borderRadius: '15px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '18px',
+            width: '18px',
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+        },
+        image: {
+            width: '30%',
+            [theme.breakpoints.down('md')]: {
+                width: '200px',
+                height: '200px',
+            },
+        },
+        quickPracticeContainer: {
+            alignItems: 'flex-start',
+            display: 'flex',
+            flexDirection: 'column',
+            height: '300px',
+        },
+        quickPracticeBox: {
+            width: '50%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: 3,
+            [theme.breakpoints.down('md')]: {
+                width: '100%',
+                gap: 0,
+            },
         },
         quickPracticeTitle: {
             color: '#55AD9B',
             fontWeight: 'bold',
             fontSize: '24px',
+        },
+        checkBtn: {
+            marginLeft: 'auto',
+            padding: '2px 21px',
+            borderRadius: '30px',
+            background: '#55AD9B',
+            fontWeight: 'bold',
+            color: 'white',
+            cursor: 'pointer',
+            fontSize: "18px",
+            boxShadow: 'rgba(99, 99, 99, 0.5) 0px 4px 5px 0px',
         },
     }),
 );

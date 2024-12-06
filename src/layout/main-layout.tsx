@@ -3,20 +3,56 @@ import { createStyles, makeStyles } from '@mui/styles';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar/Sidebar';
 import { Header } from '../components/Header';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { Theme, useTheme } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { transform } from '@babel/core';
 
 const MainLayout = () => {
+    const [isSideBarOpen, setSideBarOpen] = useState(false);
     const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.up('sm'));
-    const classes = useStyles(theme);
+    const matches = useMediaQuery(theme.breakpoints.down('md'));
+    const classes = useStyles({ isSideBarOpen });
+    const [loading, setLoading] = useState(true);
+    const toggleSideBar = () => {
+        setSideBarOpen(!isSideBarOpen);
+        setLoading(false);
+    };
+    useEffect(() => {
+        if (!matches) setSideBarOpen(false);
+        setLoading(false);
+    }, [matches]);
+
+    useEffect(() => {
+        setLoading(false);
+    });
+    if (loading) return <>.....loading</>;
     return (
         <Box className={classes.root}>
             <Box className={classes.firstContainer}>
-                <Header />
+                <Header toggleSideBar={toggleSideBar} />
             </Box>
             <Box className={classes.secondContainer}>
-                <Box className={classes.sidebar}>
+                {isSideBarOpen && (
+                    <Box
+                        onClick={() => {
+                            setSideBarOpen(false);
+                        }}
+                        className={classes.overlay}
+                    />
+                )}
+
+                <Box
+                    sx={(theme: Theme) => ({
+                        [theme.breakpoints.down('md')]: {
+                            transform: (props) =>
+                                isSideBarOpen
+                                    ? 'translateX(0%)'
+                                    : 'translateX(-100%)',
+                        },
+                    })}
+                    className={classes.sidebar}
+                >
                     <Sidebar />
                 </Box>
                 <Box className={classes.main}>
@@ -29,7 +65,10 @@ const MainLayout = () => {
 
 export default MainLayout;
 
-const useStyles = makeStyles((theme: Theme) =>
+interface UseStylesProps {
+    isSideBarOpen: boolean;
+}
+const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
     createStyles({
         root: {
             display: 'flex',
@@ -40,38 +79,56 @@ const useStyles = makeStyles((theme: Theme) =>
         firstContainer: {
             background: '#55AD9B',
             width: '100%',
-            height: '8vh',
+            height: '10vh',
             position: 'sticky',
             top: 0,
-            zIndex: 10,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 4px 8px 0px', // Shadow at the bottom
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 4px 8px 0px', // Shadow at the bottom,
+            zIndex: 9,
         },
         secondContainer: {
             display: 'flex',
             flexDirection: 'row',
             width: '100%',
-            height: '92vh',
+            height: '90vh',
         },
         sidebar: {
-            width: '20%',
+            width: '150px',
             justifyContent: 'center',
-            boxShadow: 'rgba(99, 99, 99, 0.2) 4px 0px 8px ',
             [theme.breakpoints.down('md')]: {
-                display: 'none',
+                position: 'absolute',
+                height: '92vh',
+                background: 'white',
+                zIndex: 10,
+                width: '200px',
+                transition: 'transform 0.5s ease',
             },
         },
         main: {
-            width: '80%',
+            flex: 1,
             display: 'flex',
             flexDirection: 'column',
             overflowY: 'auto',
             padding: 10,
+            marginLeft: '60px',
             [theme.breakpoints.down('md')]: {
                 width: '100%',
+                zIndex: 0,
+                            marginLeft: '0px',
+
             },
+        },
+        overlay: {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            background: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black background
+            zIndex: 8, // Ensure it appears above other content
+            transition: 'opacity 0.5s ease',
         },
     }),
 );

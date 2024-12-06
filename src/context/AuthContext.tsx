@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { useContext } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 type AUTHCONTEXTYPE = {
     isAuth: boolean;
     login: (email: string, password: string) => void;
@@ -19,6 +20,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
         setLoading(false);
     }, []);
+    useEffect(() => {
+        if (!isAuth) toast.error('please login again');
+    }, [isAuth]);
 
     const login = async (email: string, password: string) => {
         try {
@@ -36,8 +40,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                     res.data.payload.token,
                 );
                 setIsAuth(true);
+                toast.success('Successful login', {
+                    progressStyle: {
+                        background: '#55AD9B',
+                    },
+                });
+            } else {
+                toast.error('Fail login');
             }
-        } catch (error) {}
+        } catch (error) {
+            toast.error('Fail login');
+        }
     };
     const logout = async () => {
         localStorage.removeItem('vocake_access_token');

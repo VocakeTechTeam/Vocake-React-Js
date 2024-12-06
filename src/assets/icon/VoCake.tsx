@@ -28,8 +28,8 @@ export const VoCakeTitleIcon = ({
                     id="filter0_d_273_2315"
                     x="0.00195312"
                     y="0.360352"
-                    width="150.685"
-                    height="38.0732"
+                    width="200.685"
+                    height="100.0732"
                     filterUnits="userSpaceOnUse"
                     colorInterpolationFilters="sRGB"
                 >

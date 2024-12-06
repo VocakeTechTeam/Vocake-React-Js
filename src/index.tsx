@@ -7,6 +7,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { theme } from './theme';
 import { AuthProvider } from './context/AuthContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { SearchContextProvider } from './context/SearchContext';
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement,
 );
@@ -14,10 +17,13 @@ root.render(
     <React.StrictMode>
         <AuthProvider>
             <ThemeProvider theme={theme}>
-                <CssBaseline enableColorScheme />
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
+                <SearchContextProvider>
+                    <CssBaseline enableColorScheme />
+                    <BrowserRouter>
+                        <App />
+                        <ToastContainer />
+                    </BrowserRouter>
+                </SearchContextProvider>
             </ThemeProvider>
         </AuthProvider>
     </React.StrictMode>,

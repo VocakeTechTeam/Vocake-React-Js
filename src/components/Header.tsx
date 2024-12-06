@@ -6,14 +6,37 @@ import logo from '../assets/IMG_1572 2.png';
 import { Avatar } from '@mui/material';
 import { VoCakeTitleIcon } from '../assets/icon/VoCake';
 import { StarIcon } from '../assets/icon/StarIcon';
+import { useNavigate } from 'react-router-dom';
+import { Theme, useTheme } from '@mui/material/styles';
+import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-export const Header = () => {
+type Props = {
+    toggleSideBar?: () => void;
+};
+
+export const Header = ({ toggleSideBar }: Props) => {
     const classes = useStyles();
+    const nav = useNavigate();
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('md'));
+
     return (
         <Box className={classes.root}>
-            <Box className={classes.logoTitleContainer}>
+            <Box
+                className={classes.logoTitleContainer}
+                onClick={() => {
+                    nav('/');
+                }}
+            >
+                {matches && (
+                    <DensityMediumIcon
+                        onClick={toggleSideBar}
+                        sx={{ color: 'white' }}
+                    />
+                )}
                 <img style={{ width: '50px' }} src={logo} alt="logo" />
-                <VoCakeTitleIcon width="90px" />
+                <VoCakeTitleIcon width="100px" />
             </Box>
             <Box className={classes.searchBarContainer}>
                 <SearchBar />
@@ -23,7 +46,13 @@ export const Header = () => {
                     <StarIcon color={'yellow'} />
                 </Box>
                 <Box className={classes.premiumContainer}>
-                    <Typography>premium</Typography>
+                    <Typography
+                        color="#FE6876"
+                        fontWeight="bold"
+                        fontSize={'15px'}
+                    >
+                        premium
+                    </Typography>
                 </Box>
                 <Avatar
                     alt="Remy Sharp"
@@ -34,7 +63,7 @@ export const Header = () => {
     );
 };
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             width: '100%',
@@ -54,21 +83,35 @@ const useStyles = makeStyles(() =>
             width: '150px',
             display: 'flex',
             flexDirection: 'row',
-            alignItems: 'center',
+            alignItems: 'flex-end',
             marginLeft: 5,
+            cursor: 'pointer',
+            [theme.breakpoints.down('md')]: {
+                '& svg:nth-of-type(2)': {
+                    display: 'none',
+                },
+                width: 'max-content',
+                '& svg:nth-of-type(1)': {
+                    display: 'block',
+                },
+            },
+            '& svg': {
+                bottom: '10px',
+                position: 'relative',
+            },
         },
         userHeaderContainer: {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            minWidth: '170px',
+            minWidth: '190px',
         },
         premiumContainer: {
             background: '#FFFDE3',
-            padding: '5px',
+            padding: '5px 20px',
             borderRadius: '10px',
-            border: 'black solid 2px',
+            border: 'black solid 1px',
         },
         languageContainer: {
             backgroundColor: 'red',
@@ -76,7 +119,7 @@ const useStyles = makeStyles(() =>
             justifyContent: 'center',
             display: 'red',
             borderRadius: '8px',
-            border: 'black solid 2px',
+            border: 'black solid 1px',
         },
     }),
 );
