@@ -40,7 +40,7 @@ const UserContainer = () => {
             >
                 🍔
             </Box>
-            <Typography style={{fontSize:12}}>Mai Thuong Bui</Typography>
+            <Typography style={{ fontSize: 12 }}>Mai Thuong Bui</Typography>
             <KeyboardArrowDownIcon sx={{ color: '#B0C3CC', strokeWidth: 1 }} />
         </Box>
     );
@@ -57,7 +57,7 @@ export const HeaderTeacher = ({ toggleSideBar }: Props) => {
             <Box className={classes.searchBarContainer}>
                 <SearchBarTeacher />
             </Box>
-            <Box sx={{display:"flex", flexDirection:"row", gap:5}} >
+            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
                 <UserContainer />
                 <svg
                     width="24"
@@ -79,13 +79,7 @@ export const HeaderTeacher = ({ toggleSideBar }: Props) => {
                         stroke-linecap="round"
                         fill="#B0C3CC"
                     />
-                    <circle
-                        cx="18"
-                        cy="6"
-                        r="2.5"
-                        fill="red"
-                        stroke="red"
-                    />
+                    <circle cx="18" cy="6" r="2.5" fill="red" stroke="red" />
                 </svg>
             </Box>
         </Box>
@@ -107,6 +101,5 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '625px',
             height: '32px',
         },
-
     }),
 );

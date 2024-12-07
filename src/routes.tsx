@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { MainLayout, TeacherLayout } from './layout';
-import { Home, Explore, CoBan, Login, Register } from './views';
+import { Home, Explore, CoBan, Login, Register, Teacher } from './views';
 import FlashCard from './views/Practice';
 import Onboard from './views/Onboard';
 import NotFound from './views/NotFound';
@@ -29,7 +29,9 @@ const Routes_ = () => {
                     <Route path="/mylist" element={<MyList />} />
                 </Route>
             </Route>
-            <Route path="/teacher" element={<TeacherLayout />}></Route>
+            <Route path="/teacher" element={<TeacherLayout />}>
+                <Route path="" element={<Teacher />} />
+            </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<NotFound />} />

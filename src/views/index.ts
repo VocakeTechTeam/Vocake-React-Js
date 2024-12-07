@@ -4,4 +4,5 @@ import CoBan from './CoBan';
 import Login from './Login';
 import Register from './Register';
 import Onboard from './Onboard';
-export { Home, Explore, CoBan, Login, Register, Onboard };
+import Teacher from './Teacher';
+export { Home, Explore, CoBan, Login, Register, Onboard, Teacher };
