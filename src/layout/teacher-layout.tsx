@@ -38,7 +38,9 @@ const TeacherLayout = () => {
                 <Box className={classes.header}>
                     <HeaderTeacher />
                 </Box>
-                <Box className={classes.main}></Box>
+                <Box className={classes.main}>
+                    <Outlet />
+                </Box>
             </Box>
         </Box>
     );
@@ -61,10 +63,14 @@ const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
             height: '100vh',
             width: '240px',
             background: '#F1F2F7',
+            flexShrink: 0,
+            top: 0,
         },
         mainContainer: {
             height: '100vh',
             flex: 1,
+            flexShrink: 1,
+            overflowY: 'auto',
         },
         header: {
             height: '64px',
@@ -72,8 +78,9 @@ const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
             borderBottom: '#C8CBD9 solid 0.5px',
         },
         main: {
-            flex: 1, // This makes the main container take the remaining space
-            overflowY: 'auto', // If content overflows, allow scrolling
+            flex: 1,
+            height: '90vh',
+            padding: '0 40px',
         },
     }),
 );
