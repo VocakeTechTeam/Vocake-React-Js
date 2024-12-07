@@ -34,7 +34,7 @@ const Home = () => {
         setTextGrammer(res.textGrammar);
         setTextScore(res.textScore);
         setQuickPracticeLoading(false);
-        setUserSentence("")
+        setUserSentence('');
     };
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const handleKeyDown = async (event: React.KeyboardEvent) => {
@@ -198,20 +198,23 @@ const Home = () => {
                         <p
                             onClick={() => {
                                 if (!quickPracticeLoading) {
-                                    handlePractice()
+                                    handlePractice();
                                 }
                             }}
                             className={classes.checkBtn}
                         >
                             {quickPracticeLoading ? (
-                                <CircularProgress size={20} sx={{ color: "white"}}/>
+                                <CircularProgress
+                                    size={20}
+                                    sx={{ color: 'white' }}
+                                />
                             ) : (
                                 'Check'
                             )}
                         </p>
                         {promptEnhance && promptEnhance}
                         <br />
-                        <br/>
+                        <br />
                         {textGrammar && textGrammar}
                     </Box>
                 </Box>

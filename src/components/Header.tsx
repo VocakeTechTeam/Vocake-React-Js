@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme: Theme) =>
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap:5
+            gap: 5,
         },
         premiumContainer: {
             background: '#FFFDE3',

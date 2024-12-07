@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import { SearchIcon } from '../assets/icon/SearchIcon';
 import { useSearch } from '../context/SearchContext';
 
-const SearchBar = () => {
+const SearchBarTeacher = () => {
     const classes = useStyles();
-    const { userSearch, handleChange, search } = useSearch();
+    const [value, setValue] = useState('');
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {};
+    const handleSearch = () => {};
     return (
         <Box className={classes.root}>
             <input
@@ -14,7 +16,8 @@ const SearchBar = () => {
                 className="input"
                 type="text"
                 onChange={handleChange}
-                value={userSearch != null ? userSearch : ''}
+                value={value}
+                style={{ background: 'none' }}
             />
             <Box
                 sx={{
@@ -33,21 +36,16 @@ const SearchBar = () => {
                         flexDirection: 'row',
                         alignItems: 'center',
                     }}
-                    onClick={search}
+                    onClick={handleSearch}
                 >
-                    <SearchIcon
-                        width="24"
-                        height="24"
-                        color="#55AD9B"
-                        strokeWidth="3"
-                    />
+                    <SearchIcon width="12" height="12" color="#627B87" />
                 </div>
             </Box>
         </Box>
     );
 };
 
-export default SearchBar;
+export default SearchBarTeacher;
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -58,9 +56,8 @@ const useStyles = makeStyles(() =>
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            height: '48px',
+            height: '100%',
             overflow: 'hidden',
-            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
             '& input': {
                 padding: '0 10px 0 10px',
                 borderRadius: '25px',
@@ -69,6 +66,7 @@ const useStyles = makeStyles(() =>
                 width: '100%',
             },
             background: 'white',
+            backgroundColor: '#F6F6FB',
         },
     }),
 );
