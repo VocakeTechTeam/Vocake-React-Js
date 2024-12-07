@@ -1,2 +1,3 @@
 import MainLayout from './main-layout';
-export { MainLayout };
+import TeacherLayout from './teacher-layout';
+export { MainLayout, TeacherLayout };

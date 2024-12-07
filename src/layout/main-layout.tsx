@@ -116,8 +116,7 @@ const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
             [theme.breakpoints.down('md')]: {
                 width: '100%',
                 zIndex: 0,
-                            marginLeft: '0px',
-
+                marginLeft: '0px',
             },
         },
         overlay: {
@@ -126,8 +125,8 @@ const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
             left: 0,
             width: '100%',
             height: '100%',
-            background: 'rgba(0, 0, 0, 0.5)', // Semi-transparent black background
-            zIndex: 8, // Ensure it appears above other content
+            background: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 8,
             transition: 'opacity 0.5s ease',
         },
     }),

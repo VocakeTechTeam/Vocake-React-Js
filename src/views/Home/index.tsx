@@ -10,21 +10,37 @@ import { Theme } from '@mui/material/styles';
 import { useSearch } from '../../context/SearchContext';
 import { useRef } from 'react';
 import AddToList from './components/AddToList';
+import { toast } from 'react-toastify';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Home = () => {
     const [promptEnhance, setPromptEnhance] = useState<string | null>(null);
     const [textGrammar, setTextGrammer] = useState<string | null>(null);
     const [textScore, setTextScore] = useState<any>();
+    const [quickPracticeLoading, setQuickPracticeLoading] = useState(false);
     const { search, wordSearch } = useSearch();
+    const [userSentence, setUserSentence] = useState('');
     const handlePractice = async () => {
-        const res = await enhanceServcie('', '');
+        if (userSentence.length == 0) {
+            toast.error('Please insert your sentence');
+            return;
+        }
+        setQuickPracticeLoading(true);
+        const res = await enhanceServcie(
+            wordSearch?.word ? wordSearch?.word : 'ironic',
+            userSentence,
+        );
         setPromptEnhance(res.promptEnhance);
         setTextGrammer(res.textGrammar);
         setTextScore(res.textScore);
+        setQuickPracticeLoading(false);
+        setUserSentence('');
     };
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    const handleKeyDown = async () => {
-        await search();
+    const handleKeyDown = async (event: React.KeyboardEvent) => {
+        if (event.key === 'Enter') {
+            await search();
+        }
     };
     const handlePlaySound = () => {
         if (audioRef.current) {
@@ -49,8 +65,10 @@ const Home = () => {
                                 onClick={handlePlaySound}
                             />
                             {wordSearch?.ipa && (
-                            <p className={classes.ipaText}>{wordSearch.ipa}</p>
-                        )}
+                                <p className={classes.ipaText}>
+                                    {wordSearch.ipa}
+                                </p>
+                            )}
                             <audio ref={audioRef} src={wordSearch?.audio} />
                             <AddToList />
                             <p className={classes.levelTag}>intermediate</p>
@@ -172,14 +190,32 @@ const Home = () => {
                                 boxShadow:
                                     'rgba(99, 99, 99, 0.5) 0px 4px 5px 0px',
                             }}
+                            onChange={(e) => {
+                                setUserSentence(e.target.value);
+                            }}
+                            value={userSentence}
                         />
                         <p
-                            onClick={handlePractice}
+                            onClick={() => {
+                                if (!quickPracticeLoading) {
+                                    handlePractice();
+                                }
+                            }}
                             className={classes.checkBtn}
                         >
-                            Check
+                            {quickPracticeLoading ? (
+                                <CircularProgress
+                                    size={20}
+                                    sx={{ color: 'white' }}
+                                />
+                            ) : (
+                                'Check'
+                            )}
                         </p>
                         {promptEnhance && promptEnhance}
+                        <br />
+                        <br />
+                        {textGrammar && textGrammar}
                     </Box>
                 </Box>
             </Box>
@@ -317,7 +353,7 @@ const useStyles = makeStyles((theme: Theme) =>
             boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
         },
         image: {
-            width: '30%',
+            width: '40%',
             [theme.breakpoints.down('md')]: {
                 width: '200px',
                 height: '200px',
@@ -353,7 +389,7 @@ const useStyles = makeStyles((theme: Theme) =>
             fontWeight: 'bold',
             color: 'white',
             cursor: 'pointer',
-            fontSize: "18px",
+            fontSize: '18px',
             boxShadow: 'rgba(99, 99, 99, 0.5) 0px 4px 5px 0px',
         },
     }),

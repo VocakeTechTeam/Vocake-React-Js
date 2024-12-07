@@ -67,9 +67,10 @@ export const SearchContextProvider: React.FC<{ children: ReactNode }> = ({
             const res = await api_v1.post('customer/lib/searching', {
                 vocab: userSearch.toLowerCase(),
             });
-            if (!res.data.payload.vocabulary) {
-                toast.error('Word not found');
-            }
+            console.log(
+                res.data.payload.wordAPIDictionary.meanings[0].definitions[0]
+                    .definition,
+            );
             setUserSearch(null);
             for (
                 let i = 0;
@@ -90,10 +91,12 @@ export const SearchContextProvider: React.FC<{ children: ReactNode }> = ({
             }
             setWordSearch({
                 audio: audio,
-                word: res.data.payload.vocabulary,
+                word: res.data.payload.wordAPIDictionary.word,
                 example: res.data.payload.exampleUsing,
-                ipa: res.data.payload.ipa,
-                meaning: res.data.payload.meaning1,
+                ipa: res.data.payload.wordAPIDictionary.phonetic,
+                meaning:
+                    res.data.payload.wordAPIDictionary.meanings[0]
+                        .definitions[0].definition,
             });
         } catch (error) {}
     };

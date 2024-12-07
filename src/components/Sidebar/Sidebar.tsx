@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
-import { Box, Divider } from '@mui/material';
+import { Box } from '@mui/material';
 import List from '@mui/material/List';
 import { makeStyles, createStyles } from '@mui/styles';
 import SidebarItem from './components/SidebarItem';
@@ -9,7 +9,6 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExploreIcon from '@mui/icons-material/Explore';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import SearchIcon from '@mui/icons-material/Search';
-import EditNoteIcon from '@mui/icons-material/EditNote';
 import { useAuth } from '../../context/AuthContext';
 const itemlsits = [
     {
