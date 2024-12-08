@@ -45,7 +45,7 @@ const BarChart: React.FC<BarChartProps> = ({ data, labels, title }) => {
         responsive: true,
         plugins: {
             legend: {
-                display:false
+                display: false,
             },
             tooltip: {
                 callbacks: {
@@ -64,7 +64,6 @@ const BarChart: React.FC<BarChartProps> = ({ data, labels, title }) => {
                 grid: {
                     display: false,
                 },
-                
             },
             y: {
                 display: false, // Hide the Y-axis line and labels
@@ -77,7 +76,7 @@ const BarChart: React.FC<BarChartProps> = ({ data, labels, title }) => {
     };
 
     return (
-        <div style={{height:"100%"}}>
+        <div style={{ height: '100%' }}>
             <Bar data={chartData} options={options} />
         </div>
     );
