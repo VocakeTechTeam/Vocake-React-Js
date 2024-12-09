@@ -9,12 +9,19 @@ type ChartData = {
 type RenderLineChartProps = {
     data1: ChartData[];
     data2: ChartData[];
+    width?: number;
+    height?: number;
 };
-export const RenderLineChart = ({ data1, data2 }: RenderLineChartProps) => {
+export const RenderLineChart = ({
+    data1,
+    data2,
+    width = 400,
+    height = 200,
+}: RenderLineChartProps) => {
     return (
         <LineChart
-            width={400}
-            height={200}
+            width={width}
+            height={height}
             data={data1}
             margin={{ right: 8, left: 8, top: 10 }}
         >

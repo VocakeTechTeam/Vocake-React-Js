@@ -7,12 +7,14 @@ import { RenderLineChart } from './components/ReChartjs/LineChart';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { RenderBarChart } from './components/ReChartjs/BarChart';
 import { RenderDoughnutChart } from './components/ReChartjs/Doughnut';
-import { StudentList } from './constant/data';
+import { COLORS1, StudentList } from './constant/data';
 import { StudentRow } from './components/StudentRow';
 import { barChartData1, barChartData2 } from './constant/data';
-import { doughNutData } from './constant/data';
+import { doughNutData1 } from './constant/data';
 import Circle from './components/Circle';
+import { useNavigate } from 'react-router-dom';
 const Teacher = () => {
+    const nav = useNavigate();
     const classes = useStyles();
     const [student, setStudent] = useState<any>(StudentList[0]);
     const hoverTopStudent = (studentName: string) => {
@@ -20,6 +22,9 @@ const Teacher = () => {
             (student) => student.name === studentName,
         );
         setStudent(newStudent);
+    };
+    const handleSelectStudent = (id: string) => {
+        nav(`student/${id}`);
     };
     return (
         <Box className={classes.root}>
@@ -139,7 +144,7 @@ const Teacher = () => {
                             >
                                 Lorem ipsum dolor sit amet, consectetur
                             </Typography>
-                            <Box sx={{position:"relative"}}>
+                            <Box sx={{ position: 'relative' }}>
                                 <Circle
                                     title="education"
                                     percent="85%"
@@ -150,7 +155,7 @@ const Teacher = () => {
                                     sx={{
                                         position: 'absolute',
                                         top: 0,
-                                        left:90
+                                        left: 90,
                                     }}
                                 />
                                 <Circle
@@ -173,7 +178,7 @@ const Teacher = () => {
                                     titleSize="13px"
                                     sx={{
                                         position: 'absolute',
-                                        top:120
+                                        top: 120,
                                     }}
                                 />
                             </Box>
@@ -212,6 +217,8 @@ const Teacher = () => {
                                             key={index}
                                             icon={item.icon}
                                             name={item.name}
+                                            id={item.id}
+                                            handleClick={handleSelectStudent}
                                         />
                                     );
                                 })}
@@ -268,7 +275,10 @@ const Teacher = () => {
                             from 1-07 Dec, 2025
                         </Typography>
                         <Box sx={{ width: '100%' }}>
-                            <RenderDoughnutChart data={doughNutData} />
+                            <RenderDoughnutChart
+                                colorArray={COLORS1}
+                                data={doughNutData1}
+                            />
                         </Box>
                     </Box>
                     <Box
@@ -378,7 +388,6 @@ const useStyles = makeStyles((theme: Theme) =>
             width: '100%',
             height: '100%',
             paddingTop: '20px',
-            paddingBottom: '20px',
             display: 'flex',
             flexDirection: 'column',
             gap: 15,

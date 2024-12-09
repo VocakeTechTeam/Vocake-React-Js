@@ -23,7 +23,6 @@ ChartJS.register(
 );
 
 const LineChart = () => {
-    // Chart data
     const data = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June'], // X-axis labels
         datasets: [

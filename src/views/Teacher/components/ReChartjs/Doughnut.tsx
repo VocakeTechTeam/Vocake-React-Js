@@ -15,10 +15,12 @@ type ChartData = {
 
 type RenderDoughnutChartProps = {
     data: ChartData[];
+    colorArray: string[];
 };
-export const RenderDoughnutChart = ({ data }: RenderDoughnutChartProps) => {
-    const COLORS = ['#5A6ACF', '#8593ED', '#C7CEFF'];
-
+export const RenderDoughnutChart = ({
+    data,
+    colorArray,
+}: RenderDoughnutChartProps) => {
     return (
         <ResponsiveContainer width="100%" height={300}>
             <PieChart>
@@ -37,12 +39,25 @@ export const RenderDoughnutChart = ({ data }: RenderDoughnutChartProps) => {
                     {data?.map((entry, index) => (
                         <Cell
                             key={`cell-${index}`}
-                            fill={COLORS[index % COLORS.length]}
+                            fill={colorArray[index % colorArray.length]}
                         />
                     ))}
                 </Pie>
                 <Tooltip />
-                <Legend iconType="circle" />
+                <Legend
+                    iconType="circle"
+                    layout="vertical"
+                    verticalAlign="top"
+                    fontSize={12}
+                    align="right"
+                    wrapperStyle={{
+                        top: '50%',
+                        right: 10,
+                        paddingLeft: 20,
+                        paddingTop: 20,
+                        transform: 'translateY(-50%)',
+                    }}
+                />
             </PieChart>
         </ResponsiveContainer>
     );

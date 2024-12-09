@@ -1,13 +1,24 @@
 import { Box, Typography } from '@mui/material';
 type StudentRowProps = {
+    id: string;
     name: string;
     icon: React.ReactNode;
     handleHover: (studentName: string) => void;
+    handleClick: (id: string) => void;
 };
 
-export const StudentRow = ({ name, icon, handleHover }: StudentRowProps) => {
+export const StudentRow = ({
+    name,
+    icon,
+    handleHover,
+    id,
+    handleClick,
+}: StudentRowProps) => {
     return (
         <Box
+            onClick={() => {
+                handleClick(id);
+            }}
             onMouseEnter={() => {
                 handleHover(name);
             }}
