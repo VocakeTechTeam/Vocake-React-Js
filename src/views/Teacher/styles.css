@@ -1,5 +1,5 @@
 .animation {
-    transform: translateY(-200%) translateX(-70%);
+    transform: translateY(-200%) translateX(-50%);
     opacity: 0;
     transition:
         transform 0.3s ease-out,
@@ -7,11 +7,11 @@
 }
 
 .animation.active {
-    transform: translateY(0%) translateX(-70%);
+    transform: translateY(40%) translateX(-50%);
     opacity: 1;
 }
 
 .animation.inactive {
-    transform: translateY(-200%) translateX(-70%);
+    transform: translateY(-200%) translateX(-50%);
     opacity: 0;
 }

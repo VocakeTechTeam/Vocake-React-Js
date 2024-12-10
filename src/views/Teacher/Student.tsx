@@ -423,7 +423,17 @@ const Student = () => {
                                     >
                                         {item}
                                     </Typography>
-                                    <Typography color='#373B47' fontSize={"20px"} fontWeight={"600"}>
+                                    <Typography
+                                        color="#AAAED6"
+                                        fontSize={'13px'}
+                                    >
+                                        TOTAL WORD SEARCH
+                                    </Typography>
+                                    <Typography
+                                        color="#373B47"
+                                        fontSize={'20px'}
+                                        fontWeight={'600'}
+                                    >
                                         1300 words
                                     </Typography>
                                 </Box>
