@@ -5,13 +5,26 @@ import { Theme } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import { Typography } from '@mui/material';
 import { RenderLineChart } from './components/ReChartjs/LineChart';
-import { COLORS1, COLORS2, doughNutData2, StudentList } from './constant/data';
+import { COLORS2, doughNutData2, StudentList } from './constant/data';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { RenderDoughnutChart } from './components/ReChartjs/Doughnut';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import BearIcon from '../../assets/icon/BearIcon';
 import Badge from '../../assets/icon/badge.svg';
-const TimeRange = () => {
+import './styles.css';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import ReplyIcon from '@mui/icons-material/Reply';
+import FacebookIcon from '@mui/icons-material/Facebook';
+type TIMERANGE = '1 DAY' | '1 WEEK' | '1 MONTH' | 'ALL TIME';
+const arr: TIMERANGE[] = ['1 DAY', '1 WEEK', '1 MONTH', 'ALL TIME'];
+const arr1 = ['THIS DAY', 'THIS MONTH', 'THIS WEEK', 'ALL TIME'];
+
+type TimeRangeProps = {
+    handleClick: (item: string) => void;
+};
+
+const TimeRange = ({ handleClick }: TimeRangeProps) => {
+    const [data, setData] = useState<TIMERANGE>('1 DAY');
     return (
         <Box
             sx={{
@@ -29,10 +42,24 @@ const TimeRange = () => {
                 },
             }}
         >
-            <Typography fontSize={'12px'}>1 DAY</Typography>
-            <Typography fontSize={'12px'}>1 WEEK</Typography>
-            <Typography fontSize={'12px'}>1 MONTH</Typography>
-            <Typography fontSize={'12px'}>ALL TIME</Typography>
+            {arr.map((item, index) => {
+                let isSelected = false;
+                if (data == item) {
+                    isSelected = true;
+                }
+                return (
+                    <Typography
+                        onClick={() => {
+                            handleClick(item);
+                            setData(item);
+                        }}
+                        color={isSelected ? 'blue' : 'black'}
+                        fontSize={'12px'}
+                    >
+                        {item}
+                    </Typography>
+                );
+            })}
         </Box>
     );
 };
@@ -42,11 +69,22 @@ const Student = () => {
     const classes = useStyles();
     const [data, setData] = useState<any>();
     const [loading, setLoading] = useState<boolean>(true);
+    const [timeSelected, setTimeSelected] = useState('1 DAY');
+    const handleTimeRangeClick = (item: string) => {
+        setTimeSelected(item);
+    };
     useEffect(() => {
         setData(StudentList.filter((item) => item.id == param.id)[0]);
         setLoading(false);
         console.log(data);
     }, []);
+    const [isActive, setIsActive] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setIsActive(true), 100);
+        return () => clearTimeout(timer);
+    }, []);
+
     if (loading) return <>.....loading</>;
     return (
         <Box className={classes.root}>
@@ -135,14 +173,22 @@ const Student = () => {
                                 fontSize={'15px'}
                                 fontWeight={'700'}
                                 color="#F9BF0F"
+                                textAlign={'left'}
                             >
-                                world rank: 10208
+                                World rank: 10208
                             </Typography>
                         </Box>
 
                         <img style={{ flex: 1 }} src={Badge} />
                     </Box>
-                    <Box sx={{ padding: 3 }}>
+                    <Box
+                        sx={{
+                            padding: 3,
+                            gap: 3,
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}
+                    >
                         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                             <Typography
                                 color="#8156FE"
@@ -184,7 +230,14 @@ const Student = () => {
                                 badges:
                             </Typography>
                         </Box>
-                        <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                                gap: 3,
+                            }}
+                        >
                             {' '}
                             <Typography
                                 color="#8156FE"
@@ -193,6 +246,30 @@ const Student = () => {
                             >
                                 send {data.name} a message:
                             </Typography>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    alignItems: 'flex-start',
+                                    gap: 2,
+                                }}
+                            >
+                                <TwitterIcon style={{ color: '#BACCFD' }} />
+                                <FacebookIcon style={{ color: '#BACCFD' }} />
+
+                                <ReplyIcon style={{ color: '#BACCFD' }} />
+                                <textarea
+                                    style={{
+                                        height: 100,
+                                        width: 250,
+                                        borderRadius: 5,
+                                        border: '#8053FE solid 2px',
+                                        padding: 5,
+                                        boxShadow:
+                                            '0px 8px 4px rgba(0, 0, 0, 0.25);',
+                                    }}
+                                />
+                            </Box>
                         </Box>
                     </Box>
                 </Box>
@@ -231,7 +308,7 @@ const Student = () => {
                             </Typography>
                             <Box
                                 sx={{
-                                    width: '109px',
+                                    width: '90px',
                                     height: '32px',
                                     border: '#DDE4F0 solid 0.5px',
                                     alignItems: 'center',
@@ -246,8 +323,11 @@ const Student = () => {
                                     fontSize={'12px'}
                                     fontWeight={'500'}
                                     color="#5A6ACF"
+                                    sx={{
+                                        cursor: 'pointer',
+                                    }}
                                 >
-                                    View Report
+                                    1 month
                                 </Typography>
                             </Box>
                         </Box>
@@ -261,7 +341,11 @@ const Student = () => {
                             }}
                         >
                             <ArrowDownwardIcon
-                                sx={{ height: 15, color: 'red' }}
+                                sx={{
+                                    height: 15,
+                                    color: 'red',
+                                    cursor: 'pointer',
+                                }}
                             />
                             <Typography
                                 fontWeight={'500'}
@@ -313,16 +397,38 @@ const Student = () => {
                         }}
                     >
                         <Box sx={{ width: '70%' }}>
-                            <TimeRange />
+                            <TimeRange handleClick={handleTimeRangeClick} />
                         </Box>
-                        <Typography
-                            position={'absolute'}
-                            color="#AAAED6"
-                            fontSize={'13px'}
-                            left="0"
-                        >
-                            THIS MONTH
-                        </Typography>
+                        {arr1.map((item: string, index) => {
+                            let isSelected = false;
+                            const mapping: Record<string, string> = {
+                                'THIS DAY': '1 DAY',
+                                'THIS WEEK': '1 WEEK',
+                                'THIS MONTH': '1 MONTH',
+                                'ALL TIME': 'ALL TIME',
+                            };
+
+                            if (timeSelected == mapping[item]) {
+                                isSelected = true;
+                            }
+                            return (
+                                <Box
+                                    className={`animation ${isSelected ? 'active' : 'inactive'}`}
+                                    position={'absolute'}
+                                    sx={{}}
+                                >
+                                    <Typography
+                                        color="#AAAED6"
+                                        fontSize={'13px'}
+                                    >
+                                        {item}
+                                    </Typography>
+                                    <Typography color='#373B47' fontSize={"20px"} fontWeight={"600"}>
+                                        1300 words
+                                    </Typography>
+                                </Box>
+                            );
+                        })}
                         <RenderDoughnutChart
                             data={doughNutData2}
                             colorArray={COLORS2}
