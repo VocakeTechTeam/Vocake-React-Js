@@ -3,6 +3,7 @@ import { makeStyles, createStyles } from '@mui/styles';
 import { Box, Typography } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import { useNavigate } from 'react-router-dom';
 interface SideBarTeacherItemProps {
     label: string;
     bgColor?: string;
@@ -127,8 +128,11 @@ const SideBarTeacherItem: React.FC<SideBarTeacherItemProps> = ({
 
 const SidebarTeacherHeader = () => {
     const classes = sidebarTeacherHeaderStyles();
+    const nav=useNavigate()
     return (
-        <Box className={classes.root}>
+        <Box className={classes.root} onClick={() => {
+            nav("/teacher")
+        }} >
             <svg
                 width="24"
                 height="24"
@@ -173,6 +177,7 @@ const sidebarTeacherHeaderStyles = makeStyles(() =>
             alignItems: 'center',
             justifyContent: 'center',
             gap: 10,
+            cursor:"pointer"
         },
         voCakeTextContainer: {
             display: 'flex',

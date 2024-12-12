@@ -131,6 +131,7 @@ const Teacher = () => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 flex: 1,
+                                paddingTop:"30px"
                             }}
                         >
                             {' '}
@@ -190,6 +191,8 @@ const Teacher = () => {
                                 display: 'flex',
                                 flexDirection: 'column',
                                 flex: 1,
+                                                                paddingTop:"30px"
+
                             }}
                         >
                             <Typography textAlign={'left'} fontSize={'14px'}>
@@ -301,7 +304,11 @@ const Teacher = () => {
                                 {student.name}
                             </Typography>
                             <Box
+                                onClick={() => {
+                                    nav(`student/${student.id}`);
+                                }}
                                 sx={{
+                                    cursor:"pointer",
                                     width: '109px',
                                     height: '32px',
                                     border: '#DDE4F0 solid 0.5px',
