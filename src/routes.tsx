@@ -7,6 +7,7 @@ import NotFound from './views/NotFound';
 import { Outlet, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import { MyList } from './views/MyList';
+import Student from './views/Teacher/Student';
 
 const PrivateRoute = () => {
     const { isAuth } = useAuth();
@@ -31,6 +32,7 @@ const Routes_ = () => {
             </Route>
             <Route path="/teacher" element={<TeacherLayout />}>
                 <Route path="" element={<Teacher />} />
+                <Route path="student/:id" element={<Student />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

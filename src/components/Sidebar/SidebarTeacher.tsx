@@ -117,7 +117,7 @@ const SideBarTeacherItem: React.FC<SideBarTeacherItemProps> = ({
         >
             {icon}
             <Typography
-                sx={{ fontSize: 11, color: '#191919', fontWeight: 500 }}
+                sx={{ fontSize: 11, color: '#79797C', fontWeight: 500 }}
             >
                 {label} {/* Display dynamic label */}
             </Typography>
