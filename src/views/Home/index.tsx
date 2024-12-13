@@ -20,12 +20,15 @@ const Home = () => {
     const [quickPracticeLoading, setQuickPracticeLoading] = useState(false);
     const { search, wordSearch } = useSearch();
     const [userSentence, setUserSentence] = useState('');
+
     const handlePractice = async () => {
         if (userSentence.length == 0) {
             toast.error('Please insert your sentence');
             return;
         }
+        
         setQuickPracticeLoading(true);
+        console.log(userSentence)
         const res = await enhanceServcie(
             wordSearch?.word ? wordSearch?.word : 'ironic',
             userSentence,
@@ -36,12 +39,15 @@ const Home = () => {
         setQuickPracticeLoading(false);
         setUserSentence('');
     };
+
     const audioRef = useRef<HTMLAudioElement | null>(null);
+
     const handleKeyDown = async (event: React.KeyboardEvent) => {
         if (event.key === 'Enter') {
             await search();
         }
     };
+
     const handlePlaySound = () => {
         if (audioRef.current) {
             audioRef.current.play();
@@ -391,6 +397,10 @@ const useStyles = makeStyles((theme: Theme) =>
             cursor: 'pointer',
             fontSize: '18px',
             boxShadow: 'rgba(99, 99, 99, 0.5) 0px 4px 5px 0px',
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent:"center"
         },
     }),
 );
