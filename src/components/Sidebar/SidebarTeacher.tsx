@@ -128,11 +128,14 @@ const SideBarTeacherItem: React.FC<SideBarTeacherItemProps> = ({
 
 const SidebarTeacherHeader = () => {
     const classes = sidebarTeacherHeaderStyles();
-    const nav=useNavigate()
+    const nav = useNavigate();
     return (
-        <Box className={classes.root} onClick={() => {
-            nav("/teacher")
-        }} >
+        <Box
+            className={classes.root}
+            onClick={() => {
+                nav('/teacher');
+            }}
+        >
             <svg
                 width="24"
                 height="24"
@@ -177,7 +180,7 @@ const sidebarTeacherHeaderStyles = makeStyles(() =>
             alignItems: 'center',
             justifyContent: 'center',
             gap: 10,
-            cursor:"pointer"
+            cursor: 'pointer',
         },
         voCakeTextContainer: {
             display: 'flex',

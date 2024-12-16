@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ProgressBar from '../../components/ProgressBar';
 import { createStyles, makeStyles } from '@mui/styles';
 import CloseIcon from '@mui/icons-material/Close';
@@ -9,12 +9,17 @@ import { FinalStep } from './FinalStep';
 import FlashCard from './FlashCard';
 import { useNavigate } from 'react-router-dom';
 
-const arr = [<FlashCard />, <WriteWhatYouHear />, <RightMeaning />];
-
 const Practice = () => {
     const [step, setStep] = useState<number>(1);
     const totalStep = 3;
     const nav = useNavigate();
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (ref.current) {
+            ref.current.focus();
+        }
+    });
 
     const handleProgress = () => {
         if (step <= totalStep) {
@@ -26,9 +31,26 @@ const Practice = () => {
         if (event.key === 'Enter') {
             handleProgress();
         }
+        if (event.key == 'ArrowRight' && step <= totalStep) {
+            setStep((prev) => prev + 1);
+        }
+        if (event.key == 'ArrowLeft' && step > 1) {
+            setStep((prev) => prev - 1);
+        }
     };
+    const arr = [
+        <FlashCard />,
+        <WriteWhatYouHear handleProgress={handleProgress} />,
+        <RightMeaning handleProgress={handleProgress} />,
+    ];
+
     return (
-        <Box className={classes.root} onKeyDown={handleKeyDown} tabIndex={0}>
+        <Box
+            ref={ref}
+            className={classes.root}
+            onKeyDown={handleKeyDown}
+            tabIndex={0}
+        >
             {step <= totalStep ? (
                 <Box
                     sx={{

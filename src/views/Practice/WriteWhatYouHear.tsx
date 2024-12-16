@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Box } from '@mui/material';
 import { Typography } from '@mui/material';
@@ -6,10 +6,16 @@ import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import { WordFill } from './WordFill';
 import Correct from '../../components/Noti/Correct';
 import { TurtleIcon } from '../../assets/icon/TurtleIcon';
-export const WriteWhatYouHear = () => {
+import { useRef } from 'react';
+
+type WriteWhatYouHearProps = {
+    handleProgress: () => void;
+};
+export const WriteWhatYouHear = ({ handleProgress }: WriteWhatYouHearProps) => {
     const word = 'ironic';
     const [typedKey, setTypedKey] = useState<string[]>([]);
     const [matched, setMatched] = useState<boolean>(false);
+    const ref = useRef<HTMLDivElement>(null);
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
         const charSet = new Set(word);
@@ -17,10 +23,18 @@ export const WriteWhatYouHear = () => {
             const newTypedKey = [...typedKey, event.key];
             setTypedKey(newTypedKey);
         }
+    };
+    useEffect(() => {
+        if (ref.current) {
+            ref.current.focus();
+        }
+    });
+    useEffect(() => {
+        const charSet = new Set(word);
         if (typedKey.length == charSet.size) {
             setMatched(true);
         }
-    };
+    }, [typedKey]);
     return (
         <Box
             sx={{
@@ -45,6 +59,7 @@ export const WriteWhatYouHear = () => {
                     gap: 4,
                     marginBottom: 'auto',
                 }}
+                ref={ref}
             >
                 <Box
                     sx={{ display: 'flex', alignItems: 'start', width: '100%' }}
@@ -125,7 +140,7 @@ export const WriteWhatYouHear = () => {
             </Box>
             {matched && (
                 <Box sx={{ width: '100%', marginTop: 'auto' }}>
-                    <Correct />
+                    <Correct handleClick={handleProgress} />
                 </Box>
             )}
         </Box>

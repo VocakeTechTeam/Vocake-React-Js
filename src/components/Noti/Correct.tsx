@@ -3,11 +3,11 @@ import { Box, Typography } from '@mui/material';
 import { CorrectIcon } from '../../assets/icon/CorrectIcon';
 import FlagIcon from '../../assets/icon/FlagIcon';
 
-type CorrectProps = () => {
+type CorrectProps = {
     handleClick: () => void;
 };
 
-const Correct = () => {
+const Correct = ({ handleClick }: CorrectProps) => {
     return (
         <Box
             sx={{
@@ -46,6 +46,7 @@ const Correct = () => {
                 </Box>
             </Box>
             <Box
+                onClick={handleClick}
                 sx={{
                     background: '#12826B',
                     color: 'white',

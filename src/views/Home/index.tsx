@@ -26,9 +26,9 @@ const Home = () => {
             toast.error('Please insert your sentence');
             return;
         }
-        
+
         setQuickPracticeLoading(true);
-        console.log(userSentence)
+        console.log(userSentence);
         const res = await enhanceServcie(
             wordSearch?.word ? wordSearch?.word : 'ironic',
             userSentence,
@@ -85,7 +85,6 @@ const Home = () => {
                                 <Typography
                                     sx={{
                                         fontWeight: '500',
-                                        fontSize: 25,
                                         textAlign: 'left',
                                     }}
                                 >
@@ -187,6 +186,12 @@ const Home = () => {
                             Quick Practice
                         </p>
                         <TextField
+                            onKeyDown={(e: React.KeyboardEvent) => {
+                                if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                    handlePractice();
+                                }
+                            }}
                             multiline
                             rows={4}
                             style={{ width: '100%' }}
@@ -397,10 +402,10 @@ const useStyles = makeStyles((theme: Theme) =>
             cursor: 'pointer',
             fontSize: '18px',
             boxShadow: 'rgba(99, 99, 99, 0.5) 0px 4px 5px 0px',
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent:"center"
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
         },
     }),
 );

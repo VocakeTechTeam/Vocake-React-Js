@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import { useState } from 'react';
 import Correct from '../../components/Noti/Correct';
+import Wrong from '../../components/Noti/Wrong';
 
 type ChoiceProps = {
     word: string;
@@ -35,13 +36,24 @@ const Choice = ({ isClicked, word, handleClick }: ChoiceProps) => {
     );
 };
 
-export const RightMeaning = () => {
+type RightMeaningProps = {
+    handleProgress: () => void;
+};
+
+export const RightMeaning = ({ handleProgress }: RightMeaningProps) => {
     const wordChoices = ['hâm mộ', 'chán nản', 'thông thái', 'trớ trêu'];
     const [clickedWord, setClickedWord] = useState<string>('');
-    const [isCorrect, setIsCorrect] = useState<boolean>(false);
+    const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const handleClick = (word: string) => {
         setClickedWord(word);
-        setIsCorrect(true);
+    };
+
+    const handleChek = () => {
+        if (clickedWord == 'trớ trêu') {
+            setIsCorrect(true);
+        } else {
+            setIsCorrect(false);
+        }
     };
     return (
         <Box
@@ -99,6 +111,7 @@ export const RightMeaning = () => {
                     })}
                 </Box>
                 <Box
+                    onClick={handleChek}
                     sx={{
                         backgroundColor: '#55AD9B',
                         width: '200px',
@@ -114,7 +127,12 @@ export const RightMeaning = () => {
             </Box>
             {isCorrect && (
                 <Box sx={{ width: '100%', marginTop: 'auto' }}>
-                    <Correct />
+                    <Correct handleClick={handleProgress} />
+                </Box>
+            )}
+            {isCorrect == false && (
+                <Box sx={{ width: '100%', marginTop: 'auto' }}>
+                    <Wrong handleClick={handleProgress} />
                 </Box>
             )}
         </Box>
