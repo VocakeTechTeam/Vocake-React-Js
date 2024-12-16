@@ -17,7 +17,7 @@ import ReplyIcon from '@mui/icons-material/Reply';
 import FacebookIcon from '@mui/icons-material/Facebook';
 type TIMERANGE = '1 DAY' | '1 WEEK' | '1 MONTH' | 'ALL TIME';
 const arr: TIMERANGE[] = ['1 DAY', '1 WEEK', '1 MONTH', 'ALL TIME'];
-const arr1 = ['THIS DAY', 'THIS MONTH', 'THIS WEEK', 'ALL TIME'];
+const arr1 = ['THIS DAY', 'THIS WEEK', 'THIS MONTH', 'ALL TIME'];
 
 type TimeRangeProps = {
     handleClick: (item: string) => void;
@@ -415,7 +415,6 @@ const Student = () => {
                                 <Box
                                     className={`animation ${isSelected ? 'active' : 'inactive'}`}
                                     position={'absolute'}
-                                    sx={{}}
                                 >
                                     <Typography
                                         color="#AAAED6"

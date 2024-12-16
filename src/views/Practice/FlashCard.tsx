@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Box } from '@mui/material';
 import { Flashcard } from 'react-quizlet-flashcard';
 import { createStyles, makeStyles } from '@mui/styles';
@@ -111,6 +111,7 @@ const backHTML = (
     </Box>
 );
 const FlashCard = () => {
+    const flipRef = useRef();
     const classes = useStyles();
     return (
         <Box className={classes.root}>
