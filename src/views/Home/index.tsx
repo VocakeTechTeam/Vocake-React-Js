@@ -56,7 +56,7 @@ const Home = () => {
 
     const classes = useStyles();
     return (
-        <Box className={classes.root} onKeyDown={handleKeyDown} tabIndex={0}>
+        <Box className={classes.root}>
             <Box className={classes.mainContainer}>
                 <Box className={classes.wordInfoContainer}>
                     <Box className={classes.wordDetailsContainer}>

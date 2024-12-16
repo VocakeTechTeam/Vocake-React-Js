@@ -10,6 +10,11 @@ const SearchBar = () => {
     return (
         <Box className={classes.root}>
             <input
+                onKeyDown={(e:React.KeyboardEvent) => {
+                    if (e.key == "Enter") {
+                        search()
+                    }
+                }}
                 placeholder="Search"
                 className="input"
                 type="text"

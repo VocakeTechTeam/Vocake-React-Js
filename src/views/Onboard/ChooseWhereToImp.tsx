@@ -23,7 +23,7 @@ const ChooseWhereToImp = ({ handleStep }: Props) => {
     };
     return (
         <Box className={classes.root}>
-            <h2>Where would you like Speak to help you improve?</h2>
+            <h2>Where would you like Vocake to help you improve?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
                 if (item == selectedItem) {
