@@ -1,15 +1,14 @@
 import { Box, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import Card from './components/Card';
-import { Theme } from '@mui/material/styles';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 export const MyList = () => {
+    const MyListCollection = useSelector(
+        (state: RootState) => state.myListCollection,
+    );
+    console.log(MyListCollection.collections[0]);
     const styles = useStyles();
-    const cards = [];
-
-    for (let i = 0; i < 4; i++) {
-        cards.push(<Card key={i} />); // Use key for each Card to avoid React warnings
-    }
 
     return (
         <Box>
@@ -18,6 +17,7 @@ export const MyList = () => {
             >
                 Recent
             </Typography>
+
             <Box
                 sx={(theme) => ({
                     [theme.breakpoints.down('sm')]: {
@@ -26,7 +26,15 @@ export const MyList = () => {
                 })}
                 className={styles.cardContainer}
             >
-                {cards}
+                {MyListCollection.collections.map((item) => {
+                    return (
+                        <Card
+                            userName={MyListCollection.userName}
+                            cardName={item.name}
+                            numbOfTerms={item.words.length}
+                        />
+                    );
+                })}
             </Box>
         </Box>
     );

@@ -4,14 +4,16 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { createStyles, makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
 
-const AddToList = () => {
+type AddToList = {
+    handleClick: () => void;
+};
+
+const AddToList = ({ handleClick }: AddToList) => {
     const classes = useStyles();
     const [isClicked, setClicked] = useState(false);
     return (
         <Box
-            onClick={() => {
-                setClicked((prev) => !prev);
-            }}
+            onClick={handleClick}
             sx={{
                 backgroundColor: isClicked ? '#55AD9B' : 'white',
             }}
