@@ -24,11 +24,15 @@ const AddToListModal = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexDirection: 'column',
-                gap:6
+                gap: 6,
             }}
         >
             <Box sx={{ width: '100%' }}>
-                <Typography textAlign={'left'} fontWeight={"bold"} fontSize={"22px"}>
+                <Typography
+                    textAlign={'left'}
+                    fontWeight={'bold'}
+                    fontSize={'22px'}
+                >
                     Add this word to a list
                 </Typography>
             </Box>
@@ -47,18 +51,39 @@ const AddToListModal = () => {
                             key={index}
                             sx={{
                                 width: '100%',
-                                padding: '5px 20px' ,
+                                padding: '5px 20px',
                                 display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
+                                flexDirection: 'row',
+                                alignItems: 'center',
                                 cursor: 'pointer',
-                                border: "gray solid 1px",
-                                borderRadius:5
+                                border: 'gray solid 1px',
+                                borderRadius: 5,
+                                gap:2
                             }}
                         >
-                            <Typography fontWeight={"bold"}>{item.name}</Typography>
-                            <Typography fontSize={"14px"}>{item.words.length} </Typography>
-                            <Typography color='gray' fontSize={"12px"}>updated 5 months ago</Typography>
+                            <img
+                                src={item.image}
+                                alt="image"
+                                style={{ height: '50px' }}
+                            />
+                            <Box
+                                sx={{
+                                    flex: 1,
+                                    alignItems: 'flex-start',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                }}
+                            >
+                                <Typography fontWeight={'bold'}>
+                                    {item.name}
+                                </Typography>
+                                <Typography fontSize={'14px'} color='gray' fontWeight={"medium"}>
+                                    {item.words.length}{' terms'}
+                                </Typography>
+                                <Typography color="gray" fontSize={'12px'}>
+                                    updated 5 months ago
+                                </Typography>
+                            </Box>
                         </Box>
                     );
                 })}

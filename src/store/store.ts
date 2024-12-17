@@ -1,5 +1,6 @@
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
+import book from '../assets/MyListCollection/Book.png';
 interface Counter {
     count: number;
 }
@@ -8,6 +9,7 @@ interface MyList {
     id: string;
     name: string;
     words: string[];
+    image: string;
 }
 
 interface MyListCollection {
@@ -21,9 +23,24 @@ const initialState: Counter = {
 
 const myListCollectionInitialState: MyListCollection = {
     collections: [
-        { id: uuidv4(), name: 'IELTS BEGINNER', words: ['hello'] },
-        { id: uuidv4(), name: 'IELTS BEGINNER', words: ['hello'] },
-        { id: uuidv4(), name: 'IELTS BEGINNER', words: ['hello'] },
+        {
+            id: uuidv4(),
+            name: 'IELTS BEGINNER',
+            words: ['hello', 'absurd', 'ironic', 'abandon'],
+            image: book,
+        },
+        {
+            id: uuidv4(),
+            name: 'IELTS BEGINNER',
+            words: ['what', 'vocabulary', 'honor'],
+            image: book,
+        },
+        {
+            id: uuidv4(),
+            name: 'IELTS BEGINNER',
+            words: ['hello', 'say', 'speak', 'talk'],
+            image: book,
+        },
     ],
     userName: 'Thuong Bui',
 };
