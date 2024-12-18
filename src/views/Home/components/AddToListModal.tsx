@@ -6,21 +6,20 @@ import DoneIcon from '@mui/icons-material/Done';
 import { useDispatch } from 'react-redux';
 
 type AddToListModalProps = {
-    handleClick: () => void
+    handleClick: () => void;
     word: string;
-}
-const AddToListModal = ({handleClick,word}:AddToListModalProps) => {
+};
+const AddToListModal = ({ handleClick, word }: AddToListModalProps) => {
     const mylistCollection = useSelector(
         (state: RootState) => state.myListCollection,
     );
     const selectedColor = '#55AD9B';
-    const dispatch = useDispatch()
-    const handleAddToList =(listId:string, word:string)=> {
-        dispatch(addWordToList({listId,word}))
-    }
+    const dispatch = useDispatch();
+    const handleAddToList = (listId: string, word: string) => {
+        dispatch(addWordToList({ listId, word }));
+    };
     return (
         <Box
-            
             sx={{
                 position: 'absolute',
                 top: '50%',
@@ -65,7 +64,7 @@ const AddToListModal = ({handleClick,word}:AddToListModalProps) => {
                     return (
                         <Box
                             onClick={() => {
-                                handleAddToList(item.id,word)
+                                handleAddToList(item.id, word);
                             }}
                             key={index}
                             sx={{
@@ -75,11 +74,13 @@ const AddToListModal = ({handleClick,word}:AddToListModalProps) => {
                                 flexDirection: 'row',
                                 alignItems: 'center',
                                 cursor: 'pointer',
-                                border: isSelected? `${selectedColor} solid 2px`:'gray solid 2px',
+                                border: isSelected
+                                    ? `${selectedColor} solid 2px`
+                                    : 'gray solid 2px',
                                 borderRadius: 5,
                                 gap: 2,
-                                boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
-
+                                boxShadow:
+                                    'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
                             }}
                         >
                             <img
@@ -112,7 +113,11 @@ const AddToListModal = ({handleClick,word}:AddToListModalProps) => {
                             </Box>
                             {isSelected && (
                                 <DoneIcon
-                                    sx={{ fontSize: '30px', strokeWidth: '20',color:selectedColor}}
+                                    sx={{
+                                        fontSize: '30px',
+                                        strokeWidth: '20',
+                                        color: selectedColor,
+                                    }}
                                 />
                             )}
                         </Box>

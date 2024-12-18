@@ -23,11 +23,12 @@ const Routes_ = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/explore" element={<Explore />} />
                     <Route
-                        path="/explore/co-ban/practice"
+                        path="practice"
                         element={<FlashCard />}
                     />
                     <Route path="/explore/co-ban" element={<CoBan />} />
                     <Route path="/mylist" element={<MyList />} />
+                    <Route path="/mylist/list/:id" element={<MyList />} />
                 </Route>
             </Route>
             <Route path="/teacher" element={<TeacherLayout />}>

@@ -45,19 +45,24 @@ const MyListCollectionSlice = createSlice({
     name: 'MyListCollection',
     initialState: myListCollectionInitialState,
     reducers: {
-        addWordToList(state, action: PayloadAction<{ listId: string; word: string }>) {
+        addWordToList(
+            state,
+            action: PayloadAction<{ listId: string; word: string }>,
+        ) {
             const { listId, word } = action.payload;
-            const list = state.collections.find((collection) => collection.id === listId);
+            const list = state.collections.find(
+                (collection) => collection.id === listId,
+            );
             if (list && !list.words.includes(word)) {
                 list.words.push(word);
             } else if (list && list.words.includes(word)) {
-                list.words=list.words.filter((item)=> item!==word)
+                list.words = list.words.filter((item) => item !== word);
             }
-        }
+        },
     },
 });
 
-export const {addWordToList} = MyListCollectionSlice.actions;
+export const { addWordToList } = MyListCollectionSlice.actions;
 const store = configureStore({
     reducer: {
         myListCollection: MyListCollectionSlice.reducer,

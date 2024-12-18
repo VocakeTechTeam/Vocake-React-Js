@@ -122,7 +122,7 @@ const CoBan = () => {
                     </Box>
                     <Box
                         onClick={() => {
-                            nav('practice');
+                            nav('/practice');
                         }}
                         sx={{
                             borderRadius: 15,

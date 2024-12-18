@@ -2,17 +2,38 @@ import React from 'react';
 import { createStyles, makeStyles } from '@mui/styles';
 import { Box, Typography } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
+import { useNavigate } from 'react-router-dom';
 
 type CardProps = {
     cardName: string;
     numbOfTerms: number;
     userName: string;
+    id: string;
+    isActive: boolean;
+    activeColor: string;
 };
 
-const Card = ({ cardName, numbOfTerms, userName }: CardProps) => {
+const Card = ({
+    id,
+    cardName,
+    numbOfTerms,
+    userName,
+    isActive,
+    activeColor,
+}: CardProps) => {
     const classes = useStyles();
+    const nav = useNavigate();
+
     return (
-        <Box className={classes.root}>
+        <Box
+            onClick={() => {
+                nav(`/mylist/list/${id}`);
+            }}
+            className={classes.root}
+            sx={{
+                backgroundColor: isActive ? activeColor : '#FFFDE3',
+            }}
+        >
             <Box sx={{ gap: 2, display: 'flex', flexDirection: 'column' }}>
                 <Typography fontSize={'15px'} fontWeight="bold">
                     {cardName}
@@ -37,7 +58,6 @@ const useStyles = makeStyles(() =>
         root: {
             width: '291px',
             height: '178px',
-            backgroundColor: '#FFFDE3',
             borderRadius: 32,
             padding: 20,
             flexShrink: 0,
