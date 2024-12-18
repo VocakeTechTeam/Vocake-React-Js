@@ -58,7 +58,7 @@ const Home = () => {
             {isAddToList && (
                 <>
                     <Overlay handleClick={handleClickAddToList} />
-                    <AddToListModal />
+                    <AddToListModal handleClick={handleClickAddToList} word={"ironic"} />
                 </>
             )}
 

@@ -17,10 +17,6 @@ interface MyListCollection {
     userName: string;
 }
 
-const initialState: Counter = {
-    count: 0,
-};
-
 const myListCollectionInitialState: MyListCollection = {
     collections: [
         {
@@ -45,26 +41,25 @@ const myListCollectionInitialState: MyListCollection = {
     userName: 'Thuong Bui',
 };
 
-const CounterSlice = createSlice({
-    name: 'counter',
-    initialState,
-    reducers: {
-        increase() {},
-        decrease() {},
-    },
-});
-
 const MyListCollectionSlice = createSlice({
     name: 'MyListCollection',
     initialState: myListCollectionInitialState,
-    reducers: {},
+    reducers: {
+        addWordToList(state, action: PayloadAction<{ listId: string; word: string }>) {
+            const { listId, word } = action.payload;
+            const list = state.collections.find((collection) => collection.id === listId);
+            if (list && !list.words.includes(word)) {
+                list.words.push(word);
+            } else if (list && list.words.includes(word)) {
+                list.words=list.words.filter((item)=> item!==word)
+            }
+        }
+    },
 });
 
-export const { increase, decrease } = CounterSlice.actions;
-export const {} = MyListCollectionSlice.actions;
+export const {addWordToList} = MyListCollectionSlice.actions;
 const store = configureStore({
     reducer: {
-        counter: CounterSlice.reducer,
         myListCollection: MyListCollectionSlice.reducer,
     },
 });

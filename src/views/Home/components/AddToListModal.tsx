@@ -1,18 +1,26 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import Card from '../../MyList/components/Card';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
+import { addWordToList, RootState } from '../../../store/store';
 import DoneIcon from '@mui/icons-material/Done';
+import { useDispatch } from 'react-redux';
 
-const AddToListModal = () => {
+type AddToListModalProps = {
+    handleClick: () => void
+    word: string;
+}
+const AddToListModal = ({handleClick,word}:AddToListModalProps) => {
     const mylistCollection = useSelector(
         (state: RootState) => state.myListCollection,
     );
     const selectedColor = '#55AD9B';
-
+    const dispatch = useDispatch()
+    const handleAddToList =(listId:string, word:string)=> {
+        dispatch(addWordToList({listId,word}))
+    }
     return (
         <Box
+            
             sx={{
                 position: 'absolute',
                 top: '50%',
@@ -50,9 +58,15 @@ const AddToListModal = () => {
                 }}
             >
                 {mylistCollection.collections.map((item, index) => {
-                    let isSelected = true;
+                    let isSelected = false;
+                    if (item.words.includes(word)) {
+                        isSelected = true;
+                    }
                     return (
                         <Box
+                            onClick={() => {
+                                handleAddToList(item.id,word)
+                            }}
                             key={index}
                             sx={{
                                 width: '100%',
@@ -61,10 +75,10 @@ const AddToListModal = () => {
                                 flexDirection: 'row',
                                 alignItems: 'center',
                                 cursor: 'pointer',
-                                border: 'gray solid 2px',
+                                border: isSelected? `${selectedColor} solid 2px`:'gray solid 2px',
                                 borderRadius: 5,
                                 gap: 2,
-                                            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+                                boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
 
                             }}
                         >
@@ -107,6 +121,7 @@ const AddToListModal = () => {
             </Box>
             <Box sx={{ width: '100%' }}>
                 <Box
+                    onClick={handleClick}
                     sx={{
                         marginLeft: 'auto',
                         padding: '2px 21px',
