@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import { addWordToList, RootState } from '../../../store/store';
 import DoneIcon from '@mui/icons-material/Done';
 import { useDispatch } from 'react-redux';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 type AddToListModalProps = {
     handleClick: () => void;
@@ -13,22 +15,23 @@ const AddToListModal = ({ handleClick, word }: AddToListModalProps) => {
     const mylistCollection = useSelector(
         (state: RootState) => state.myListCollection,
     );
+    const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.down('sm'));
     const selectedColor = '#55AD9B';
     const dispatch = useDispatch();
     const handleAddToList = (listId: string, word: string) => {
-        dispatch(addWordToList({ listId, word }));
+        dispatch(addWordToList({ listId, word, definition: '' }));
     };
     return (
         <Box
             sx={{
                 position: 'absolute',
-                top: '50%',
-                left: '50%',
+                top: matches ? '0%' : '50%',
+                left: matches ? '0%' : '50%',
                 background: 'white',
-                // height: '100px',
-                width: '40%',
+                width: matches ? '100%' : '40%',
                 zIndex: 21,
-                transform: 'translate(-50%, -50%)',
+                transform: matches ? '' : 'translate(-50%, -50%)',
                 padding: 5,
                 borderRadius: 5,
                 display: 'flex',
@@ -58,7 +61,7 @@ const AddToListModal = ({ handleClick, word }: AddToListModalProps) => {
             >
                 {mylistCollection.collections.map((item, index) => {
                     let isSelected = false;
-                    if (item.words.includes(word)) {
+                    if (item.words.find((item) => item.word == word)) {
                         isSelected = true;
                     }
                     return (

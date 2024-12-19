@@ -85,7 +85,7 @@ const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 4px 8px 0px', // Shadow at the bottom,
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 4px 8px 0px',
             zIndex: 9,
         },
         secondContainer: {

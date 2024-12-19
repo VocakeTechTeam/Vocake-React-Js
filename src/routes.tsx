@@ -22,10 +22,7 @@ const Routes_ = () => {
                 <Route path="/" element={<MainLayout />}>
                     <Route path="/" element={<Home />} />
                     <Route path="/explore" element={<Explore />} />
-                    <Route
-                        path="practice"
-                        element={<FlashCard />}
-                    />
+                    <Route path="practice" element={<FlashCard />} />
                     <Route path="/explore/co-ban" element={<CoBan />} />
                     <Route path="/mylist" element={<MyList />} />
                     <Route path="/mylist/list/:id" element={<MyList />} />

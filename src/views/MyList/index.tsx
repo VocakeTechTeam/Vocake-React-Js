@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { Word } from '../../store/store';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 
 export const MyList = () => {
     const nav = useNavigate();
@@ -14,7 +16,7 @@ export const MyList = () => {
     const MyListCollection = useSelector(
         (state: RootState) => state.myListCollection,
     );
-    const [words, setWords] = useState<string[] | undefined>(undefined);
+    const [words, setWords] = useState<Word[] | undefined>(undefined);
     const styles = useStyles();
     const param = useParams();
     const myListCollection = useSelector(
@@ -150,13 +152,37 @@ export const MyList = () => {
                             </p>
                         </Box>
                     </Box>
-                    <Box sx={{ width: '100%' , display:"flex",alignItems:"flex-start",flexDirection:"column",gap:3}}>
+                    <Box
+                        sx={{
+                            width: '100%',
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            flexDirection: 'column',
+                            gap: 3,
+                        }}
+                    >
                         {words?.map((item) => {
                             return (
-                                <Box>
-                                    <Typography fontWeight={'bold'}>
-                                        {item}
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between',
+                                        gap: 10,
+                                        width: '100%',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    <Typography
+                                        fontWeight={'bold'}
+                                        textAlign={'left'}
+                                    >
+                                        {item.word}
                                     </Typography>
+                                    <Typography >
+                                        {item.definition}
+                                    </Typography>
+                                    <VolumeUpIcon sx={{cursor:"pointer"}} />
                                 </Box>
                             );
                         })}
