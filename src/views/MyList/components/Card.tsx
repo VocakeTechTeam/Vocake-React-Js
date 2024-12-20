@@ -34,11 +34,11 @@ const Card = ({
                 backgroundColor: isActive ? activeColor : '#FFFDE3',
             }}
         >
-            <Box sx={{ gap: 2, display: 'flex', flexDirection: 'column' }}>
+            <Box sx={{ gap: 1, display: 'flex', flexDirection: 'column',  alignItems:"flex-start" }}>
                 <Typography fontSize={'15px'} fontWeight="bold">
                     {cardName}
                 </Typography>
-                <Typography fontSize={'13px'} fontWeight="700">
+                <Typography fontSize={'13px'} fontWeight="700"sx={{left:4, position:"relative"}}>
                     {numbOfTerms} term
                 </Typography>
             </Box>

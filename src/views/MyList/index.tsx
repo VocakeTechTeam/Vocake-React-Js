@@ -179,10 +179,8 @@ export const MyList = () => {
                                     >
                                         {item.word}
                                     </Typography>
-                                    <Typography >
-                                        {item.definition}
-                                    </Typography>
-                                    <VolumeUpIcon sx={{cursor:"pointer"}} />
+                                    <Typography>{item.definition}</Typography>
+                                    <VolumeUpIcon sx={{ cursor: 'pointer' }} />
                                 </Box>
                             );
                         })}
@@ -204,7 +202,6 @@ const useStyles = makeStyles(() =>
             display: 'flex',
             gap: 10,
             overflowX: 'auto',
-            padding: 15,
             wdith: '100%',
             alignItems: 'center',
         },
