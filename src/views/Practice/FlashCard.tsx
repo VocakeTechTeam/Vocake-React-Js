@@ -20,12 +20,12 @@ const frontHTML = (
             background: '#FFF9EB',
             flexDirection: 'column',
             padding: 4,
-            gap:2
+            gap: 2,
         }}
     >
         <Box sx={{ marginLeft: 'auto', gap: 2, display: 'flex' }}>
             <VolumeUpIcon sx={{ width: '20px' }} />
-            <StarBorderIcon sx={{ width: '20px' }}/>
+            <StarBorderIcon sx={{ width: '20px' }} />
         </Box>
         <Box
             sx={{
@@ -57,7 +57,7 @@ const backHTML = (
             borderRadius: 3,
             background: '#55AD9B',
             flexDirection: 'column',
-            padding:5,
+            padding: 5,
             gap: 3,
         }}
     >
@@ -72,7 +72,7 @@ const backHTML = (
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexDirection: 'column',
-                gap:3
+                gap: 3,
             }}
         >
             <Typography
@@ -97,7 +97,7 @@ const backHTML = (
                 </Typography>
                 <TranslateIcon sx={{ width: '20px', color: 'white' }} />
             </Box>
-            <Box sx={{display:"flex", flexDirection:"row", gap:0.6}}>
+            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 0.6 }}>
                 <Typography
                     sx={{
                         fontWeight: 'bold',
@@ -108,8 +108,7 @@ const backHTML = (
                 >
                     It’s
                 </Typography>
-                <Typography sx={{fontWeight: 'bold',
-                        color: '#EAB355'}} >
+                <Typography sx={{ fontWeight: 'bold', color: '#EAB355' }}>
                     ironic
                 </Typography>
                 <Typography

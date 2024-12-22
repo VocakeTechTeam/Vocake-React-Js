@@ -55,10 +55,11 @@ export const enhanceServcie = async (word: string, text: string) => {
 
 export const signUpService = async (userRegister: UserReigster) => {
     try {
-        const response = await axios.post(
-            `${process.env.REACT_APP_VOCAKE_API}/api/v1/customer/register`,
-            userRegister,
-        );
+        const response = await api_v1.post(`customer/register`, {
+            email: userRegister.email,
+            keySecreet: 'CUSTOMER_REGISTER',
+            role: 'CUSTOMER',
+        });
         if (response.status == 200) {
             return true;
         }
@@ -67,13 +68,25 @@ export const signUpService = async (userRegister: UserReigster) => {
     }
 };
 
+export const loginService = async (email: string, password: string) => {
+    try {
+        const response = await api_v1.post('', {
+            email: email,
+            password: password,
+        });
+        return response.data.token;
+    } catch (error) {
+        return null;
+    }
+};
+
 export const verifyOtpService = async (
     userRegister: UserReigster,
     otp: string,
 ) => {
     try {
-        const response = await axios.post(
-            `${process.env.REACT_APP_VOCAKE_API}/api/v1/customer/verify-otp?otp=${otp}`,
+        const response = await api_v1.post(
+            `customer/verify-otp?otp=${otp}`,
             userRegister,
         );
         if (response.data.payload.token) {

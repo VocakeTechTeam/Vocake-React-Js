@@ -1,12 +1,18 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@mui/styles';
 import { Box } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { updateOnboard } from '../../store/store';
 type Props = {
     handleStep: () => void;
 };
 const TopicReassure = ({ handleStep }: Props) => {
     const classes = useStyles();
-
+    const dispatch = useDispatch();
+    const handleUpdate = (name: string, value: string[]) => {
+        return dispatch(updateOnboard({ name, value }));
+    };
+    const handleContinue = () => {};
     return (
         <Box className={classes.root}>
             <Box className={classes.reassure}>

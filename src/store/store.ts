@@ -1,27 +1,33 @@
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import book from '../assets/MyListCollection/Book.png';
-interface Counter {
-    count: number;
-}
+import { MyListCollection, UserOnboard, UserReigster } from '../types';
 
-export interface Word {
-    word: string;
-    definition: string;
-}
+const userRegisterInitialState: UserReigster = {
+    email: null,
+    password: null,
+    password_retry: null,
+    fullName: null,
+    phoneNumber: null,
+    city: null,
+    role: 'CUSTOMER',
+    keySecret: 'CUSTOMER_SECRET',
+    country: null,
+    subscriptionUser: 'LEVEL1',
+};
 
-interface MyList {
-    id: string;
-    name: string;
-    words: Word[];
-    image: string;
-}
-
-interface MyListCollection {
-    collections: MyList[];
-    userName: string;
-}
-
+const userOnboardInitialState: UserOnboard = {
+    ...userRegisterInitialState,
+    nativeLanguage: null,
+    rangeAge: null,
+    topicInterest: null,
+    languageLearn: null,
+    purposeEnglish: null,
+    challengeInEnglish: null,
+    levelUser: null,
+    improveEnglish: null,
+    practiceEnglish: null,
+};
 const myListCollectionInitialState: MyListCollection = {
     collections: [
         {
@@ -118,6 +124,22 @@ const myListCollectionInitialState: MyListCollection = {
     userName: 'Thuong Bui',
 };
 
+const UserOnboardSlice = createSlice({
+    name: 'UserOnboard',
+    initialState: userOnboardInitialState,
+    reducers: {
+        updateOnboard(
+            state,
+            action: PayloadAction<{ name: string; value: string | string[] }>,
+        ) {
+            const { name, value } = action.payload;
+            if (state.hasOwnProperty(name)) {
+                (state as any)[name] = value;
+            }
+        },
+    },
+});
+
 const MyListCollectionSlice = createSlice({
     name: 'MyListCollection',
     initialState: myListCollectionInitialState,
@@ -144,9 +166,11 @@ const MyListCollectionSlice = createSlice({
 });
 
 export const { addWordToList } = MyListCollectionSlice.actions;
+export const { updateOnboard } = UserOnboardSlice.actions;
 const store = configureStore({
     reducer: {
         myListCollection: MyListCollectionSlice.reducer,
+        userOnboard: UserOnboardSlice.reducer,
     },
 });
 

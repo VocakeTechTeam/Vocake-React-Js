@@ -2,24 +2,20 @@ import React, { useState } from 'react';
 import { makeStyles, createStyles } from '@mui/styles';
 import { Box } from '@mui/material';
 import SelectBox from './components/SelectBox';
-import { time } from 'console';
-
+import { WhyBetterEnglishChoices as choices } from '../../constant';
+import { useDispatch } from 'react-redux';
+import { updateOnboard } from '../../store/store';
 type Props = {
     handleStep: () => void;
 };
 
 const WhyBetterEnglish = ({ handleStep }: Props) => {
     const classes = useStyles();
-    const choices = [
-        '🚗 Travel or live abroad',
-        '🚀 Accelerate my career',
-        '🎙️ Talk to foereigners',
-        '🕹️ Self improvement',
-        '👶 Speak English to my kids',
-        'Other',
-    ];
     const [selectedItem, setSelectedItem] = useState<string[]>([]);
-
+    const dispatch = useDispatch();
+    const handleUpdate = (name: string, value: string[]) => {
+        return dispatch(updateOnboard({ name, value }));
+    };
     const handleClickItem = (item: string) => {
         setSelectedItem((prev) => {
             if (prev.includes(item)) {
@@ -28,6 +24,10 @@ const WhyBetterEnglish = ({ handleStep }: Props) => {
                 return [...prev, item];
             }
         });
+    };
+    const handleContinue = () => {
+        handleUpdate('purposeEnglish', selectedItem);
+        handleStep();
     };
     return (
         <Box className={classes.root}>
@@ -48,7 +48,7 @@ const WhyBetterEnglish = ({ handleStep }: Props) => {
                 );
             })}
             <Box
-                onClick={handleStep}
+                onClick={handleContinue}
                 sx={{ display: selectedItem.length >= 1 ? '' : 'none' }}
                 className={classes.btn}
             >

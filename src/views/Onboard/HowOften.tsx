@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 import { makeStyles, createStyles } from '@mui/styles';
 import { Box, Typography } from '@mui/material';
 import SelectBox from './components/SelectBox';
-
+import { HowOftenChoices as choices } from '../../constant';
+import { useDispatch } from 'react-redux';
+import { updateOnboard } from '../../store/store';
 type Props = {
     handleStep: () => void;
 };
 
 const HowOften = ({ handleStep }: Props) => {
     const classes = useStyles();
-    const choices = [
-        'A few minutes a day',
-        'A few times each day',
-        'A few times each month',
-        'I cant commit right now',
-    ];
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const handleSelect = (item: string) => {
-        setSelectedItem(item);
+        handleUpdate('practiceEnglish', item);
         handleStep();
+    };
+    const dispatch = useDispatch();
+    const handleUpdate = (name: string, value: string) => {
+        return dispatch(updateOnboard({ name, value }));
     };
     return (
         <Box className={classes.root}>

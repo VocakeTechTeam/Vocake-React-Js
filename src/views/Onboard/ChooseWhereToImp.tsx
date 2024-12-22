@@ -2,24 +2,23 @@ import React, { useState } from 'react';
 import { makeStyles, createStyles } from '@mui/styles';
 import { Box, Typography } from '@mui/material';
 import SelectBox from './components/SelectBox';
-
+import { ChooseWhereToImpChoices as choices } from '../../constant';
+import { useDispatch } from 'react-redux';
+import { updateOnboard } from '../../store/store';
 type Props = {
     handleStep: () => void;
 };
 
 const ChooseWhereToImp = ({ handleStep }: Props) => {
     const classes = useStyles();
-    const choices = [
-        '👄 Improve pronunciation',
-        '🗣️ Gain confidence in speaking',
-        '💪 Learn useful words and phrases',
-        '👂 Improve my listening skills',
-        '🎯 Others',
-    ];
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const handleSelect = (item: string) => {
-        setSelectedItem(item);
+        handleUpdate('improveEnglish', item);
         handleStep();
+    };
+    const dispatch = useDispatch();
+    const handleUpdate = (name: string, value: string) => {
+        return dispatch(updateOnboard({ name, value }));
     };
     return (
         <Box className={classes.root}>

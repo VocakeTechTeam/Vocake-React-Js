@@ -7,9 +7,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Word } from '../../store/store';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
-
+import { Word } from '../../types';
 export const MyList = () => {
     const nav = useNavigate();
 
