@@ -13,11 +13,11 @@ const HowOften = ({ handleStep }: Props) => {
     const classes = useStyles();
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const handleSelect = (item: string) => {
-        handleUpdate('practiceEnglish', item);
+        handleUpdate('practiceEnglish', [item]);
         handleStep();
     };
     const dispatch = useDispatch();
-    const handleUpdate = (name: string, value: string) => {
+    const handleUpdate = (name: string, value: string[]) => {
         return dispatch(updateOnboard({ name, value }));
     };
     return (

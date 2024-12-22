@@ -14,9 +14,13 @@ const ChooseMainChallenge = ({ handleStep, onSelect }: Props) => {
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const classes = useStyles();
     const handleSelect = (item: string) => {
-        setSelectedItem(item);
+        handleUpdate('challengeInEnglish', [item]);
         onSelect(item);
         handleStep();
+    };
+    const dispatch = useDispatch();
+    const handleUpdate = (name: string, value: string[]) => {
+        return dispatch(updateOnboard({ name, value }));
     };
     return (
         <Box className={classes.root}>

@@ -16,11 +16,11 @@ const ChooseLangWantToLearn = ({ handleStep }: Props) => {
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const classes = useStyles();
     const handleSelect = (item: string) => {
-        handleUpdate('languageLearn', item);
+        handleUpdate('languageLearn', [item]);
         handleStep();
     };
     const dispatch = useDispatch();
-    const handleUpdate = (name: string, value: string) => {
+    const handleUpdate = (name: string, value: string[]) => {
         return dispatch(updateOnboard({ name, value }));
     };
 
