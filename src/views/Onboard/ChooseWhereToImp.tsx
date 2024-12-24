@@ -13,11 +13,11 @@ const ChooseWhereToImp = ({ handleStep }: Props) => {
     const classes = useStyles();
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const handleSelect = (item: string) => {
-        handleUpdate('improveEnglish', item);
+        handleUpdate('improveEnglish', [item]);
         handleStep();
     };
     const dispatch = useDispatch();
-    const handleUpdate = (name: string, value: string) => {
+    const handleUpdate = (name: string, value: string[]) => {
         return dispatch(updateOnboard({ name, value }));
     };
     return (
@@ -25,14 +25,14 @@ const ChooseWhereToImp = ({ handleStep }: Props) => {
             <h2>Where would you like Vocake to help you improve?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
-                if (item == selectedItem) {
+                if (item.value == selectedItem) {
                     isSelected = true;
                 }
                 return (
                     <SelectBox
                         key={index}
                         handleClick={handleSelect}
-                        name={item}
+                        name={item.value}
                         isSelected={isSelected}
                         isActive={true}
                     />

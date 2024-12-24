@@ -30,7 +30,7 @@ export const MyList = () => {
         }
     }, [param.id]);
     return (
-        <Box>
+        <Box sx={{ paddingTop: '15px' }}>
             <Typography
                 sx={{ textAlign: 'start', fontWeight: '700', fontSize: '25px' }}
             >
@@ -69,7 +69,7 @@ export const MyList = () => {
                         width: '100%',
                     }}
                 >
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <Box
                             sx={{
                                 display: 'flex',
@@ -116,8 +116,9 @@ export const MyList = () => {
                             sx={{
                                 borderRadius: 15,
                                 background: '#55AD9B',
-                                padding: '0 5px',
-                                boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+                                padding: '0 10px',
+                                borderBottom: '#acd7ce solid 4px',
+                                cursor: 'pointer',
                             }}
                         >
                             <p
@@ -125,7 +126,6 @@ export const MyList = () => {
                                     fontSize: 10,
                                     fontWeight: 'bold',
                                     color: 'white',
-                                    cursor: 'pointer',
                                 }}
                             >
                                 PRACTICE
@@ -135,9 +135,9 @@ export const MyList = () => {
                             sx={{
                                 borderRadius: 10,
                                 background: '#FE6876',
-                                padding: '0 5px',
-                                boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+                                padding: '0 10px',
                                 cursor: 'pointer',
+                                borderBottom: '#feced3 solid 4px',
                             }}
                         >
                             <p
@@ -199,7 +199,7 @@ const useStyles = makeStyles(() =>
         },
         cardContainer: {
             display: 'flex',
-            gap: 10,
+            gap: 36,
             overflowX: 'auto',
             wdith: '100%',
             alignItems: 'center',

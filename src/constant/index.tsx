@@ -1,4 +1,47 @@
-import { v4 as uuid } from 'uuid';
+export enum EnumTopic {
+    BUSINESS,
+    TRAVEL,
+    ENTERTAINMENT,
+    SOCIALIZING,
+    CULTURE,
+    DATING,
+    SHOPPING,
+    FOOD,
+    FAMILY,
+    SKIP_OTHERS,
+}
+export enum EnumImproveEnglish {
+    IMPROVEPRONUNCIATION,
+    GAINCONFIDENCESPEAKING,
+    LEARNUSEFULWORDSANDPHRASES,
+    IMPROVELISTENINGSKILLS,
+    OTHERS,
+    SKIP_OTHERS,
+}
+export enum EnumLanguageLearn {
+    ENGLISH,
+    FINNISH,
+    SKIP_OTHERS,
+}
+export enum EnumLanguage {
+    KOREAN,
+    JAPANESE,
+    CHINESE,
+    SPANISH,
+    GERMAN,
+    FRENCH,
+    PORTUGUESE,
+    POLISH,
+    VIETNAMESE,
+    SKIP_OTHERS,
+}
+export enum EnumPracticeEnglish {
+    FEWMINUTESADAY,
+    FEWTIMESEACHDAY,
+    FEWTIMESEACHMONTH,
+    CANNOTCOMMITNOW,
+    SKIP_OTHERS,
+}
 export const NativeLanguageChoices = [
     'Korean',
     'Japanese',
@@ -10,15 +53,33 @@ export const NativeLanguageChoices = [
     'Polish',
     'Vietnamese',
 ];
+export enum EnumRangeAge {
+    UNDER10,
+    BETWEEN1020,
+    BETWEEN2125,
+    BETWEEN2635,
+    BETWEEN3645,
+    ABOVE56,
+}
+export enum EnumChallengeInEnglish {
+    HARD2FINDTIME,
+    HARD2STAYMOTIVATED,
+    REMEMBERWHATILEARN,
+    ENGLISHMIGHTHARD,
+    SKIP_OTHERS,
+}
 
-export const AgeChoices = [
-    'Under 10 years old',
-    'Between 10 and 20 years old',
-    'Between 21 and 25 years old',
-    'Between 26 and 35 years old',
-    'Between 36 and 45 years old',
-    'Between 46 and 55 years old',
-    '56 years old or older',
+export const AgeChoices: {
+    value: string;
+    type: string;
+}[] = [
+    { value: 'Under 10 years old', type: '' },
+    { value: 'Between 10 and 20 years old', type: '' },
+    { value: 'Between 21 and 25 years old', type: '' },
+    { value: 'Between 26 and 35 years old', type: '' },
+    { value: 'Between 36 and 45 years old', type: '' },
+    { value: 'Between 46 and 55 years old', type: '' },
+    { value: '56 years old or older', type: '' },
 ];
 
 export const ChallengeReassureChoices = {
@@ -69,88 +130,93 @@ export const ChallengeReassureChoices = {
         </div>
     ),
 };
-export const InterestedTopicChoices = [
-    '📌 Business',
-    '🚖 Travel',
-    '🎱 Entertainment',
-    '👯‍♀️ Socializing',
-    '🧫 Culture',
-    '❤️ Dating',
-    '🛒 Shopping',
-    '🌭 Food',
-    '🏠 Family',
+export const InterestedTopicChoices: {
+    value: string;
+    type: string;
+}[] = [
+    { value: '📌 Business', type: 'BUSINESS' },
+    { value: '🚖 Travel', type: 'TRAVEL' },
+    { value: '🎱 Entertainment', type: 'ENTERTAINMENT' },
+    { value: '👯‍♀️ Socializing', type: 'SOCIALIZING' },
+    { value: '🧫 Culture', type: 'CULTURE' },
+    { value: '❤️ Dating', type: 'DATING' },
+    { value: '🛒 Shopping', type: 'SHOPPING' },
+    { value: '🌭 Food', type: 'FOOD' },
+    { value: '🏠 Family', type: 'FAMILY' },
 ];
 
 export const LanguageWantToLearnChoices = [
-    { name: '🇺🇸 English', isActive: true },
-    { name: '🇫🇮 Finnish', isActive: false },
+    { name: '🇺🇸 English', isActive: true, type: 'ENGLISH' },
+    { name: '🇫🇮 Finnish', isActive: false, type: 'FINNISH' },
 ];
 
-export const MainChallengeChoices = [
-    "⏰ It's hard to find time",
-    "🚀 It's hard to stay motivated",
-    '🧠 Remembering what I learned',
-    '😔 English might be too hard',
+export const MainChallengeChoices: {
+    value: string;
+    type: string;
+}[] = [
+    { value: "⏰ It's hard to find time", type: '' },
+    { value: "🚀 It's hard to stay motivated", type: '' },
+    { value: '🧠 Remembering what I learned', type: '' },
+    { value: '😔 English might be too hard', type: '' },
 ];
 
-export const ChooseWhereToImpChoices = [
-    '👄 Improve pronunciation',
-    '🗣️ Gain confidence in speaking',
-    '💪 Learn useful words and phrases',
-    '👂 Improve my listening skills',
-    '🎯 Others',
+export const ChooseWhereToImpChoices: {
+    value: string;
+    type: string;
+}[] = [
+    { value: '👄 Improve pronunciation', type: '' },
+    { value: '🗣️ Gain confidence in speaking', type: '' },
+    { value: '💪 Learn useful words and phrases', type: '' },
+    { value: '👂 Improve my listening skills', type: '' },
+    { value: '🎯 Others', type: '' },
 ];
 
-export const HowOftenChoices = [
-    '👄 Improve pronunciation',
-    '🗣️ Gain confidence in speaking',
-    '💪 Learn useful words and phrases',
-    '👂 Improve my listening skills',
-    '🎯 Others',
+export const HowOftenChoices: {
+    value: string;
+    type: string;
+}[] = [
+    { value: 'A few minutes every day', type: '' },
+    { value: 'A few times each week', type: '' },
+    { value: 'A few times each month', type: '' },
+    { value: 'I cant commit right now', type: '' },
 ];
 
 export const EnglishRateChoices = [
     {
-        id: uuid(),
         level: 'A1',
         description: 'Can use basic phrases and introduce themselves.',
     },
     {
-        id: uuid(),
         level: 'A2',
         descrption: 'Can handle simple conversations on familiar topics.',
     },
     {
-        id: uuid(),
         level: 'B1',
         descrption: ' Can talk about daily life and express opinions.',
     },
     {
-        id: uuid(),
         level: 'B2',
         descrption:
             'Can have detailed conversations and understand complex topics.',
     },
     {
-        id: uuid(),
         level: 'C1',
         descrption:
             'Can communicate fluently and use academic or professional English.',
     },
     {
-        id: uuid(),
         level: 'C2',
         descrption: 'Can use English effortlessly like a native speaker.',
     },
 ];
 
 export const WhyBetterEnglishChoices = [
-    '🚗 Travel or live abroad',
-    '🚀 Accelerate my career',
-    '🎙️ Talk to foreigners',
-    '🕹️ Self improvement',
-    '👶 Speak English to my kids',
-    'Other',
+    { value: '🚗 Travel or live abroad', type: '' },
+    { value: '🚀 Accelerate my career', type: '' },
+    { value: '🎙️ Talk to foreigners', type: '' },
+    { value: '🕹️ Self improvement', type: '' },
+    { value: '👶 Speak English to my kids', type: '' },
+    { value: 'Other' },
 ];
 
 export const ChallengeReassureMapping: Record<

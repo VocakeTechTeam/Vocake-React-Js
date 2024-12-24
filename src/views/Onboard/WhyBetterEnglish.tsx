@@ -34,14 +34,14 @@ const WhyBetterEnglish = ({ handleStep }: Props) => {
             <h2>Why do you want to get better at speaking English?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
-                if (selectedItem.includes(item)) {
+                if (selectedItem.includes(item.value)) {
                     isSelected = true;
                 }
                 return (
                     <SelectBox
                         key={index}
                         handleClick={handleClickItem}
-                        name={item}
+                        name={item.value}
                         isSelected={isSelected}
                         isActive={true}
                     />

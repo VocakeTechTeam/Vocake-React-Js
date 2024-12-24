@@ -23,7 +23,7 @@ const frontHTML = (
             gap: 2,
         }}
     >
-        <Box sx={{ marginLeft: 'auto', gap: 2, display: 'flex' }}>
+        <Box sx={{ marginLeft: 'auto', gap: 1, display: 'flex' }}>
             <VolumeUpIcon sx={{ width: '20px' }} />
             <StarBorderIcon sx={{ width: '20px' }} />
         </Box>
@@ -61,7 +61,7 @@ const backHTML = (
             gap: 3,
         }}
     >
-        <Box sx={{ marginLeft: 'auto', gap: 2, display: 'flex' }}>
+        <Box sx={{ marginLeft: 'auto', gap: 1, display: 'flex' }}>
             <VolumeUpIcon sx={{ color: 'white' }} />
             <StarBorderIcon sx={{ color: 'white' }} />
         </Box>
@@ -97,7 +97,12 @@ const backHTML = (
                 </Typography>
                 <TranslateIcon sx={{ width: '20px', color: 'white' }} />
             </Box>
-            <Box sx={{ display: 'flex', flexDirection: 'row', gap: 0.6 }}>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: 0.6, }}
+            >
                 <Typography
                     sx={{
                         fontWeight: 'bold',

@@ -2,7 +2,10 @@ import { Box, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import SelectBox from './components/SelectBox';
 import { makeStyles, createStyles } from '@mui/styles';
-import { InterestedTopicChoices as choices } from '../../constant';
+import {
+    InterestedTopicChoices as choices,
+    InterestedTopicChoices,
+} from '../../constant';
 import { useDispatch } from 'react-redux';
 import { updateOnboard } from '../../store/store';
 type Props = {
@@ -35,14 +38,14 @@ const ChooseInterestedTopic = ({ handleStep }: Props) => {
 
             {choices.map((item, index) => {
                 let isSelected = false;
-                if (selectedItem.includes(item)) {
+                if (selectedItem.includes(item.value)) {
                     isSelected = true;
                 }
                 return (
                     <SelectBox
                         key={index}
                         handleClick={handleSelect}
-                        name={item}
+                        name={item.value}
                         isSelected={isSelected}
                         isActive={true}
                     />

@@ -59,7 +59,7 @@ const Practice = () => {
                         flexDirection: 'column',
                         alignItems: 'center',
                         height: '100%',
-                        paddingTop: '30px',
+                        paddingTop: '20px',
                     }}
                 >
                     <Box
@@ -76,6 +76,7 @@ const Practice = () => {
                             onClick={() => {
                                 nav('/');
                             }}
+                            style={{ display: 'flex', alignItems: 'center' }}
                         >
                             <CloseIcon sx={{ cursor: 'pointer' }} />
                         </div>

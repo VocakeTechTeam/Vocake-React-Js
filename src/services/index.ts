@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { UserReigster } from '../types';
+import { UserOnboard, UserReigster } from '../types';
 import { toast } from 'react-toastify';
 
 export const api_v1 = axios.create({
@@ -34,10 +34,10 @@ api_v1.interceptors.response.use(
     },
 );
 
-export const enhanceServcie = async (word: string, text: string) => {
+export const enhanceServcie = async (word: string, prompt: string) => {
     try {
         const response = await api_v1.post('customer/vocake/enhance-text', {
-            text: text,
+            prompt: prompt,
             word: word,
             keySecret: 'NO',
         });
@@ -53,11 +53,11 @@ export const enhanceServcie = async (word: string, text: string) => {
     }
 };
 
-export const signUpService = async (userRegister: UserReigster) => {
+export const signUpService = async (email: string) => {
     try {
         const response = await api_v1.post(`customer/register`, {
-            email: userRegister.email,
-            keySecreet: 'CUSTOMER_REGISTER',
+            email: email,
+            keySecret: 'CUSTOMER_REGISTER',
             role: 'CUSTOMER',
         });
         if (response.status == 200) {
@@ -80,20 +80,51 @@ export const loginService = async (email: string, password: string) => {
     }
 };
 
-export const verifyOtpService = async (
-    userRegister: UserReigster,
-    otp: string,
-) => {
+export const verifyOtpService = async (email: string | null, otp: string) => {
     try {
         const response = await api_v1.post(
-            `customer/verify-otp?otp=${otp}`,
-            userRegister,
+            `customer/verify-otp?otp=${otp}&email=${email}`,
         );
-        if (response.data.payload.token) {
-            return response.data.payload.token;
+        console.log(response.status);
+        if (response.status == 200) {
+            return response.data.payload.xCodeCustomer;
         } else {
-            return null;
+            console.log('false');
+            return false;
         }
+    } catch (error) {
+        return error;
+    }
+};
+
+export const onboardService = async (xCode: string) => {
+    const data = {
+        keySecret: 'CUSTOMER_SECRET',
+        xCode: 'rBhguHHbpU',
+        password: '1234',
+        email: 'henryhoangduong@gmail.com',
+        fullName: 'CUSTOMER',
+        phoneNumber: '0934482064',
+        city: 'ABC',
+        country: 'VIETNAM',
+        role: 'CUSTOMER',
+        subscriptionUser: 'LEVEL1',
+        //List Question
+        nativeLanguage: ['VIETNAMESE'],
+        rangeAge: 'BETWEEN1020',
+        topicInterest: ['SOCIALIZING', 'CULTURE', 'BUSINESS'],
+        languageLearn: ['ENGLISH'],
+        purposeEnglish: ['ACCELERATECARRER', 'SELFIMPROVEMENT'],
+        challengeInEnglish: ['ENGLISHMIGHTHARD', 'HARD2STAYMOTIVATED'],
+        levelUser: 'UPPERIMMEDIATE',
+        improveEnglish: ['GAINCONFIDENCESPEAKING', 'IMPROVELISTENINGSKILLS'],
+        practiceEnglish: ['FEWTIMESEACHMONTH', 'FEWMINUTESADAY'],
+    };
+    try {
+        const response = await axios.post(
+            `${process.env.REACT_APP_VOCAKE_API}/api/v1/customer/onboard`,
+            data,
+        );
     } catch (error) {
         return error;
     }

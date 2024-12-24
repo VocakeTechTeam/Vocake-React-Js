@@ -25,14 +25,14 @@ const Age = ({ handleStep }: Props) => {
             <h2>How old are you</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
-                if (item == selectedItem) {
+                if (item.value == selectedItem) {
                     isSelected = true;
                 }
                 return (
                     <SelectBox
                         key={index}
                         handleClick={handleSelect}
-                        name={item}
+                        name={item.value}
                         isSelected={isSelected}
                         isActive={true}
                     />

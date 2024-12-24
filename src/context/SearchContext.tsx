@@ -6,7 +6,7 @@ import {
     useState,
 } from 'react';
 import { useContext } from 'react';
-import { api_v1 } from '../api';
+import { api_v1 } from '../services';
 import SpinModal from '../components/SpinModal';
 import { toast } from 'react-toastify';
 
@@ -67,10 +67,6 @@ export const SearchContextProvider: React.FC<{ children: ReactNode }> = ({
             const res = await api_v1.post('customer/lib/searching', {
                 vocab: userSearch.toLowerCase(),
             });
-            console.log(
-                res.data.payload.wordAPIDictionary.meanings[0].definitions[0]
-                    .definition,
-            );
             setUserSearch(null);
             for (
                 let i = 0;

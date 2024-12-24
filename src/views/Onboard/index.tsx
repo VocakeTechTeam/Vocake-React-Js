@@ -18,21 +18,28 @@ import ChallengeReassure from './ChallengeReassure';
 import ChooseNativeLang from './ChooseNativeLang';
 import TopicReassure from './TopicReassure';
 import { Theme } from '@mui/material/styles';
+import { onboardService } from '../../services';
 
 const Onboard = () => {
     const classes = useStyles();
     const [step, setStep] = useState<number>(1);
     const [challenge, setChallenge] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
     const nav = useNavigate();
-    useEffect(() => {
-        if (step == totalStep + 1) {
-            nav('/');
-        }
-    }, [step]);
 
-    const handleStep = () => {
-        if (step <= totalStep) {
+    useEffect(() => {
+        const getData = async () => {
+            setLoading(true);
+            await onboardService('');
+            setLoading(false);
+        };
+        getData();
+    }, []);
+
+    const handleStep = async () => {
+        if (step < totalStep) {
             setStep(step + 1);
+        } else {
         }
     };
     const handleStepBack = () => {
@@ -60,7 +67,7 @@ const Onboard = () => {
         <Age handleStep={handleStep} />,
     ];
     const totalStep = arr.length;
-
+    if (loading) return <>....loading</>;
     return (
         <Box className={classes.root}>
             <Box className={classes.headerContainer}>

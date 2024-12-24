@@ -4,7 +4,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import TranslateIcon from '@mui/icons-material/Translate';
 import { useState } from 'react';
-import { enhanceServcie } from '../../api';
+import { enhanceServcie } from '../../services';
 import { useSearch } from '../../context/SearchContext';
 import { useRef } from 'react';
 import AddToList from './components/AddToList';

@@ -136,6 +136,7 @@ const UserOnboardSlice = createSlice({
             if (state.hasOwnProperty(name)) {
                 (state as any)[name] = value;
             }
+            console.log(JSON.stringify(state, null, 2));
         },
     },
 });

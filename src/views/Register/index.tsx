@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState, useRef } from 'react';
 import { Box, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import image1 from '../../assets/image1.png';
@@ -7,9 +7,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import { useNavigate } from 'react-router-dom';
-import VerificationModal from './components/VerificationModal';
-import { UserReigster } from '../../types';
-import { signUpService, verifyOtpService } from '../../api';
+import { signUpService, verifyOtpService } from '../../services';
 import SpinModal from '../../components/SpinModal';
 import { useAuth } from '../../context/AuthContext';
 import { Theme, useTheme } from '@mui/material/styles';
@@ -20,42 +18,24 @@ import { RootState } from '../../store/store';
 import { useDispatch } from 'react-redux';
 import { updateOnboard } from '../../store/store';
 import { useSelector } from 'react-redux';
+import VerificationModal from './components/VerificationModal';
 
 const Register = () => {
     const theme = useTheme();
-    const [open, setOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
     const { isAuth } = useAuth();
     const dispatch = useDispatch();
-    const onboard = useSelector((state: RootState) => state.userOnboard);
-    useEffect(() => {
-        if (isAuth) {
-            nav('/');
-        }
-    }, []);
-
-    const handleClose = () => setOpen(false);
-    const [otp, setOtp] = useState<string>('');
     const nav = useNavigate();
 
+    const [loading, setLoading] = useState<boolean>(false);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const onboard = useSelector((state: RootState) => state.userOnboard);
+    const [otp, setOtp] = useState<string>('');
+    const handleOtpChange = (otp: string) => {
+        setOtp(otp);
+    };
     const handleUpdate = (name: string, value: string) => {
         return dispatch(updateOnboard({ name, value }));
     };
-
-    // useEffect(() => {
-    //     if (otp.length == 6) {
-    //         const verifyOtp = async () => {
-    //             setLoading(true);
-    //             const token = await verifyOtpService(user, otp);
-    //             if (token !== null)
-    //                 localStorage.setItem('vocake_access_token', token);
-    //             setLoading(false);
-    //             nav('/onboard');
-    //         };
-    //         setOpen(false);
-    //         verifyOtp();
-    //     }
-    // }, [otp]);
 
     const [emailError, setEmailError] = useState<null | string>(null);
     const [passwordError, setPasswordError] = useState<null | string>(null);
@@ -65,6 +45,32 @@ const Register = () => {
     const [conuntryError, setCountryError] = useState<null | string>(null);
     const [cityError, setCityError] = useState<null | string>(null);
     const [fullNameError, setFullNameError] = useState<null | string>(null);
+    useEffect(() => {
+        if (isAuth) {
+            nav('/');
+        }
+    }, []);
+    useEffect(() => {
+        const verifyOtp = async () => {
+            if (otp.length == 6) {
+                setLoading(true);
+                try {
+                    const res = await verifyOtpService(onboard.email, otp);
+                    console.log(res);
+                    if (res) {
+                        nav('/onboard');
+                    }
+                    setIsModalOpen(false);
+                    setLoading(false);
+                } catch (error) {
+                    console.log(error);
+                    setLoading(false);
+                    setIsModalOpen(false);
+                }
+            }
+        };
+        verifyOtp();
+    }, [otp]);
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setPasswordError(null);
         setEmailError(null);
@@ -73,9 +79,6 @@ const Register = () => {
         setCountryError(null);
         setFullNameError(null);
         handleUpdate(e.target.name, e.target.value);
-    };
-    const handleOtp = (otp: string) => {
-        setOtp(otp);
     };
     const handleSignUp = async () => {
         if (!onboard.email || !onboard.email?.includes('@')) {
@@ -96,24 +99,28 @@ const Register = () => {
         } else if (onboard.password !== onboard.password_retry) {
             setPasswordError('Password unmatched');
         } else {
-            nav('/onboard');
-            // setLoading(true);
-            // const res = await signUpService(user);
-            // setLoading(false);
-            // if (res) {
-            //     setOpen(true);
-            // }
+            try {
+                setLoading(true);
+                const res = await signUpService(onboard.email);
+                setLoading(false);
+                if (res) {
+                    setIsModalOpen(true);
+                }
+            } catch {}
         }
     };
     const styles = useStyles(theme);
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+    };
     return (
         <Box className={styles.root}>
-            {/* <VerificationModal
-                hanldeClose={handleClose}
-                isOpen={open}
-                handleChange={handleOtp}
+            <VerificationModal
+                isOpen={isModalOpen}
+                handleChange={handleOtpChange}
+                hanldeClose={handleModalClose}
             />
-            <SpinModal isOpen={loading} /> */}
+            <SpinModal isOpen={loading} />
             <Box className={styles.container1}>
                 <Box className={styles.container3}>
                     <Typography
