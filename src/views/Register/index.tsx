@@ -56,7 +56,7 @@ const Register = () => {
                 setLoading(true);
                 try {
                     const res = await verifyOtpService(onboard.email, otp);
-                    console.log(res);
+                    handleUpdate('xCode', res);
                     if (res) {
                         nav('/onboard');
                     }
@@ -78,7 +78,18 @@ const Register = () => {
         setCityError(null);
         setCountryError(null);
         setFullNameError(null);
-        handleUpdate(e.target.name, e.target.value);
+        if (e.target.name == 'country') {
+            handleUpdate(
+                e.target.name,
+                e.target.value
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/\s+/g, '')
+                    .toUpperCase(),
+            );
+        } else {
+            handleUpdate(e.target.name, e.target.value);
+        }
     };
     const handleSignUp = async () => {
         if (!onboard.email || !onboard.email?.includes('@')) {

@@ -8,6 +8,7 @@ import {
 } from '../../constant';
 import { useDispatch } from 'react-redux';
 import { updateOnboard } from '../../store/store';
+import { getTypesFromValues } from '../../utility';
 type Props = {
     handleStep: () => void;
 };
@@ -19,7 +20,10 @@ const ChooseInterestedTopic = ({ handleStep }: Props) => {
         return dispatch(updateOnboard({ name, value }));
     };
     const handleContinue = () => {
-        handleUpdate('topicInterest', selectedItem);
+        handleUpdate(
+            'topicInterest',
+            getTypesFromValues(choices, selectedItem),
+        );
         handleStep();
     };
     const classes = useStyles();

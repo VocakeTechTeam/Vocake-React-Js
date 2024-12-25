@@ -5,6 +5,7 @@ import { makeStyles, createStyles } from '@mui/styles';
 import { LanguageWantToLearnChoices as choices } from '../../constant';
 import { useDispatch } from 'react-redux';
 import { updateOnboard } from '../../store/store';
+import { getTypesFromValues } from '../../utility';
 type Props = {
     handleStep: () => void;
 };
@@ -16,7 +17,8 @@ const ChooseLangWantToLearn = ({ handleStep }: Props) => {
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const classes = useStyles();
     const handleSelect = (item: string) => {
-        handleUpdate('languageLearn', [item]);
+        // @ts-ignore
+        handleUpdate('languageLearn', getTypesFromValues(choices, [item]));
         handleStep();
     };
     const dispatch = useDispatch();
@@ -29,14 +31,14 @@ const ChooseLangWantToLearn = ({ handleStep }: Props) => {
             <h2>What language do you want to learn?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
-                if (item.name == selectedItem) {
+                if (item.value == selectedItem) {
                     isSelected = true;
                 }
                 return (
                     <SelectBox
                         key={index}
                         handleClick={handleSelect}
-                        name={item.name}
+                        name={item.value}
                         isSelected={isSelected}
                         isActive={item.isActive}
                     />

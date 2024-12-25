@@ -5,6 +5,8 @@ import SelectBox from './components/SelectBox';
 import { WhyBetterEnglishChoices as choices } from '../../constant';
 import { useDispatch } from 'react-redux';
 import { updateOnboard } from '../../store/store';
+import { getTypesFromValues } from '../../utility';
+
 type Props = {
     handleStep: () => void;
 };
@@ -26,7 +28,10 @@ const WhyBetterEnglish = ({ handleStep }: Props) => {
         });
     };
     const handleContinue = () => {
-        handleUpdate('purposeEnglish', selectedItem);
+        handleUpdate(
+            'purposeEnglish',
+            getTypesFromValues(choices, selectedItem),
+        );
         handleStep();
     };
     return (

@@ -72,7 +72,7 @@ const backHTML = (
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexDirection: 'column',
-                gap: 3,
+                gap: 1,
             }}
         >
             <Typography
@@ -101,7 +101,8 @@ const backHTML = (
                 sx={{
                     display: 'flex',
                     flexDirection: 'row',
-                    gap: 0.6, }}
+                    gap: 0.6,
+                }}
             >
                 <Typography
                     sx={{

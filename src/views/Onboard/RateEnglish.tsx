@@ -13,7 +13,7 @@ const RateEnglish = ({ handleStep }: Props) => {
     const classes = useStyles();
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const handleSelect = (item: string) => {
-        handleUpdate('levelUser', item);
+        handleUpdate('levelUser', 'UPPERIMMEDIATE');
         handleStep();
     };
     const dispatch = useDispatch();

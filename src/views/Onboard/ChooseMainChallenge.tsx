@@ -5,6 +5,7 @@ import { makeStyles, createStyles } from '@mui/styles';
 import { MainChallengeChoices as choices } from '../../constant';
 import { useDispatch } from 'react-redux';
 import { updateOnboard } from '../../store/store';
+import { getTypesFromValues } from '../../utility';
 type Props = {
     handleStep: () => void;
     onSelect: (challenge: string) => void;
@@ -14,7 +15,7 @@ const ChooseMainChallenge = ({ handleStep, onSelect }: Props) => {
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const classes = useStyles();
     const handleSelect = (item: string) => {
-        handleUpdate('challengeInEnglish', [item]);
+        handleUpdate('challengeInEnglish', getTypesFromValues(choices, [item]));
         onSelect(item);
         handleStep();
     };

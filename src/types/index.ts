@@ -28,6 +28,7 @@ export type UserOnboard = UserReigster & {
     levelUser: string | null;
     improveEnglish: string[] | null;
     practiceEnglish: string[] | null;
+    xCode: string | null;
 };
 
 export interface Word {

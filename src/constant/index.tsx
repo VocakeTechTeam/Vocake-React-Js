@@ -18,6 +18,14 @@ export enum EnumImproveEnglish {
     OTHERS,
     SKIP_OTHERS,
 }
+enum EnumPurposeEnglish {
+    TRAVELORLIVEABROAD,
+    ACCELERATECARRER,
+    TALK2FOREIGNERS,
+    SELFIMPROVEMENT,
+    SPEAK2KID,
+    OTHERSPURPOSE,
+}
 export enum EnumLanguageLearn {
     ENGLISH,
     FINNISH,
@@ -43,15 +51,15 @@ export enum EnumPracticeEnglish {
     SKIP_OTHERS,
 }
 export const NativeLanguageChoices = [
-    'Korean',
-    'Japanese',
-    'Chinese',
-    'Spanish',
-    'German',
-    'French',
-    'Portuguese',
-    'Polish',
-    'Vietnamese',
+    { value: 'Korean', type: 'KOREAN' },
+    { value: 'Japanese', type: 'JAPANESE' },
+    { value: 'Chinese', type: 'CHINESE' },
+    { value: 'Spanish', type: 'SPANISH' },
+    { value: 'German', type: 'GERMAN' },
+    { value: 'French', type: 'FRENCH' },
+    { value: 'Portuguese', type: 'PORTUGUESE' },
+    { value: 'Polish', type: 'POLISH' },
+    { value: 'Vietnamese', type: 'VIETNAMESE' },
 ];
 export enum EnumRangeAge {
     UNDER10,
@@ -73,13 +81,13 @@ export const AgeChoices: {
     value: string;
     type: string;
 }[] = [
-    { value: 'Under 10 years old', type: '' },
-    { value: 'Between 10 and 20 years old', type: '' },
-    { value: 'Between 21 and 25 years old', type: '' },
-    { value: 'Between 26 and 35 years old', type: '' },
-    { value: 'Between 36 and 45 years old', type: '' },
-    { value: 'Between 46 and 55 years old', type: '' },
-    { value: '56 years old or older', type: '' },
+    { value: 'Under 10 years old', type: 'UNDER10' },
+    { value: 'Between 10 and 20 years old', type: 'BETWEEN1020' },
+    { value: 'Between 21 and 25 years old', type: 'BETWEEN2125' },
+    { value: 'Between 26 and 35 years old', type: 'BETWEEN2635' },
+    { value: 'Between 36 and 45 years old', type: 'BETWEEN3645' },
+    { value: 'Between 46 and 55 years old', type: 'ABOVE56' },
+    { value: '56 years old or older', type: 'ABOVE56' },
 ];
 
 export const ChallengeReassureChoices = {
@@ -146,39 +154,42 @@ export const InterestedTopicChoices: {
 ];
 
 export const LanguageWantToLearnChoices = [
-    { name: '🇺🇸 English', isActive: true, type: 'ENGLISH' },
-    { name: '🇫🇮 Finnish', isActive: false, type: 'FINNISH' },
+    { value: '🇺🇸 English', isActive: true, type: 'ENGLISH' },
+    { value: '🇫🇮 Finnish', isActive: false, type: 'FINNISH' },
 ];
 
 export const MainChallengeChoices: {
     value: string;
     type: string;
 }[] = [
-    { value: "⏰ It's hard to find time", type: '' },
-    { value: "🚀 It's hard to stay motivated", type: '' },
-    { value: '🧠 Remembering what I learned', type: '' },
-    { value: '😔 English might be too hard', type: '' },
+    { value: "⏰ It's hard to find time", type: 'HARD2FINDTIME' },
+    { value: "🚀 It's hard to stay motivated", type: 'HARD2STAYMOTIVATED' },
+    { value: '🧠 Remembering what I learned', type: 'REMEMBERWHATILEARN' },
+    { value: '😔 English might be too hard', type: 'ENGLISHMIGHTHARD' },
 ];
 
 export const ChooseWhereToImpChoices: {
     value: string;
     type: string;
 }[] = [
-    { value: '👄 Improve pronunciation', type: '' },
-    { value: '🗣️ Gain confidence in speaking', type: '' },
-    { value: '💪 Learn useful words and phrases', type: '' },
-    { value: '👂 Improve my listening skills', type: '' },
-    { value: '🎯 Others', type: '' },
+    { value: '👄 Improve pronunciation', type: 'IMPROVEPRONUNCIATION' },
+    { value: '🗣️ Gain confidence in speaking', type: 'GAINCONFIDENCESPEAKING' },
+    {
+        value: '💪 Learn useful words and phrases',
+        type: 'LEARNUSEFULWORDSANDPHRASES',
+    },
+    { value: '👂 Improve my listening skills', type: 'IMPROVELISTENINGSKILLS' },
+    { value: '🎯 Others', type: 'OTHERS' },
 ];
 
 export const HowOftenChoices: {
     value: string;
     type: string;
 }[] = [
-    { value: 'A few minutes every day', type: '' },
-    { value: 'A few times each week', type: '' },
-    { value: 'A few times each month', type: '' },
-    { value: 'I cant commit right now', type: '' },
+    { value: 'A few minutes every day', type: 'FEWMINUTESADAY' },
+    { value: 'A few times each week', type: 'FEWTIMESEACHDAY' },
+    { value: 'A few times each month', type: 'FEWTIMESEACHMONTH' },
+    { value: 'I cant commit right now', type: 'CANNOTCOMMITNOW' },
 ];
 
 export const EnglishRateChoices = [
@@ -211,12 +222,12 @@ export const EnglishRateChoices = [
 ];
 
 export const WhyBetterEnglishChoices = [
-    { value: '🚗 Travel or live abroad', type: '' },
-    { value: '🚀 Accelerate my career', type: '' },
-    { value: '🎙️ Talk to foreigners', type: '' },
-    { value: '🕹️ Self improvement', type: '' },
-    { value: '👶 Speak English to my kids', type: '' },
-    { value: 'Other' },
+    { value: '🚗 Travel or live abroad', type: 'TRAVELORLIVEABROAD' },
+    { value: '🚀 Accelerate my career', type: 'ACCELERATECARRER' },
+    { value: '🎙️ Talk to foreigners', type: 'TALK2FOREIGNERS' },
+    { value: '🕹️ Self improvement', type: 'SELFIMPROVEMENT' },
+    { value: '👶 Speak English to my kids', type: 'SPEAK2KID' },
+    { value: 'Other', type: 'OTHER' },
 ];
 
 export const ChallengeReassureMapping: Record<

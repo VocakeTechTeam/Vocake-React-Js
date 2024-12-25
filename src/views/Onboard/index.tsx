@@ -19,29 +19,28 @@ import ChooseNativeLang from './ChooseNativeLang';
 import TopicReassure from './TopicReassure';
 import { Theme } from '@mui/material/styles';
 import { onboardService } from '../../services';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 const Onboard = () => {
     const classes = useStyles();
     const [step, setStep] = useState<number>(1);
     const [challenge, setChallenge] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const nav = useNavigate();
-
-    useEffect(() => {
-        const getData = async () => {
-            setLoading(true);
-            await onboardService('');
-            setLoading(false);
-        };
-        getData();
-    }, []);
-
+    const onboard = useSelector((state: RootState) => state.userOnboard);
     const handleStep = async () => {
-        if (step < totalStep) {
+        if (step <= totalStep) {
             setStep(step + 1);
-        } else {
         }
     };
+    useEffect(() => {
+        const onboardUser = async () => {
+            if (step == totalStep+1) {
+                await onboardService(onboard);
+            }
+        };
+        onboardUser();
+    }, [step]);
     const handleStepBack = () => {
         if (step > 1) {
             setStep(step - 1);

@@ -5,7 +5,7 @@ import { makeStyles, createStyles } from '@mui/styles';
 import { NativeLanguageChoices as choices } from '../../constant';
 import { useDispatch } from 'react-redux';
 import { updateOnboard } from '../../store/store';
-
+import { getTypesFromValues } from '../../utility';
 type Props = {
     handleStep: () => void;
 };
@@ -19,7 +19,7 @@ const ChooseNativeLang = ({ handleStep }: Props) => {
     };
 
     const handleSelect = (item: string) => {
-        handleUpdate('nativeLanguage', [item]);
+        handleUpdate('nativeLanguage', getTypesFromValues(choices, [item]));
         handleStep();
     };
     return (
@@ -27,14 +27,14 @@ const ChooseNativeLang = ({ handleStep }: Props) => {
             <h2>What is your native language?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
-                if (item == selectedItem) {
+                if (item.value == selectedItem) {
                     isSelected = true;
                 }
                 return (
                     <SelectBox
                         key={index}
                         handleClick={handleSelect}
-                        name={item}
+                        name={item.value}
                         isSelected={isSelected}
                         isActive={true}
                     />

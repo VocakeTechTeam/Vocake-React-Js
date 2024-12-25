@@ -27,6 +27,7 @@ const userOnboardInitialState: UserOnboard = {
     levelUser: null,
     improveEnglish: null,
     practiceEnglish: null,
+    xCode: null,
 };
 const myListCollectionInitialState: MyListCollection = {
     collections: [

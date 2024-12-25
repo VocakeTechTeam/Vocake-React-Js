@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { UserOnboard, UserReigster } from '../types';
-import { toast } from 'react-toastify';
-
+import { removeKeyValue } from '../utility';
 export const api_v1 = axios.create({
     baseURL: `${process.env.REACT_APP_VOCAKE_API}/api/v1/`,
 });
@@ -85,11 +84,9 @@ export const verifyOtpService = async (email: string | null, otp: string) => {
         const response = await api_v1.post(
             `customer/verify-otp?otp=${otp}&email=${email}`,
         );
-        console.log(response.status);
         if (response.status == 200) {
             return response.data.payload.xCodeCustomer;
         } else {
-            console.log('false');
             return false;
         }
     } catch (error) {
@@ -97,34 +94,15 @@ export const verifyOtpService = async (email: string | null, otp: string) => {
     }
 };
 
-export const onboardService = async (xCode: string) => {
-    const data = {
-        keySecret: 'CUSTOMER_SECRET',
-        xCode: 'rBhguHHbpU',
-        password: '1234',
-        email: 'henryhoangduong@gmail.com',
-        fullName: 'CUSTOMER',
-        phoneNumber: '0934482064',
-        city: 'ABC',
-        country: 'VIETNAM',
-        role: 'CUSTOMER',
-        subscriptionUser: 'LEVEL1',
-        //List Question
-        nativeLanguage: ['VIETNAMESE'],
-        rangeAge: 'BETWEEN1020',
-        topicInterest: ['SOCIALIZING', 'CULTURE', 'BUSINESS'],
-        languageLearn: ['ENGLISH'],
-        purposeEnglish: ['ACCELERATECARRER', 'SELFIMPROVEMENT'],
-        challengeInEnglish: ['ENGLISHMIGHTHARD', 'HARD2STAYMOTIVATED'],
-        levelUser: 'UPPERIMMEDIATE',
-        improveEnglish: ['GAINCONFIDENCESPEAKING', 'IMPROVELISTENINGSKILLS'],
-        practiceEnglish: ['FEWTIMESEACHMONTH', 'FEWMINUTESADAY'],
-    };
+export const onboardService = async (userOnboard: UserOnboard) => {
+    console.log(userOnboard);
     try {
         const response = await axios.post(
             `${process.env.REACT_APP_VOCAKE_API}/api/v1/customer/onboard`,
-            data,
+            userOnboard,
         );
+        console.log(response);
+        return response;
     } catch (error) {
         return error;
     }

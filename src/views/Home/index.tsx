@@ -48,7 +48,6 @@ const Home = () => {
         }
     };
 
-    const addToList = () => {};
     const handleClickAddToList = () => {
         setIsAddToList(!isAddToList);
     };

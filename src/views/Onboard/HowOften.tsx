@@ -5,6 +5,7 @@ import SelectBox from './components/SelectBox';
 import { HowOftenChoices as choices } from '../../constant';
 import { useDispatch } from 'react-redux';
 import { updateOnboard } from '../../store/store';
+import { getTypesFromValues } from '../../utility';
 type Props = {
     handleStep: () => void;
 };
@@ -13,7 +14,7 @@ const HowOften = ({ handleStep }: Props) => {
     const classes = useStyles();
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const handleSelect = (item: string) => {
-        handleUpdate('practiceEnglish', [item]);
+        handleUpdate('practiceEnglish', getTypesFromValues(choices, [item]));
         handleStep();
     };
     const dispatch = useDispatch();

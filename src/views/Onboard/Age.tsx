@@ -17,7 +17,9 @@ const Age = ({ handleStep }: Props) => {
     };
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const handleSelect = (item: string) => {
-        handleUpdate('rangeAge', item);
+        const choice = choices.find((choice) => choice.value === item);
+        const type = choice ? choice.type : '';
+        handleUpdate('rangeAge', type);
         handleStep();
     };
     return (
