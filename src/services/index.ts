@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { UserOnboard, UserReigster } from '../types';
-import { removeKeyValue } from '../utility';
 export const api_v1 = axios.create({
     baseURL: `${process.env.REACT_APP_VOCAKE_API}/api/v1/`,
 });
@@ -34,6 +33,8 @@ api_v1.interceptors.response.use(
 );
 
 export const enhanceServcie = async (word: string, prompt: string) => {
+    console.log("word: ", word)
+    console.log("promp: ",prompt)
     try {
         const response = await api_v1.post('customer/vocake/enhance-text', {
             prompt: prompt,

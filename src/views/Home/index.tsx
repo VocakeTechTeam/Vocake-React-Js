@@ -15,14 +15,12 @@ import AddToListModal from './components/AddToListModal';
 import Overlay from '../../components/Overlay';
 
 const Home = () => {
-    const [promptEnhance, setPromptEnhance] = useState<string | null>(null);
-    const [textGrammar, setTextGrammer] = useState<string | null>(null);
-    const [textScore, setTextScore] = useState<any>();
     const [quickPracticeLoading, setQuickPracticeLoading] = useState(false);
     const [isAddToList, setIsAddToList] = useState<boolean>(false);
     const { search, wordSearch } = useSearch();
     const [userSentence, setUserSentence] = useState('');
-
+    const [grammarScore, setGrammarScore] = useState<string | null>(null);
+    const [vocabScore, setVocabScore] = useState<string | null>(null);
     const handlePractice = async () => {
         if (userSentence.length == 0) {
             toast.error('Please insert your sentence');
@@ -33,9 +31,11 @@ const Home = () => {
             wordSearch?.word ? wordSearch?.word : 'ironic',
             userSentence,
         );
-        setPromptEnhance(res.promptEnhance);
-        setTextGrammer(res.textGrammar);
-        setTextScore(res.textScore);
+        console.log(res)
+        if (res) {
+            setGrammarScore(res.grammarScore)
+            setVocabScore(res.vocabScore)
+        }
         setQuickPracticeLoading(false);
         setUserSentence('');
     };
@@ -230,10 +230,10 @@ const Home = () => {
                                 'Check'
                             )}
                         </p>
-                        {promptEnhance && promptEnhance}
-                        <br />
-                        <br />
-                        {textGrammar && textGrammar}
+                    </Box>
+                    <Box>
+                        {vocabScore && vocabScore}
+                        {grammarScore && grammarScore}
                     </Box>
                 </Box>
             </Box>

@@ -137,8 +137,9 @@ export const useStyles = makeStyles((theme: Theme) =>
         quickPracticeContainer: {
             alignItems: 'flex-start',
             display: 'flex',
-            flexDirection: 'column',
+            flexDirection: 'row',
             height: '300px',
+            
         },
         quickPracticeBox: {
             width: '50%',
