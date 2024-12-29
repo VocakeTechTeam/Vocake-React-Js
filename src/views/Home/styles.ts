@@ -139,7 +139,6 @@ export const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'row',
             height: '300px',
-            
         },
         quickPracticeBox: {
             width: '50%',

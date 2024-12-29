@@ -36,7 +36,10 @@ const Onboard = () => {
     useEffect(() => {
         const onboardUser = async () => {
             if (step == totalStep + 1) {
-                await onboardService(onboard);
+                const res = await onboardService(onboard);
+                if (res) {
+                    nav("/")
+                }
             }
         };
         onboardUser();

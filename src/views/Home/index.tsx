@@ -31,10 +31,10 @@ const Home = () => {
             wordSearch?.word ? wordSearch?.word : 'ironic',
             userSentence,
         );
-        console.log(res)
+        console.log(res);
         if (res) {
-            setGrammarScore(res.grammarScore)
-            setVocabScore(res.vocabScore)
+            setGrammarScore(res.grammarScore);
+            setVocabScore(res.vocabScore);
         }
         setQuickPracticeLoading(false);
         setUserSentence('');
@@ -231,9 +231,74 @@ const Home = () => {
                             )}
                         </p>
                     </Box>
-                    <Box>
-                        {vocabScore && vocabScore}
-                        {grammarScore && grammarScore}
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flex: 1,
+                            height: '100%',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            gap: 5,
+                        }}
+                    >
+                        {vocabScore && (
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: 2,
+                                }}
+                            >
+                                <Box
+                                    sx={{
+                                        border: '#55AD9B solid 3px',
+                                        borderRadius: 100,
+                                        width: 80,
+                                        height: 80,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontWeight: 'bold',
+                                        color: '#55AD9B ',
+                                    }}
+                                >
+                                    {vocabScore}/10
+                                </Box>
+                                <Typography sx={{ fontWeight: 'bold' }}>
+                                    Vocab Score
+                                </Typography>
+                            </Box>
+                        )}
+                        {grammarScore && (
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: 2,
+                                }}
+                            >
+                                <Box
+                                    sx={{
+                                        border: '#55AD9B solid 3px',
+                                        borderRadius: 100,
+                                        width: 80,
+                                        height: 80,
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontWeight: 'bold',
+                                        color: '#55AD9B ',
+                                    }}
+                                >
+                                    {grammarScore}/10
+                                </Box>
+                                <Typography sx={{ fontWeight: 'bold' }}>
+                                    Grammar Score
+                                </Typography>
+                            </Box>
+                        )}
                     </Box>
                 </Box>
             </Box>

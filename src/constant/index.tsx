@@ -179,7 +179,7 @@ export const ChooseWhereToImpChoices: {
         type: 'LEARNUSEFULWORDSANDPHRASES',
     },
     { value: '👂 Improve my listening skills', type: 'IMPROVELISTENINGSKILLS' },
-    { value: '🎯 Others', type: 'OTHERS' },
+    { value: '🎯 Others', type: 'SKIP_OTHERS' },
 ];
 
 export const HowOftenChoices: {
@@ -227,7 +227,7 @@ export const WhyBetterEnglishChoices = [
     { value: '🎙️ Talk to foreigners', type: 'TALK2FOREIGNERS' },
     { value: '🕹️ Self improvement', type: 'SELFIMPROVEMENT' },
     { value: '👶 Speak English to my kids', type: 'SPEAK2KID' },
-    { value: 'Other', type: 'OTHER' },
+    { value: 'Other', type: 'OTHERSPURPOSE' },
 ];
 
 export const ChallengeReassureMapping: Record<
