@@ -9,6 +9,7 @@ import { useAuth } from './context/AuthContext';
 import { MyList } from './views/MyList';
 import Student from './views/Teacher/Student';
 import ProfileLayout from './layout/profile-layout';
+import { Achievement, HelpAndFeedBack, Privacy, Setting, Upgrade } from './views/Profile';
 
 const PrivateRoute = () => {
     const { isAuth } = useAuth();
@@ -36,7 +37,13 @@ const Routes_ = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/profile" element={<ProfileLayout />}></Route>
+            <Route path="/profile" element={<ProfileLayout />}>
+                <Route path="achievement" element={<Achievement />} />
+                <Route path="setting" element={<Setting />} />
+                <Route path="privacy" element={<Privacy />} />
+                <Route path='upgrade' element={<Upgrade />} />
+                <Route path='help-and-feedback' element={<HelpAndFeedBack/>} />
+            </Route>
         </Routes>
     );
 };

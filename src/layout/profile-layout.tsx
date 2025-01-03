@@ -45,6 +45,9 @@ const ProfileLayout = () => {
                 >
                     <SidebarProfile />
                 </Box>
+                <Box className={classes.main}>
+                    <Outlet />
+                </Box>
             </Box>
         </Box>
     );
@@ -82,7 +85,7 @@ const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
             height: '90vh',
         },
         sidebar: {
-            width: '150px',
+            width: '250px',
             justifyContent: 'center',
             [theme.breakpoints.down('md')]: {
                 position: 'absolute',

@@ -5,6 +5,9 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExploreIcon from '@mui/icons-material/Explore';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import SearchIcon from '@mui/icons-material/Search';
+import PrivacyTipOutlinedIcon from '@mui/icons-material/PrivacyTipOutlined';
+import UpgradeIcon from '@mui/icons-material/Upgrade';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 export enum EnumTopic {
     BUSINESS,
     TRAVEL,
@@ -350,9 +353,32 @@ export const sidebarItemLists = [
         path: '/explore',
         icon: <ExploreIcon />,
     },
+];
+
+export const sidebarProfileItemLists = [
+    {
+        title: 'Achievement',
+        path: 'achievement',
+        icon: <SearchIcon />,
+    },
     {
         title: 'Setting',
-        path: '/setting',
+        path: 'setting',
         icon: <SettingsOutlinedIcon />,
+    },
+    {
+        title: 'Privacy',
+        path: 'privacy',
+        icon: <PrivacyTipOutlinedIcon />,
+    },
+    {
+        title: 'Upgrade',
+        path: 'upgrade',
+        icon: <UpgradeIcon />,
+    },
+    {
+        title: 'Help and feedback',
+        path: 'help-and-feedback',
+        icon: <HelpOutlineOutlinedIcon />,
     },
 ];
