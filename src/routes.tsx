@@ -8,6 +8,7 @@ import { Outlet, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import { MyList } from './views/MyList';
 import Student from './views/Teacher/Student';
+import ProfileLayout from './layout/profile-layout';
 
 const PrivateRoute = () => {
     const { isAuth } = useAuth();
@@ -35,6 +36,7 @@ const Routes_ = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/profile" element={<ProfileLayout />}></Route>
         </Routes>
     );
 };

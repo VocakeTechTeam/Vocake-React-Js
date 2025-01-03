@@ -1,3 +1,4 @@
 import MainLayout from './main-layout';
 import TeacherLayout from './teacher-layout';
-export { MainLayout, TeacherLayout };
+import ProfileLayout from './profile-layout';
+export { MainLayout, TeacherLayout, ProfileLayout };

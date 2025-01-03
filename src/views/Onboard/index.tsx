@@ -38,7 +38,7 @@ const Onboard = () => {
             if (step == totalStep + 1) {
                 const res = await onboardService(onboard);
                 if (res) {
-                    nav("/")
+                    nav('/');
                 }
             }
         };

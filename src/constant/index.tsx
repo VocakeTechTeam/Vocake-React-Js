@@ -1,3 +1,10 @@
+import { SideBarTeacherItemProps } from '../components/Sidebar/SidebarTeacher';
+import SettingsIcon from '@mui/icons-material/Settings';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import ExploreIcon from '@mui/icons-material/Explore';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import SearchIcon from '@mui/icons-material/Search';
 export enum EnumTopic {
     BUSINESS,
     TRAVEL,
@@ -239,3 +246,113 @@ export const ChallengeReassureMapping: Record<
     '🧠 Remembering what I learned': 'remember',
     '😔 English might be too hard': 'difficult',
 };
+
+export const SideBarTeacherItemArr1: SideBarTeacherItemProps[] = [
+    {
+        label: 'My classes',
+        icon: (
+            <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M4.49775 0.5H11.502C14.0528 0.5 15.4928 1.94675 15.5003 4.4975V11.5025C15.5003 14.0525 14.0528 15.5 11.502 15.5H4.49775C1.947 15.5 0.500252 14.0525 0.500252 11.5025V4.4975C0.500252 1.94675 1.947 0.5 4.49775 0.5ZM8.03705 12.395C8.3603 12.395 8.62955 12.155 8.65955 11.8325V4.19C8.68955 3.9575 8.5778 3.72425 8.3753 3.5975C8.16455 3.47 7.90955 3.47 7.7078 3.5975C7.50455 3.72425 7.3928 3.9575 7.41455 4.19V11.8325C7.4528 12.155 7.72205 12.395 8.03705 12.395ZM11.4878 12.395C11.8028 12.395 12.0721 12.155 12.1103 11.8325V9.3725C12.132 9.13175 12.0203 8.9075 11.817 8.78C11.6153 8.6525 11.3603 8.6525 11.1503 8.78C10.9471 8.9075 10.8353 9.13175 10.8653 9.3725V11.8325C10.8953 12.155 11.1646 12.395 11.4878 12.395ZM5.16453 11.8325C5.13453 12.155 4.86528 12.395 4.54203 12.395C4.21952 12.395 3.94952 12.155 3.92027 11.8325V6.65C3.89777 6.41675 4.00952 6.185 4.21277 6.0575C4.41453 5.93 4.67028 5.93 4.87278 6.0575C5.07453 6.185 5.18778 6.41675 5.16453 6.65V11.8325Z"
+                    fill={'#707FDD'} // Dynamically set icon color
+                />
+            </svg>
+        ),
+    },
+    {
+        label: 'Begin TEH 01',
+        icon: <>✨</>,
+    },
+    {
+        label: 'Advanced TEH 02',
+        icon: <>😎</>,
+    },
+    {
+        label: 'TEH 03',
+        icon: <>🎯</>,
+    },
+    {
+        label: 'TEH 04',
+        icon: <>😤</>,
+    },
+];
+
+export const SideBarTeacherItemArr2: SideBarTeacherItemProps[] = [
+    {
+        label: 'Settings',
+        icon: <SettingsIcon sx={{ width: 15, color: '#A6ABC8' }} />,
+    },
+    {
+        label: 'Payment',
+        icon: <AccountBalanceWalletIcon sx={{ width: 15, color: '#A6ABC8' }} />,
+    },
+    {
+        label: 'Account',
+        icon: (
+            <svg
+                width="12"
+                height="16"
+                viewBox="0 0 12 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M9.97047 4.46829C9.97047 6.67106 8.2043 8.43733 5.99998 8.43733C3.7964 8.43733 2.02949 6.67106 2.02949 4.46829C2.02949 2.26552 3.7964 0.5 5.99998 0.5C8.2043 0.5 9.97047 2.26552 9.97047 4.46829ZM6 15.5C2.74678 15.5 0 14.9712 0 12.9312C0 10.8904 2.76404 10.3804 6 10.3804C9.25397 10.3804 12 10.9092 12 12.9492C12 14.99 9.23596 15.5 6 15.5Z"
+                    fill="#A6ABC8"
+                />
+            </svg>
+        ),
+    },
+    {
+        label: 'Help',
+        icon: (
+            <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M4.75237 0.499023H11.2549C13.7974 0.499023 15.4999 2.28402 15.4999 4.93902V11.0673C15.4999 13.7148 13.7974 15.499 11.2549 15.499H4.75237C2.20987 15.499 0.499872 13.7148 0.499872 11.0673V4.93902C0.499872 2.28402 2.20987 0.499023 4.75237 0.499023ZM7.99243 5.79479C7.63994 5.79479 7.34743 5.50154 7.34743 5.14229C7.34743 4.77479 7.63994 4.48229 8.00743 4.48229C8.36743 4.48229 8.65993 4.77479 8.65993 5.14229C8.65993 5.50154 8.36743 5.79479 7.99243 5.79479ZM8.65231 10.8348C8.65231 11.1948 8.35981 11.4873 7.99231 11.4873C7.63231 11.4873 7.33981 11.1948 7.33981 10.8348V7.51976C7.33981 7.15901 7.63231 6.85976 7.99231 6.85976C8.35981 6.85976 8.65231 7.15901 8.65231 7.51976V10.8348Z"
+                    fill="#A6ABC8"
+                />
+            </svg>
+        ),
+    },
+];
+
+export const sidebarItemLists = [
+    {
+        title: 'Search',
+        path: '/',
+        icon: <SearchIcon />,
+    },
+    {
+        title: 'My list',
+        path: '/mylist',
+        icon: <ListAltIcon />,
+    },
+    {
+        title: 'Explore',
+        path: '/explore',
+        icon: <ExploreIcon />,
+    },
+    {
+        title: 'Setting',
+        path: '/setting',
+        icon: <SettingsOutlinedIcon />,
+    },
+];

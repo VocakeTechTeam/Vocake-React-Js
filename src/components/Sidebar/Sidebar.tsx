@@ -3,36 +3,10 @@ import React from 'react';
 import { Box } from '@mui/material';
 import List from '@mui/material/List';
 import { makeStyles, createStyles } from '@mui/styles';
-import SidebarItem from './components/SidebarItem';
+import SidebarItem from './SidebarItem';
 import { useLocation } from 'react-router-dom';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import ExploreIcon from '@mui/icons-material/Explore';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-import SearchIcon from '@mui/icons-material/Search';
 import { useAuth } from '../../context/AuthContext';
-const itemlsits = [
-    {
-        title: 'Search',
-        path: '/',
-        icon: <SearchIcon />,
-    },
-    {
-        title: 'My list',
-        path: '/mylist',
-        icon: <ListAltIcon />,
-    },
-    {
-        title: 'Explore',
-        path: '/explore',
-        icon: <ExploreIcon />,
-    },
-    {
-        title: 'Setting',
-        path: '/setting',
-        icon: <SettingsOutlinedIcon />,
-    },
-];
-
+import { sidebarItemLists } from '../../constant';
 const Sidebar = () => {
     const classes = sidebarStyles();
     const location = useLocation();
@@ -41,7 +15,7 @@ const Sidebar = () => {
         <Box className={classes.root}>
             <Box style={{ width: '100%' }}>
                 <List>
-                    {itemlsits.map((item, index) => (
+                    {sidebarItemLists.map((item, index) => (
                         <SidebarItem
                             style={{ marginTop: '2px' }}
                             key={index}

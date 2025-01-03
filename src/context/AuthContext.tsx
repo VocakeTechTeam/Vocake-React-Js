@@ -11,15 +11,15 @@ type AUTHCONTEXTYPE = {
 const AuthContext = createContext<AUTHCONTEXTYPE>({} as AUTHCONTEXTYPE);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [isAuth, setIsAuth] = useState<boolean>(false);
-    const [loading, setLoading] = useState<boolean>(true);
-    useEffect(() => {
-        const token = localStorage.getItem('vocake_access_token');
-        if (token !== null) {
-            setIsAuth(true);
-        }
-        setLoading(false);
-    }, []);
+    const [isAuth, setIsAuth] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
+    // useEffect(() => {
+    //     const token = localStorage.getItem('vocake_access_token');
+    //     if (token !== null) {
+    //         setIsAuth(true);
+    //     }
+    //     setLoading(false);
+    // }, []);
 
     const login = async (email: string, password: string) => {
         try {

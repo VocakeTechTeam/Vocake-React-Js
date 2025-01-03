@@ -55,8 +55,14 @@ export const Header = ({ toggleSideBar }: Props) => {
                     </Typography>
                 </Box>
                 <Avatar
+                    sx={{
+                        cursor: 'pointer',
+                    }}
                     alt="Remy Sharp"
                     src="https://thumbs.dreamstime.com/b/generative-ai-young-smiling-man-avatar-man-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-d-vector-people-279560903.jpg"
+                    onClick={() => {
+                        nav('/profile');
+                    }}
                 />
             </Box>
         </Box>

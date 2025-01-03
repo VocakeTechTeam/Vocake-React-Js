@@ -5,7 +5,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { makeStyles, createStyles } from '@mui/styles';
 import { Box } from '@mui/material';
-import { theme } from '../../../theme';
+import { theme } from '../../theme';
 import { useNavigate } from 'react-router-dom';
 
 interface SidebarItemProps {

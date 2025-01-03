@@ -1,13 +1,12 @@
-import { Box } from '@mui/material';
-import { createStyles, makeStyles } from '@mui/styles';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../components/Sidebar/Sidebar';
-import { Header } from '../components/Header';
+import { createStyles, makeStyles } from '@mui/styles';
 import { Theme, useTheme } from '@mui/material/styles';
-import { useEffect, useState } from 'react';
-import useMediaQuery from '@mui/material/useMediaQuery';
-
-const MainLayout = () => {
+import { useState, useEffect } from 'react';
+import { Box, useMediaQuery } from '@mui/material';
+import { Header } from '../components/Header';
+import { SidebarProfile } from '../components/Sidebar';
+const ProfileLayout = () => {
     const [isSideBarOpen, setSideBarOpen] = useState(false);
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
@@ -26,21 +25,13 @@ const MainLayout = () => {
         setLoading(false);
     });
     if (loading) return <>.....loading</>;
+
     return (
         <Box className={classes.root}>
             <Box className={classes.firstContainer}>
                 <Header toggleSideBar={toggleSideBar} />
             </Box>
             <Box className={classes.secondContainer}>
-                {isSideBarOpen && (
-                    <Box
-                        onClick={() => {
-                            setSideBarOpen(false);
-                        }}
-                        className={classes.overlay}
-                    />
-                )}
-
                 <Box
                     sx={(theme: Theme) => ({
                         [theme.breakpoints.down('md')]: {
@@ -52,17 +43,14 @@ const MainLayout = () => {
                     })}
                     className={classes.sidebar}
                 >
-                    <Sidebar />
-                </Box>
-                <Box className={classes.main}>
-                    <Outlet />
+                    <SidebarProfile />
                 </Box>
             </Box>
         </Box>
     );
 };
 
-export default MainLayout;
+export default ProfileLayout;
 
 interface UseStylesProps {
     isSideBarOpen: boolean;
