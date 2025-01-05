@@ -382,3 +382,95 @@ export const sidebarProfileItemLists = [
         icon: <HelpOutlineOutlinedIcon />,
     },
 ];
+
+export const timezones = [
+    { name: 'Baker Island Time', abbreviation: 'BIT', offset: 'UTC -12:00' },
+    { name: 'Niue Time', abbreviation: 'NUT', offset: 'UTC -11:00' },
+    {
+        name: 'Hawaii-Aleutian Standard Time',
+        abbreviation: 'HST',
+        offset: 'UTC -10:00',
+    },
+    {
+        name: 'Alaska Standard Time',
+        abbreviation: 'AKST',
+        offset: 'UTC -09:00',
+    },
+    {
+        name: 'Pacific Standard Time',
+        abbreviation: 'PST',
+        offset: 'UTC -08:00',
+    },
+    {
+        name: 'Mountain Standard Time',
+        abbreviation: 'MST',
+        offset: 'UTC -07:00',
+    },
+    {
+        name: 'Central Standard Time',
+        abbreviation: 'CST',
+        offset: 'UTC -06:00',
+    },
+    {
+        name: 'Eastern Standard Time',
+        abbreviation: 'EST',
+        offset: 'UTC -05:00',
+    },
+    {
+        name: 'Atlantic Standard Time',
+        abbreviation: 'AST',
+        offset: 'UTC -04:00',
+    },
+    { name: 'Argentina Time', abbreviation: 'ART', offset: 'UTC -03:00' },
+    { name: 'South Georgia Time', abbreviation: 'GST', offset: 'UTC -02:00' },
+    {
+        name: 'Azores Standard Time',
+        abbreviation: 'AZOT',
+        offset: 'UTC -01:00',
+    },
+    { name: 'Greenwich Mean Time', abbreviation: 'GMT', offset: 'UTC ±00:00' },
+    {
+        name: 'Central European Time',
+        abbreviation: 'CET',
+        offset: 'UTC +01:00',
+    },
+    {
+        name: 'Eastern European Time',
+        abbreviation: 'EET',
+        offset: 'UTC +02:00',
+    },
+    { name: 'Moscow Time', abbreviation: 'MSK', offset: 'UTC +03:00' },
+    {
+        name: 'Azerbaijan Standard Time',
+        abbreviation: 'AZT',
+        offset: 'UTC +04:00',
+    },
+    {
+        name: 'Pakistan Standard Time',
+        abbreviation: 'PKT',
+        offset: 'UTC +05:00',
+    },
+    {
+        name: 'Bangladesh Standard Time',
+        abbreviation: 'BST',
+        offset: 'UTC +06:00',
+    },
+    { name: 'Indochina Time', abbreviation: 'ICT', offset: 'UTC +07:00' },
+    { name: 'China Standard Time', abbreviation: 'CST', offset: 'UTC +08:00' },
+    { name: 'Japan Standard Time', abbreviation: 'JST', offset: 'UTC +09:00' },
+    {
+        name: 'Australian Eastern Standard Time',
+        abbreviation: 'AEST',
+        offset: 'UTC +10:00',
+    },
+    { name: 'Solomon Islands Time', abbreviation: 'SBT', offset: 'UTC +11:00' },
+    { name: 'Fiji Time', abbreviation: 'FJT', offset: 'UTC +12:00' },
+];
+
+export const avatarUrls = [
+    'https://assets.quizlet.com/static/i/animals/107.c3e123902d831a9.jpg',
+    'https://assets.quizlet.com/static/i/animals/108.3b3090077134db3.jpg',
+    'https://assets.quizlet.com/static/i/animals/109.5b75ca8158c771c.jpg',
+    'https://assets.quizlet.com/static/i/animals/110.36d90f6882d4593.jpg',
+    'https://assets.quizlet.com/static/i/animals/111.f9dd73353feb908.jpg',
+];

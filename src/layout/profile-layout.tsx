@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 import { Header } from '../components/Header';
 import { SidebarProfile } from '../components/Sidebar';
+
 const ProfileLayout = () => {
     const [isSideBarOpen, setSideBarOpen] = useState(false);
     const theme = useTheme();

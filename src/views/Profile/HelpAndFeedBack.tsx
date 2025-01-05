@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const HelpAndFeedBack = () => {
-  return (
-    <div>HelpAndFeedBack</div>
-  )
-}
+    return <div>HelpAndFeedBack</div>;
+};
 
-export default HelpAndFeedBack
+export default HelpAndFeedBack;
