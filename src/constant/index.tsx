@@ -354,6 +354,23 @@ export const sidebarItemLists = [
         icon: <ExploreIcon />,
     },
 ];
+export const sidebarItemListsV2 = [
+    {
+        title: 'Search',
+        path: '/v2',
+        icon: <SearchIcon />,
+    },
+    {
+        title: 'My list',
+        path: '/v2/mylist',
+        icon: <ListAltIcon />,
+    },
+    {
+        title: 'Explore',
+        path: '/v2/explore',
+        icon: <ExploreIcon />,
+    },
+];
 
 export const sidebarProfileItemLists = [
     {

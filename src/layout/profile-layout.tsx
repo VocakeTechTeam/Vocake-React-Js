@@ -4,7 +4,7 @@ import { createStyles, makeStyles } from '@mui/styles';
 import { Theme, useTheme } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
 import { Box, useMediaQuery } from '@mui/material';
-import { Header } from '../components/Header';
+import { Header } from '../components/Header/Header';
 import { SidebarProfile } from '../components/Sidebar';
 
 const ProfileLayout = () => {

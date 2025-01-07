@@ -5,7 +5,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { makeStyles, createStyles } from '@mui/styles';
 import { Box } from '@mui/material';
-import { theme } from '../../theme';
 import { useNavigate } from 'react-router-dom';
 
 interface SidebarItemProps {
@@ -22,7 +21,7 @@ interface SidebarItemProps {
     boxActiveColor?: string;
 }
 
-const SidebarItem = ({
+const SidebarItemV2 = ({
     title,
     icon,
     isactive = false,
@@ -45,15 +44,37 @@ const SidebarItem = ({
                     fill: isactive ? textActiveColor : textInactiveColor,
                 },
                 '& span': {
-                    fontWeight: isactive ? 'bold' : '',
                     fontSize: fontSize,
-                },
-                '& .MuiListItem-root:hover': {
-                    background: boxHoverColor,
-                    borderRadius: '10px',
                 },
                 '& .MuiListItem-root': {
                     background: isactive ? boxActiveColor : '',
+                    borderTopLeftRadius: '100px',
+                    borderBottomLeftRadius: '100px',
+                    width: '100%',
+                },
+                '& .MuiListItem-root:hover': {},
+                '& .MuiListItem-root::after': {
+                    content: '""',
+                    position: 'absolute',
+                    backgroundColor: isactive ? textActiveColor : 'transparent', // Use active color when isactive
+                    bottom: '100%',
+                    right: 0,
+                    height: '35px',
+                    width: '35px',
+                    borderBottomRightRadius: '18px',
+                    boxShadow: isactive ? '0 20px 0 0 #fff' : 'none', // Apply box shadow if active
+                    top: -35,
+                },
+                '& .MuiListItem-root::before': {
+                    content: '""',
+                    position: 'absolute',
+                    backgroundColor: isactive ? textActiveColor : 'transparent', // Use active color when isactive
+                    top: '48px',
+                    right: 0,
+                    height: '35px',
+                    width: '35px',
+                    borderTopRightRadius: '18px',
+                    boxShadow: isactive ? '0 -20px 0 0 #fff' : 'none', // Apply box shadow if active
                 },
             }}
             className={classes.root}
@@ -79,18 +100,8 @@ const SidebarItem = ({
     );
 };
 
-export default SidebarItem;
+export default SidebarItemV2;
 
 const useStyles = makeStyles<{ isactive: boolean; boxHoverColor: string }>(
-    ({ isactive, boxHoverColor }) =>
-        createStyles({
-            root: {
-                '& .MuiListItemIcon-root ': {
-                    minWidth: 0,
-                    width: 'max-content',
-                    marginRight: 10,
-                },
-                borderRadius: '10px',
-            },
-        }),
+    ({ isactive, boxHoverColor }) => createStyles({}),
 );

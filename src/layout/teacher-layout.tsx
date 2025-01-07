@@ -5,7 +5,7 @@ import { Theme, useTheme } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SidebarTeacher from '../components/Sidebar/SidebarTeacher';
-import { HeaderTeacher } from '../components/HeaderTeacher';
+import { HeaderTeacher } from '../components/Header/HeaderTeacher';
 
 const TeacherLayout = () => {
     const [isSideBarOpen, setSideBarOpen] = useState(false);

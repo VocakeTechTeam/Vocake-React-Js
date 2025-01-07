@@ -257,10 +257,11 @@ const Setting = () => {
                                 alignItems: 'center',
                                 padding: 2,
                                 borderBottom: '#edeff4 solid 1.5px',
-                            
                             }}
                         >
-                            <p style={{ margin: 0, fontWeight:"600"  }}>Study reminders</p>
+                            <p style={{ margin: 0, fontWeight: '600' }}>
+                                Study reminders
+                            </p>
                             <Switch />
                         </Box>
                         <Box
@@ -272,7 +273,7 @@ const Setting = () => {
                                 alignItems: 'center',
                             }}
                         >
-                            <p style={{ margin: 0, fontWeight:"600"  }}>
+                            <p style={{ margin: 0, fontWeight: '600' }}>
                                 Choose when to receive study reminders
                             </p>
                             <Select
@@ -297,7 +298,9 @@ const Setting = () => {
                             borderBottom: '#edeff4 solid 1.5px',
                         }}
                     >
-                        <p style={{margin:0, fontWeight:"600"  }}>Email updates</p>
+                        <p style={{ margin: 0, fontWeight: '600' }}>
+                            Email updates
+                        </p>
                         <Switch />
                     </Box>
                     <Box
@@ -309,7 +312,9 @@ const Setting = () => {
                             alignItems: 'center',
                         }}
                     >
-                        <p style={{margin:0, fontWeight:"600" }}>Time zone</p>
+                        <p style={{ margin: 0, fontWeight: '600' }}>
+                            Time zone
+                        </p>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
@@ -391,11 +396,13 @@ const Setting = () => {
                             alignItems: 'center',
                         }}
                     >
-                        <Box sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems:"flex-start"
-                        }}>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                            }}
+                        >
                             <p style={{ margin: 0, fontWeight: '600' }}>
                                 Delete your account
                             </p>
@@ -404,14 +411,16 @@ const Setting = () => {
                                 undone.
                             </p>
                         </Box>
-                        <Box sx={{
-                            padding: "18px 20px",
-                            background: "#b00020",
-                            color: "white",
-                            fontWeight: "bold",
-                            borderRadius: 3,
-                            cursor:"pointer"
-                        }}>
+                        <Box
+                            sx={{
+                                padding: '18px 20px',
+                                background: '#b00020',
+                                color: 'white',
+                                fontWeight: 'bold',
+                                borderRadius: 3,
+                                cursor: 'pointer',
+                            }}
+                        >
                             Delete account
                         </Box>
                     </Box>

@@ -16,6 +16,8 @@ import {
     Setting,
     Upgrade,
 } from './views/Profile';
+import MainLayoutV2 from './layout/main-layout-v2';
+import { HomeV2 } from './views';
 
 const PrivateRoute = () => {
     const { isAuth } = useAuth();
@@ -50,6 +52,11 @@ const Routes_ = () => {
                 <Route path="privacy" element={<Privacy />} />
                 <Route path="upgrade" element={<Upgrade />} />
                 <Route path="help-and-feedback" element={<HelpAndFeedBack />} />
+            </Route>
+            <Route path="/v2" element={<MainLayoutV2 />}>
+                <Route path="" element={<HomeV2 />} />
+                <Route path="mylist" element={<HomeV2 />} />
+                <Route path="explore" element={<HomeV2 />} />
             </Route>
         </Routes>
     );
