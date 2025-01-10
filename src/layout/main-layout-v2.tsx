@@ -9,7 +9,8 @@ import { useTheme, Theme } from '@mui/material/styles';
 import Overlay from '../components/Overlay';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { transform } from '@babel/core';
+import DensityMediumIcon from '@mui/icons-material/DensityMedium';
+
 const MainLayoutV2 = () => {
     const classes = useStyles();
     const theme = useTheme();
@@ -17,6 +18,10 @@ const MainLayoutV2 = () => {
     const matches = useMediaQuery(theme.breakpoints.down('md'));
 
     const [loading, setLoading] = useState(true);
+    const toggleSideBar = () => {
+        setSideBarOpen(!isSideBarOpen);
+        setLoading(false);
+    };
     useEffect(() => {
         if (!matches) setSideBarOpen(false);
         setLoading(false);
@@ -31,8 +36,14 @@ const MainLayoutV2 = () => {
             {isSideBarOpen && (
                 <Overlay
                     handleClick={() => {
-                        console.log('clicked');
+                        setSideBarOpen(false);
                     }}
+                />
+            )}
+            {!isSideBarOpen && matches && (
+                <DensityMediumIcon
+                    className={classes.toggleIcon}
+                    onClick={toggleSideBar}
                 />
             )}
             <Box
@@ -69,6 +80,9 @@ const useStyles = makeStyles((theme: Theme) =>
             display: 'flex',
             flexDirection: 'row',
             width: '100vw',
+            [theme.breakpoints.down("md")]: {
+                overflowX:"hidden"
+            }
         },
         sidebar: {
             height: '100vh',
@@ -88,6 +102,10 @@ const useStyles = makeStyles((theme: Theme) =>
         header: {
             height: '100px',
             width: '100%',
+        },
+        toggleIcon: {
+            position: 'absolute',
+            cursor: 'pointer',
         },
     }),
 );

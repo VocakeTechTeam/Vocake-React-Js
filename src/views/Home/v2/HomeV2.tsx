@@ -157,7 +157,10 @@ const useStyles = makeStyles(() =>
             cursor: 'pointer',
         },
         image: {
-            width: '50%',
+            position: 'absolute',
+            width: '600px',
+            left: '-30%',
+            bottom:10
         },
         headerBox: {
             display: 'flex',
@@ -218,7 +221,7 @@ const useStyles = makeStyles(() =>
         },
         exampleSentence: {
             margin: 0,
-            textAlign:"left"
+            textAlign: 'left',
         },
         expandableBoxContainer: {
             display: 'flex',
@@ -246,15 +249,16 @@ const useStyles = makeStyles(() =>
             flexDirection: 'column',
             gap: 10,
             marginTop: 40,
+            zIndex:1
         },
         practiceImage: {
             width: '300px',
         },
         textarea: {
-            height: "200px",
+            height: '200px',
             borderRadius: 5,
-            width: "600px",
-            padding:"5px"
+            width: '600px',
+            padding: '5px',
         },
         checkButtonContainer: {
             display: 'flex',
@@ -270,6 +274,8 @@ const useStyles = makeStyles(() =>
         },
         imageBox: {
             flex: 1,
+            position: 'relative',
+            zIndex: 0,
         },
     }),
 );
