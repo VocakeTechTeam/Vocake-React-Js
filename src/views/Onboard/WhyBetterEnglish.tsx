@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { makeStyles, createStyles } from '@mui/styles';
 import { Box } from '@mui/material';
 import SelectBox from './components/SelectBox';
-import { time } from 'console';
+import { WhyBetterEnglishChoices as choices } from '../../constant';
+import { useDispatch } from 'react-redux';
+import { updateOnboard } from '../../store/store';
+import { getTypesFromValues } from '../../utility';
 
 type Props = {
     handleStep: () => void;
@@ -10,16 +13,11 @@ type Props = {
 
 const WhyBetterEnglish = ({ handleStep }: Props) => {
     const classes = useStyles();
-    const choices = [
-        '🚗 Travel or live abroad',
-        '🚀 Accelerate my career',
-        '🎙️ Talk to foereigners',
-        '🕹️ Self improvement',
-        '👶 Speak English to my kids',
-        'Other',
-    ];
     const [selectedItem, setSelectedItem] = useState<string[]>([]);
-
+    const dispatch = useDispatch();
+    const handleUpdate = (name: string, value: string[]) => {
+        return dispatch(updateOnboard({ name, value }));
+    };
     const handleClickItem = (item: string) => {
         setSelectedItem((prev) => {
             if (prev.includes(item)) {
@@ -29,26 +27,33 @@ const WhyBetterEnglish = ({ handleStep }: Props) => {
             }
         });
     };
+    const handleContinue = () => {
+        handleUpdate(
+            'purposeEnglish',
+            getTypesFromValues(choices, selectedItem),
+        );
+        handleStep();
+    };
     return (
         <Box className={classes.root}>
             <h2>Why do you want to get better at speaking English?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
-                if (selectedItem.includes(item)) {
+                if (selectedItem.includes(item.value)) {
                     isSelected = true;
                 }
                 return (
                     <SelectBox
                         key={index}
                         handleClick={handleClickItem}
-                        name={item}
+                        name={item.value}
                         isSelected={isSelected}
                         isActive={true}
                     />
                 );
             })}
             <Box
-                onClick={handleStep}
+                onClick={handleContinue}
                 sx={{ display: selectedItem.length >= 1 ? '' : 'none' }}
                 className={classes.btn}
             >

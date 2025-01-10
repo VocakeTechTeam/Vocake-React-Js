@@ -2,32 +2,37 @@ import React, { useState } from 'react';
 import { makeStyles, createStyles } from '@mui/styles';
 import { Box, Typography } from '@mui/material';
 import SelectBox from './components/SelectBox';
-
+import { EnglishRateChoices as choices } from '../../constant';
+import { useDispatch } from 'react-redux';
+import { updateOnboard } from '../../store/store';
 type Props = {
     handleStep: () => void;
 };
 
 const RateEnglish = ({ handleStep }: Props) => {
     const classes = useStyles();
-    const choices = ['Level 0', 'Level 1', 'Level 2', 'Level 3', 'Level 4'];
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const handleSelect = (item: string) => {
-        setSelectedItem(item);
+        handleUpdate('levelUser', 'UPPERIMMEDIATE');
         handleStep();
+    };
+    const dispatch = useDispatch();
+    const handleUpdate = (name: string, value: string) => {
+        return dispatch(updateOnboard({ name, value }));
     };
     return (
         <Box className={classes.root}>
             <h2>How would you rate your English?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
-                if (item == selectedItem) {
+                if (item.level == selectedItem) {
                     isSelected = true;
                 }
                 return (
                     <SelectBox
                         key={index}
                         handleClick={handleSelect}
-                        name={item}
+                        name={item.level}
                         isSelected={isSelected}
                         isActive={true}
                     />

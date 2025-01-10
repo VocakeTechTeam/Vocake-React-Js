@@ -104,7 +104,6 @@ const CoBan = () => {
                                 background: '#E5E5E5',
                                 borderRadius: '15px',
                                 alignItems: 'center',
-                                boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
                                 display: 'flex',
                                 justifyContent: 'center',
                                 width: '20px',
@@ -122,13 +121,14 @@ const CoBan = () => {
                     </Box>
                     <Box
                         onClick={() => {
-                            nav('practice');
+                            nav('/practice');
                         }}
                         sx={{
                             borderRadius: 15,
                             background: '#55AD9B',
-                            padding: '0 5px',
-                            boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+                            borderBottom: '#acd7ce solid 4px',
+
+                            padding: '0 10px',
                         }}
                     >
                         <p
@@ -146,8 +146,9 @@ const CoBan = () => {
                         sx={{
                             borderRadius: 10,
                             background: '#FE6876',
-                            padding: '0 5px',
-                            boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+                            padding: '0 10px',
+
+                            borderBottom: '#feced3 solid 4px',
                             cursor: 'pointer',
                         }}
                     >

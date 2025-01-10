@@ -2,14 +2,13 @@ import { Box } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../components/Sidebar/Sidebar';
-import { Header } from '../components/Header';
+import { Header } from '../components/Header/Header';
 import { Theme, useTheme } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { transform } from '@babel/core';
 
 const MainLayout = () => {
-    const [isSideBarOpen, setSideBarOpen] = useState(false);
+    const [isSideBarOpen, setSideBarOpen] = useState(true);
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
     const classes = useStyles({ isSideBarOpen });
@@ -85,7 +84,7 @@ const useStyles = makeStyles<Theme, UseStylesProps>((theme: Theme) =>
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 4px 8px 0px', // Shadow at the bottom,
+            boxShadow: 'rgba(99, 99, 99, 0.2) 0px 4px 8px 0px',
             zIndex: 9,
         },
         secondContainer: {

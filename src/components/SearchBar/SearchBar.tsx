@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Box } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
-import { SearchIcon } from '../assets/icon/SearchIcon';
-import { useSearch } from '../context/SearchContext';
+import { SearchIcon } from '../../assets/icon/SearchIcon';
+import { useSearch } from '../../context/SearchContext';
 
 const SearchBar = () => {
     const classes = useStyles();

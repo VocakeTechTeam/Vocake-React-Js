@@ -1,11 +1,11 @@
 import React from 'react';
 import { makeStyles, createStyles } from '@mui/styles';
 import { Box, Typography } from '@mui/material';
-import SearchBar from './SearchBar';
-import logo from '../assets/IMG_1572 2.png';
+import SearchBar from '../SearchBar/SearchBar';
+import logo from '../../assets/IMG_1572 2.png';
 import { Avatar } from '@mui/material';
-import { VoCakeTitleIcon } from '../assets/icon/VoCake';
-import { StarIcon } from '../assets/icon/StarIcon';
+import { VoCakeTitleIcon } from '../../assets/icon/VoCake';
+import { StarIcon } from '../../assets/icon/StarIcon';
 import { useNavigate } from 'react-router-dom';
 import { Theme, useTheme } from '@mui/material/styles';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
@@ -55,8 +55,14 @@ export const Header = ({ toggleSideBar }: Props) => {
                     </Typography>
                 </Box>
                 <Avatar
+                    sx={{
+                        cursor: 'pointer',
+                    }}
                     alt="Remy Sharp"
                     src="https://thumbs.dreamstime.com/b/generative-ai-young-smiling-man-avatar-man-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-d-vector-people-279560903.jpg"
+                    onClick={() => {
+                        nav('/profile');
+                    }}
                 />
             </Box>
         </Box>

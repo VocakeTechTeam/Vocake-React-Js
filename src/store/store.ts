@@ -1,79 +1,181 @@
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
+import book from '../assets/MyListCollection/Book.png';
+import { MyListCollection, UserOnboard, UserReigster } from '../types';
 
-// ** 1. Async Action (Optional) Example **
-export const fetchCounter = createAsyncThunk<number, void>(
-    'counter/fetchCounter',
-    async () => {
-        // Simulate an API call (You can replace this with an actual API call)
-        const response = await new Promise<{ value: number }>((resolve) =>
-            setTimeout(() => resolve({ value: 10 }), 1000),
-        );
-        return response.value;
-    },
-);
-
-// ** 2. Counter Slice Definition **
-
-// Define the type of the slice state
-interface CounterState {
-    value: number;
-    loading: boolean;
-}
-
-// Initial state for the counter
-const initialState: CounterState = {
-    value: 0,
-    loading: false,
+const userRegisterInitialState: UserReigster = {
+    email: null,
+    password: null,
+    password_retry: null,
+    fullName: null,
+    phoneNumber: null,
+    city: null,
+    role: 'CUSTOMER',
+    keySecret: 'CUSTOMER_SECRET',
+    country: null,
+    subscriptionUser: 'LEVEL1',
 };
 
-// Create the slice with actions and reducer
-const counterSlice = createSlice({
-    name: 'counter',
-    initialState,
+const userOnboardInitialState: UserOnboard = {
+    ...userRegisterInitialState,
+    nativeLanguage: null,
+    rangeAge: null,
+    topicInterest: null,
+    languageLearn: null,
+    purposeEnglish: null,
+    challengeInEnglish: null,
+    levelUser: null,
+    improveEnglish: null,
+    practiceEnglish: null,
+    xCode: null,
+};
+const myListCollectionInitialState: MyListCollection = {
+    collections: [
+        {
+            id: uuidv4(),
+            name: 'IELTS BEGINNER',
+            words: [
+                {
+                    word: 'hello',
+                    definition: 'used when meeting or greeting someone',
+                },
+                {
+                    word: 'absurd',
+                    definition:
+                        'stupid and unreasonable, or silly in a humorous way',
+                },
+                {
+                    word: 'ironic',
+                    definition:
+                        'interesting, strange, or funny because of being very different from what you would usually expect',
+                },
+                {
+                    word: 'abandon',
+                    definition:
+                        'to leave a place, thing, or person, usually for ever',
+                },
+                {
+                    word: 'courage',
+                    definition:
+                        'the ability to do something that frightens one',
+                },
+                {
+                    word: 'determined',
+                    definition:
+                        'having made a firm decision and being resolved not to change it',
+                },
+            ],
+            image: book,
+        },
+        {
+            id: uuidv4(),
+            name: 'IELTS INTERMEDIATE',
+            words: [
+                {
+                    word: 'what',
+                    definition: 'used to ask for information about something',
+                },
+                {
+                    word: 'vocabulary',
+                    definition:
+                        'the set of words known and used by a person or group',
+                },
+                { word: 'honor', definition: 'high respect or great esteem' },
+                {
+                    word: 'experience',
+                    definition:
+                        'practical contact with and observation of facts or events',
+                },
+                {
+                    word: 'adventure',
+                    definition:
+                        'an unusual and exciting, typically hazardous, experience or activity',
+                },
+            ],
+            image: book,
+        },
+        {
+            id: uuidv4(),
+            name: 'IELTS ADVANCED',
+            words: [
+                {
+                    word: 'hello',
+                    definition: 'used when meeting or greeting someone',
+                },
+                { word: 'say', definition: 'to express in words' },
+                { word: 'speak', definition: 'to communicate in speech' },
+                {
+                    word: 'talk',
+                    definition:
+                        'to speak in order to give information or express ideas',
+                },
+                {
+                    word: 'whisper',
+                    definition:
+                        "to speak very softly using one's breath without one's vocal cords, especially for the sake of privacy",
+                },
+                {
+                    word: 'shout',
+                    definition: 'to say something in a loud voice',
+                },
+            ],
+            image: book,
+        },
+    ],
+    userName: 'Thuong Bui',
+};
+
+const UserOnboardSlice = createSlice({
+    name: 'UserOnboard',
+    initialState: userOnboardInitialState,
     reducers: {
-        increment: (state) => {
-            state.value += 1;
+        updateOnboard(
+            state,
+            action: PayloadAction<{ name: string; value: string | string[] }>,
+        ) {
+            const { name, value } = action.payload;
+            if (state.hasOwnProperty(name)) {
+                (state as any)[name] = value;
+            }
+            console.log(JSON.stringify(state, null, 2));
         },
-        decrement: (state) => {
-            state.value -= 1;
-        },
-        reset: (state) => {
-            state.value = 0;
-        },
-        setCounter: (state, action: PayloadAction<number>) => {
-            state.value = action.payload;
-        },
-    },
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchCounter.pending, (state) => {
-                state.loading = true;
-            })
-            .addCase(fetchCounter.fulfilled, (state, action) => {
-                state.loading = false;
-                state.value = action.payload;
-            })
-            .addCase(fetchCounter.rejected, (state) => {
-                state.loading = false;
-            });
     },
 });
 
-// Export actions
-export const { increment, decrement, reset, setCounter } = counterSlice.actions;
+const MyListCollectionSlice = createSlice({
+    name: 'MyListCollection',
+    initialState: myListCollectionInitialState,
+    reducers: {
+        addWordToList(
+            state,
+            action: PayloadAction<{
+                listId: string;
+                word: string;
+                definition: string;
+            }>,
+        ) {
+            const { listId, word } = action.payload;
+            const list = state.collections.find(
+                (collection) => collection.id === listId,
+            );
+            if (list && !list.words.find((item) => item.word == word)) {
+                list.words.push({ word: word, definition: '' });
+            } else if (list && list.words.find((item) => item.word == word)) {
+                list.words = list.words.filter((item) => item.word !== word);
+            }
+        },
+    },
+});
 
-// ** 3. Store Configuration **
-
-// Create and configure the Redux store
-export const store = configureStore({
+export const { addWordToList } = MyListCollectionSlice.actions;
+export const { updateOnboard } = UserOnboardSlice.actions;
+const store = configureStore({
     reducer: {
-        counter: counterSlice.reducer,
+        myListCollection: MyListCollectionSlice.reducer,
+        userOnboard: UserOnboardSlice.reducer,
     },
 });
 
-// ** 4. Types for Store & Dispatch **
-// Infer the `RootState` type from the store itself
+export { store };
+
 export type RootState = ReturnType<typeof store.getState>;
-// Infer the `AppDispatch` type from the store
-export type AppDispatch = typeof store.dispatch;

@@ -78,6 +78,7 @@ export const Input = ({
                         color: 'red',
                         flexDirection: 'row',
                         alignItems: 'flex-start',
+                        fontSize: 12,
                     }}
                 >
                     {errorMessage}

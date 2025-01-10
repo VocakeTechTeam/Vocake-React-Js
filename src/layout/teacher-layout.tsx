@@ -1,14 +1,11 @@
 import { Box } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../components/Sidebar/Sidebar';
-import { Header } from '../components/Header';
 import { Theme, useTheme } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { transform } from '@babel/core';
 import SidebarTeacher from '../components/Sidebar/SidebarTeacher';
-import { HeaderTeacher } from '../components/HeaderTeacher';
+import { HeaderTeacher } from '../components/Header/HeaderTeacher';
 
 const TeacherLayout = () => {
     const [isSideBarOpen, setSideBarOpen] = useState(false);

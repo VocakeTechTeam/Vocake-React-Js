@@ -1,98 +1,135 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState, useRef } from 'react';
 import { Box, Typography } from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import image1 from '../../assets/image1.png';
 import { Input } from '../../components/Input';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import { useNavigate } from 'react-router-dom';
-import VerificationModal from './components/VerificationModal';
-import { UserReigster } from '../../types';
-import { signUpService, verifyOtpService } from '../../api';
+import { signUpService, verifyOtpService } from '../../services';
 import SpinModal from '../../components/SpinModal';
 import { useAuth } from '../../context/AuthContext';
 import { Theme, useTheme } from '@mui/material/styles';
+import OutlinedFlagIcon from '@mui/icons-material/OutlinedFlag';
+import LocationCityOutlinedIcon from '@mui/icons-material/LocationCityOutlined';
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
+import { RootState } from '../../store/store';
+import { useDispatch } from 'react-redux';
+import { updateOnboard } from '../../store/store';
+import { useSelector } from 'react-redux';
+import VerificationModal from './components/VerificationModal';
 
 const Register = () => {
     const theme = useTheme();
-    const [open, setOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
     const { isAuth } = useAuth();
-
-    useEffect(() => {
-        if (isAuth) {
-            nav('/');
-        }
-    }, []);
-
-    const handleClose = () => setOpen(false);
-    const [otp, setOtp] = useState<string>('');
+    const dispatch = useDispatch();
     const nav = useNavigate();
-    const [user, setUser] = useState<UserReigster>({
-        email: null,
-        password: null,
-        password_retry: null,
-        fullName: null,
-        phoneNumber: null,
-        locations: null,
-        role: 'CUSTOMER',
-        levelUser: 'BEGINNER',
-        keySecret: 'CUSTOMER_SECRET',
-    });
 
-    useEffect(() => {
-        if (otp.length == 6) {
-            const verifyOtp = async () => {
-                setLoading(true);
-                const token = await verifyOtpService(user, otp);
-                if (token !== null)
-                    localStorage.setItem('vocake_access_token', token);
-                setLoading(false);
-                nav('/onboard');
-            };
-            setOpen(false);
-            verifyOtp();
-        }
-    }, [otp]);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const onboard = useSelector((state: RootState) => state.userOnboard);
+    const [otp, setOtp] = useState<string>('');
+    const handleOtpChange = (otp: string) => {
+        setOtp(otp);
+    };
+    const handleUpdate = (name: string, value: string) => {
+        return dispatch(updateOnboard({ name, value }));
+    };
 
     const [emailError, setEmailError] = useState<null | string>(null);
     const [passwordError, setPasswordError] = useState<null | string>(null);
     const [phoneNumberError, setPhoneNumberError] = useState<null | string>(
         null,
     );
+    const [conuntryError, setCountryError] = useState<null | string>(null);
+    const [cityError, setCityError] = useState<null | string>(null);
+    const [fullNameError, setFullNameError] = useState<null | string>(null);
+    useEffect(() => {
+        if (isAuth) {
+            nav('/');
+        }
+    }, []);
+    useEffect(() => {
+        const verifyOtp = async () => {
+            if (otp.length == 6) {
+                setLoading(true);
+                try {
+                    const res = await verifyOtpService(onboard.email, otp);
+                    handleUpdate('xCode', res);
+                    if (res) {
+                        nav('/onboard');
+                    }
+                    setIsModalOpen(false);
+                    setLoading(false);
+                } catch (error) {
+                    console.log(error);
+                    setLoading(false);
+                    setIsModalOpen(false);
+                }
+            }
+        };
+        verifyOtp();
+    }, [otp]);
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setPasswordError(null);
         setEmailError(null);
         setPhoneNumberError(null);
-        setUser({ ...user, [e.target.name]: e.target.value });
-    };
-    const handleOtp = (otp: string) => {
-        setOtp(otp);
+        setCityError(null);
+        setCountryError(null);
+        setFullNameError(null);
+        if (e.target.name == 'country') {
+            handleUpdate(
+                e.target.name,
+                e.target.value
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/\s+/g, '')
+                    .toUpperCase(),
+            );
+        } else {
+            handleUpdate(e.target.name, e.target.value);
+        }
     };
     const handleSignUp = async () => {
-        if (!user.email) {
+        if (!onboard.email || !onboard.email?.includes('@')) {
             setEmailError('Please type your password');
-        } else if (!user.phoneNumber) {
+        } else if (
+            !onboard.phoneNumber ||
+            !/^[0-9]+$/.test(onboard.phoneNumber)
+        ) {
             setPhoneNumberError('Please type your phone number');
-        } else if (user.password !== user.password_retry) {
+        } else if (!onboard.city) {
+            setCityError('Please type your city');
+        } else if (!onboard.country) {
+            setCityError('Please type your country');
+        } else if (!onboard.fullName) {
+            setFullNameError('Please type your full name');
+        } else if (!onboard.password) {
+            setPasswordError('Please type your password');
+        } else if (onboard.password !== onboard.password_retry) {
             setPasswordError('Password unmatched');
         } else {
-            setLoading(true);
-            const res = await signUpService(user);
-            setLoading(false);
-            if (res) {
-                setOpen(true);
-            }
+            try {
+                setLoading(true);
+                const res = await signUpService(onboard.email);
+                setLoading(false);
+                if (res) {
+                    setIsModalOpen(true);
+                }
+            } catch {}
         }
     };
     const styles = useStyles(theme);
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+    };
     return (
         <Box className={styles.root}>
             <VerificationModal
-                hanldeClose={handleClose}
-                isOpen={open}
-                handleChange={handleOtp}
+                isOpen={isModalOpen}
+                handleChange={handleOtpChange}
+                hanldeClose={handleModalClose}
             />
             <SpinModal isOpen={loading} />
             <Box className={styles.container1}>
@@ -120,8 +157,31 @@ const Register = () => {
                             errorMessage={phoneNumberError}
                             handleChange={handleChange}
                             name={'phoneNumber'}
-                            icon={<LocalPhoneIcon />}
+                            icon={<LocalPhoneOutlinedIcon />}
                             placeholder={'Enter your phone number'}
+                        />
+                        <Box sx={{ display: 'flex', gap: 3 }}>
+                            <Input
+                                errorMessage={cityError}
+                                handleChange={handleChange}
+                                name={'city'}
+                                icon={<LocationCityOutlinedIcon />}
+                                placeholder={'Enter your city'}
+                            />
+                            <Input
+                                errorMessage={conuntryError}
+                                handleChange={handleChange}
+                                name={'country'}
+                                icon={<OutlinedFlagIcon />}
+                                placeholder={'Enter your country'}
+                            />
+                        </Box>
+                        <Input
+                            errorMessage={fullNameError}
+                            handleChange={handleChange}
+                            name={'fullName'}
+                            icon={<BadgeOutlinedIcon />}
+                            placeholder={'Enter your full name'}
                         />
                         <Input
                             errorMessage={passwordError}
@@ -131,6 +191,7 @@ const Register = () => {
                             icon={<LockOutlinedIcon />}
                             placeholder={'Enter your password'}
                         />
+
                         <Input
                             errorMessage={passwordError}
                             handleChange={handleChange}
@@ -145,7 +206,6 @@ const Register = () => {
                             className={styles.singUpbtn}
                             onClick={handleSignUp}
                         >
-                            {' '}
                             Signup
                         </Box>
                         <Box

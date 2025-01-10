@@ -2,6 +2,10 @@ import { Box, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import SelectBox from './components/SelectBox';
 import { makeStyles, createStyles } from '@mui/styles';
+import { LanguageWantToLearnChoices as choices } from '../../constant';
+import { useDispatch } from 'react-redux';
+import { updateOnboard } from '../../store/store';
+import { getTypesFromValues } from '../../utility';
 type Props = {
     handleStep: () => void;
 };
@@ -12,27 +16,29 @@ type ChoiceProps = {
 const ChooseLangWantToLearn = ({ handleStep }: Props) => {
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const classes = useStyles();
-    const choies: ChoiceProps[] = [
-        { name: '🇺🇸 English', isActive: true },
-        { name: '🇫🇮 Finnish', isActive: false },
-    ];
     const handleSelect = (item: string) => {
-        setSelectedItem(item);
+        // @ts-ignore
+        handleUpdate('languageLearn', getTypesFromValues(choices, [item]));
         handleStep();
     };
+    const dispatch = useDispatch();
+    const handleUpdate = (name: string, value: string[]) => {
+        return dispatch(updateOnboard({ name, value }));
+    };
+
     return (
         <Box className={classes.root}>
             <h2>What language do you want to learn?</h2>
-            {choies.map((item, index) => {
+            {choices.map((item, index) => {
                 let isSelected = false;
-                if (item.name == selectedItem) {
+                if (item.value == selectedItem) {
                     isSelected = true;
                 }
                 return (
                     <SelectBox
                         key={index}
                         handleClick={handleSelect}
-                        name={item.name}
+                        name={item.value}
                         isSelected={isSelected}
                         isActive={item.isActive}
                     />

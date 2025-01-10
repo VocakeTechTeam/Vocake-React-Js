@@ -19,12 +19,13 @@ const frontHTML = (
             borderRadius: 3,
             background: '#FFF9EB',
             flexDirection: 'column',
-            padding: 5,
+            padding: 4,
+            gap: 2,
         }}
     >
-        <Box sx={{ marginLeft: 'auto', gap: 2, display: 'flex' }}>
-            <VolumeUpIcon />
-            <StarBorderIcon />
+        <Box sx={{ marginLeft: 'auto', gap: 1, display: 'flex' }}>
+            <VolumeUpIcon sx={{ width: '20px' }} />
+            <StarBorderIcon sx={{ width: '20px' }} />
         </Box>
         <Box
             sx={{
@@ -36,7 +37,6 @@ const frontHTML = (
             }}
         >
             <Box sx={{ flex: 1 }}>
-                {' '}
                 <Typography style={{ fontWeight: 'bold', fontSize: '24px' }}>
                     ironic (a.)
                 </Typography>
@@ -53,60 +53,80 @@ const backHTML = (
             width: '100%',
             height: '100%',
             alignItems: 'center',
-            justifyContent: 'center',
             display: 'flex',
             borderRadius: 3,
             background: '#55AD9B',
             flexDirection: 'column',
             padding: 5,
+            gap: 3,
         }}
     >
-        <Box sx={{ marginLeft: 'auto', gap: 2, display: 'flex' }}>
-            <VolumeUpIcon />
-            <StarBorderIcon />
+        <Box sx={{ marginLeft: 'auto', gap: 1, display: 'flex' }}>
+            <VolumeUpIcon sx={{ color: 'white' }} />
+            <StarBorderIcon sx={{ color: 'white' }} />
         </Box>
         <Box
             sx={{
                 width: '100%',
-                height: '100%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexDirection: 'column',
+                gap: 1,
             }}
         >
             <Typography
                 style={{
                     fontWeight: 'bold',
-                    fontSize: '24px',
+                    fontSize: '26px',
                     color: '#EAB355',
                 }}
             >
                 ironic (a.)
             </Typography>
-            <Box>
-                <Typography sx={{ fontSize: '22px' }}>
-                    unexpected thus funny <TranslateIcon />
-                </Typography>
-            </Box>
-            <Typography
-                sx={{ fontWeight: 'bold', color: 'white', display: 'flex' }}
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 2,
+                }}
             >
-                It’s
+                <Typography sx={{ fontSize: '24px' }}>
+                    unexpected thus funny
+                </Typography>
+                <TranslateIcon sx={{ width: '20px', color: 'white' }} />
+            </Box>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: 0.6,
+                }}
+            >
                 <Typography
-                    style={{
+                    sx={{
                         fontWeight: 'bold',
-                        color: '#EAB355',
+                        color: 'white',
                         display: 'flex',
-                        width: '85px',
-                        justifyContent: 'center',
-                        height: 'max-content',
+                        fontSize: '16px',
                     }}
                 >
-                    ironic (a.)
+                    It’s
                 </Typography>
-                that Sarah, the librarian, got fined for overdue books.
-            </Typography>
+                <Typography sx={{ fontWeight: 'bold', color: '#EAB355' }}>
+                    ironic
+                </Typography>
+                <Typography
+                    sx={{
+                        fontWeight: 'bold',
+                        color: 'white',
+                        fontSize: '16px',
+                    }}
+                >
+                    that Sarah, the librarian, got fined for overdue books.
+                </Typography>
+            </Box>
         </Box>
     </Box>
 );

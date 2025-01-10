@@ -18,23 +18,32 @@ import ChallengeReassure from './ChallengeReassure';
 import ChooseNativeLang from './ChooseNativeLang';
 import TopicReassure from './TopicReassure';
 import { Theme } from '@mui/material/styles';
-
+import { onboardService } from '../../services';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 const Onboard = () => {
     const classes = useStyles();
     const [step, setStep] = useState<number>(1);
     const [challenge, setChallenge] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
     const nav = useNavigate();
-    useEffect(() => {
-        if (step == totalStep + 1) {
-            nav('/');
-        }
-    }, [step]);
-
-    const handleStep = () => {
+    const onboard = useSelector((state: RootState) => state.userOnboard);
+    const handleStep = async () => {
         if (step <= totalStep) {
             setStep(step + 1);
         }
     };
+    useEffect(() => {
+        const onboardUser = async () => {
+            if (step == totalStep + 1) {
+                const res = await onboardService(onboard);
+                if (res) {
+                    nav('/');
+                }
+            }
+        };
+        onboardUser();
+    }, [step]);
     const handleStepBack = () => {
         if (step > 1) {
             setStep(step - 1);
@@ -60,7 +69,7 @@ const Onboard = () => {
         <Age handleStep={handleStep} />,
     ];
     const totalStep = arr.length;
-
+    if (loading) return <>....loading</>;
     return (
         <Box className={classes.root}>
             <Box className={classes.headerContainer}>

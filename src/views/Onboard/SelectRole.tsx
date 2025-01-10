@@ -6,6 +6,7 @@ import image1 from '../../assets/image1.png';
 const SelectRole = () => {
     const [step, setStep] = useState<number>();
     const classes = useStyles();
+
     return (
         <Box className={classes.root}>
             <Box className={classes.firstContainer}>

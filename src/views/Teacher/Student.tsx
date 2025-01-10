@@ -76,7 +76,6 @@ const Student = () => {
     useEffect(() => {
         setData(StudentList.filter((item) => item.id == param.id)[0]);
         setLoading(false);
-        console.log(data);
     }, []);
     const [isActive, setIsActive] = useState(false);
 

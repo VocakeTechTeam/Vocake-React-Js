@@ -49,7 +49,16 @@ const Login = () => {
         setUser({ ...user, [e.target.name]: e.target.value });
     };
     return (
-        <Box className={styles.root}>
+        <Box
+            className={styles.root}
+            tabIndex={0}
+            onKeyDown={(e: React.KeyboardEvent) => {
+                if (e.key == 'Enter') {
+                    e.preventDefault();
+                    handleLogin();
+                }
+            }}
+        >
             <SpinModal isOpen={loading} />
             <Box className={styles.container1}>
                 <Box className={styles.container3}>

@@ -2,7 +2,10 @@ import { Box, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import SelectBox from './components/SelectBox';
 import { makeStyles, createStyles } from '@mui/styles';
-
+import { MainChallengeChoices as choices } from '../../constant';
+import { useDispatch } from 'react-redux';
+import { updateOnboard } from '../../store/store';
+import { getTypesFromValues } from '../../utility';
 type Props = {
     handleStep: () => void;
     onSelect: (challenge: string) => void;
@@ -11,30 +14,28 @@ type Props = {
 const ChooseMainChallenge = ({ handleStep, onSelect }: Props) => {
     const [selectedItem, setSelectedItem] = useState<string | null>(null);
     const classes = useStyles();
-    const choices = [
-        "⏰ It's hard to find time",
-        "🚀 It's hard to stay motivated",
-        '🧠 Remembering what I learned',
-        '😔 English might be too hard',
-    ];
     const handleSelect = (item: string) => {
-        setSelectedItem(item);
+        handleUpdate('challengeInEnglish', getTypesFromValues(choices, [item]));
         onSelect(item);
         handleStep();
+    };
+    const dispatch = useDispatch();
+    const handleUpdate = (name: string, value: string[]) => {
+        return dispatch(updateOnboard({ name, value }));
     };
     return (
         <Box className={classes.root}>
             <h2>What is the main challenge for you in learning English?</h2>
             {choices.map((item, index) => {
                 let isSelected = false;
-                if (item == selectedItem) {
+                if (item.value == selectedItem) {
                     isSelected = true;
                 }
                 return (
                     <SelectBox
                         key={index}
                         handleClick={handleSelect}
-                        name={item}
+                        name={item.value}
                         isSelected={isSelected}
                         isActive={true}
                     />

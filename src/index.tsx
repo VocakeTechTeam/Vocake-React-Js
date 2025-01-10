@@ -10,22 +10,26 @@ import { AuthProvider } from './context/AuthContext';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { SearchContextProvider } from './context/SearchContext';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement,
 );
 root.render(
     <React.StrictMode>
-        <AuthProvider>
-            <ThemeProvider theme={theme}>
-                <SearchContextProvider>
-                    <CssBaseline enableColorScheme />
-                    <BrowserRouter>
-                        <App />
-                        <ToastContainer />
-                    </BrowserRouter>
-                </SearchContextProvider>
-            </ThemeProvider>
-        </AuthProvider>
+        <Provider store={store}>
+            <AuthProvider>
+                <ThemeProvider theme={theme}>
+                    <SearchContextProvider>
+                        <CssBaseline enableColorScheme />
+                        <BrowserRouter>
+                            <App />
+                            <ToastContainer />
+                        </BrowserRouter>
+                    </SearchContextProvider>
+                </ThemeProvider>
+            </AuthProvider>
+        </Provider>
     </React.StrictMode>,
 );
 
