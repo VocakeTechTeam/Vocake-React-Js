@@ -26,7 +26,8 @@ const useStyles = makeStyles(() =>
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'space-around',
+            padding: "0px 60px",
+            justifyContent:"space-between"
         },
     }),
 );

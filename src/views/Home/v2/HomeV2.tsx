@@ -47,28 +47,59 @@ const HomeV2 = () => {
                     </Box>
                     <Box className={classes.translationContainer}>
                         <Box className={classes.translationRow}>
-                            <p style={{fontWeight:700,fontSize:20,margin:0}}>unexpected thus funny</p>
-                            <img src={translate} alt="translate icon" className={classes.icon} />
-                        </Box>   
+                            <p
+                                style={{
+                                    fontWeight: 700,
+                                    fontSize: 20,
+                                    margin: 0,
+                                }}
+                            >
+                                unexpected thus funny
+                            </p>
+                            <img
+                                src={translate}
+                                alt="translate icon"
+                                className={classes.icon}
+                            />
+                        </Box>
                         <p className={classes.exampleSentence}>
-                            It’s ironic that Sarah, the librarian, got fined for overdue books.
+                            It’s ironic that Sarah, the librarian, got fined for
+                            overdue books.
                         </p>
                     </Box>
                     <Box className={classes.expandableBoxContainer}>
-                        <Box className={classes.expandableBox} style={{ background: '#FFC152' }}>
-                            <p className={classes.expandableText}>Word Family</p>
+                        <Box
+                            className={classes.expandableBox}
+                            style={{ background: '#FFC152' }}
+                        >
+                            <p className={classes.expandableText}>
+                                Word Family
+                            </p>
                             <KeyboardArrowDownIcon sx={{ color: 'white' }} />
                         </Box>
-                        <Box className={classes.expandableBox} style={{ background: '#5DD299' }}>
-                            <p className={classes.expandableText}>Advanced Uses</p>
+                        <Box
+                            className={classes.expandableBox}
+                            style={{ background: '#5DD299' }}
+                        >
+                            <p className={classes.expandableText}>
+                                Advanced Uses
+                            </p>
                             <KeyboardArrowDownIcon sx={{ color: 'white' }} />
                         </Box>
-                        <Box className={classes.expandableBox} style={{ background: '#FE774C' }}>
+                        <Box
+                            className={classes.expandableBox}
+                            style={{ background: '#FE774C' }}
+                        >
                             <p className={classes.expandableText}>Synonym</p>
                             <KeyboardArrowDownIcon sx={{ color: 'white' }} />
                         </Box>
-                        <Box className={classes.expandableBox} style={{ background: '#EDBAE5' }}>
-                            <p className={classes.expandableText}>Collocations</p>
+                        <Box
+                            className={classes.expandableBox}
+                            style={{ background: '#EDBAE5' }}
+                        >
+                            <p className={classes.expandableText}>
+                                Collocations
+                            </p>
                             <KeyboardArrowDownIcon sx={{ color: 'white' }} />
                         </Box>
                     </Box>
@@ -100,7 +131,7 @@ const useStyles = makeStyles(() =>
             fontFamily: '"Nunito", serif',
             display: 'flex',
             flexDirection: 'column',
-            padding: '0px 30px',
+            padding: '0px 60px',
         },
         title: {
             margin: 0,
@@ -161,7 +192,7 @@ const useStyles = makeStyles(() =>
             border: '#66A7F2 solid 1px',
             borderRadius: '8px',
             overflow: 'hidden',
-            width: "max-content",
+            width: 'max-content',
         },
         typeItem: {
             padding: '3px 28px',
@@ -187,12 +218,13 @@ const useStyles = makeStyles(() =>
         },
         exampleSentence: {
             margin: 0,
+            textAlign:"left"
         },
         expandableBoxContainer: {
             display: 'flex',
             flexDirection: 'column',
             gap: 20,
-            marginTop:10
+            marginTop: 10,
         },
         expandableBox: {
             width: '380px',
@@ -213,14 +245,16 @@ const useStyles = makeStyles(() =>
             display: 'flex',
             flexDirection: 'column',
             gap: 10,
-            marginTop:40
+            marginTop: 40,
         },
         practiceImage: {
             width: '300px',
         },
         textarea: {
-            height: 80,
+            height: "200px",
             borderRadius: 5,
+            width: "600px",
+            padding:"5px"
         },
         checkButtonContainer: {
             display: 'flex',

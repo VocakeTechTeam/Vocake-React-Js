@@ -76,6 +76,9 @@ const SidebarItemV2 = ({
                     borderTopRightRadius: '18px',
                     boxShadow: isactive ? '0 -20px 0 0 #fff' : 'none', // Apply box shadow if active
                 },
+                '& .MuiListItemButton-root:hover': {
+                    bgcolor: 'transparent',
+                },
             }}
             className={classes.root}
             onClick={() => {

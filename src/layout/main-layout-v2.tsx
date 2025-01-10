@@ -4,12 +4,48 @@ import { createStyles, makeStyles } from '@mui/styles';
 import { Box } from '@mui/material';
 import SidebarV2 from '../components/Sidebar/SidebarV2/SidebarV2';
 import HeaderV2 from '../components/Header/HeaderV2';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme, Theme } from '@mui/material/styles';
+import Overlay from '../components/Overlay';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { transform } from '@babel/core';
 const MainLayoutV2 = () => {
     const classes = useStyles();
+    const theme = useTheme();
+    const [isSideBarOpen, setSideBarOpen] = useState<boolean>(true);
+    const matches = useMediaQuery(theme.breakpoints.down('md'));
+
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        if (!matches) setSideBarOpen(false);
+        setLoading(false);
+    }, [matches]);
+    useEffect(() => {
+        setLoading(false);
+    });
+    if (loading) return <>.....loading</>;
     return (
         <Box className={classes.root}>
             {/* sidebar */}
-            <Box className={classes.sidebar}>
+            {isSideBarOpen && (
+                <Overlay
+                    handleClick={() => {
+                        console.log('clicked');
+                    }}
+                />
+            )}
+            <Box
+                className={classes.sidebar}
+                sx={(theme: Theme) => ({
+                    [theme.breakpoints.down('md')]: {
+                        transform: (props) =>
+                            isSideBarOpen
+                                ? 'translateX(0%)'
+                                : 'translateX(-100%)',
+                    },
+                })}
+            >
                 <SidebarV2 />
             </Box>
             {/* Main */}
@@ -26,7 +62,7 @@ const MainLayoutV2 = () => {
 
 export default MainLayoutV2;
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             height: '100vh',
@@ -36,10 +72,16 @@ const useStyles = makeStyles(() =>
         },
         sidebar: {
             height: '100vh',
-            width: '20vw',
+            width: '250px',
+            [theme.breakpoints.down('md')]: {
+                position: 'absolute',
+                background: 'white',
+                zIndex: 16,
+                transition: 'transform 0.5s ease',
+            },
         },
         main: {
-            width: '80vw',
+            flex: '1',
             height: '100vh',
             overflowY: 'auto',
         },

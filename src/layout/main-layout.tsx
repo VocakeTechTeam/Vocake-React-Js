@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const MainLayout = () => {
-    const [isSideBarOpen, setSideBarOpen] = useState(false);
+    const [isSideBarOpen, setSideBarOpen] = useState(true);
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.down('md'));
     const classes = useStyles({ isSideBarOpen });
